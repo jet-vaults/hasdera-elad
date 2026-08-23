@@ -50,7 +50,7 @@ header{
 }
 header.scrolled{box-shadow:0 6px 30px rgba(42,27,22,.08)}
 .logos{display:flex;align-items:center;gap:18px}
-.logos img{height:40px;width:auto;mix-blend-mode:multiply}
+.logos img{height:40px;width:auto}
 .logos .sep{width:1px;height:30px;background:var(--line)}
 nav{display:flex;gap:clamp(14px,2.5vw,36px);font-weight:600;font-size:.95rem}
 nav a{position:relative;padding-block:4px;color:var(--espresso)}
@@ -125,14 +125,19 @@ section{position:relative}
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,70px);align-items:center}
-.about-text p{margin-bottom:1.2em;font-size:1.08rem;font-weight:300}
+.about-text p{margin-bottom:1.2em;font-size:1.18rem;font-weight:300}
 .about-text p strong{font-weight:700;color:var(--ink)}
 .about-quote{
   border-inline-start:3px solid var(--gold);
   padding-inline-start:20px;margin-top:28px;
   font-weight:600;font-size:1.25rem;line-height:1.5;color:var(--gold-deep);
 }
-.about-media img{box-shadow:0 30px 70px rgba(42,27,22,.22)}
+.about-media{position:relative}
+.about-media img{box-shadow:0 30px 70px rgba(42,27,22,.22);border-radius:16px}
+.about-media::before{
+  content:"";position:absolute;top:-26px;inset-inline-end:-26px;
+  width:45%;height:60%;border:1px solid var(--gold);border-radius:16px;z-index:-1;
+}
 
 /* ---------- gallery ---------- */
 .gallery{background:var(--mist)}
@@ -198,18 +203,20 @@ section{position:relative}
   display:flex;align-items:center;gap:12px;
 }
 .why-card h3 svg{width:26px;height:26px;fill:var(--gold);flex-shrink:0}
-.why-card p{font-size:.98rem;font-weight:300}
+.why-card p{font-size:1.08rem;font-weight:300}
 
 /* ---------- companies (bright band) ---------- */
 .companies{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.comp-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,70px);align-items:center}
-.comp-text{font-weight:300;font-size:1.08rem}
+.companies .sec-head{text-align:center}
+.companies .sec-head::after{margin-inline:auto}
+.comp-text{
+  font-weight:300;font-size:1.3rem;line-height:1.85;
+  max-width:860px;margin:0 auto;text-align:center;
+}
 .comp-text strong{color:var(--gold-deep);font-weight:700}
-.comp-logos{display:grid;gap:34px;justify-items:center}
-.comp-logos img{max-height:96px;width:auto;mix-blend-mode:multiply}
 
 /* ---------- inventory ---------- */
-.inv-lead{max-width:640px;font-weight:300;font-size:1.08rem;margin-bottom:34px}
+.inv-lead{max-width:640px;font-weight:300;font-size:1.18rem;margin-bottom:34px}
 .inv-media{position:relative;box-shadow:0 30px 80px rgba(42,27,22,.25);line-height:0}
 .inv-media > img{width:100%}
 .inv-media .veil{
@@ -256,7 +263,7 @@ footer{
   font-size:.9rem;font-weight:300;
 }
 footer .f-logos{display:flex;align-items:center;gap:16px}
-footer .f-logos img{height:34px;width:auto;mix-blend-mode:multiply}
+footer .f-logos img{height:34px;width:auto}
 footer a{color:var(--gold-deep);font-weight:600}
 footer a:hover{text-decoration:underline}
 
@@ -294,7 +301,7 @@ footer a:hover{text-decoration:underline}
 <header id="hdr">
   <div class="logos">
     <a href="#top" aria-label="דף הבית">
-      <img src="/wp-content/uploads/2026/02/9ffd54ec-2-e1770776466215-300x109.png" alt="קבוצת גלנור">
+      <img src="/assets/galnor-logo.png" alt="קבוצת גלנור">
     </a>
     <span class="sep"></span>
     <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
@@ -322,12 +329,11 @@ footer a:hover{text-decoration:underline}
       <img src="/wp-content/uploads/2026/02/Yadot-Elad100001-copy-scaled.jpg" alt="הדמיית פרויקט השדרה אלעד">
     </div>
     <div class="hero-inner">
-      <span class="hero-kicker">גלנור וידות מציגות</span>
       <h1>השדרה <em>אלעד</em></h1>
       <p>מתחם המגורים החדש של גלנור וידות באלעד — איכות חיים מול נוף פתוח, בקו הראשון לנוף ובשער הכניסה החדש לעיר.</p>
       <div class="hero-actions">
         <a class="btn btn-gold" href="/apartments.html?view=building&bview_building=1">לתכנית דירה ומחירים</a>
-        <a class="btn btn-ghost" href="#about">להכיר את הפרויקט</a>
+        <a class="btn btn-ghost" href="#about">על הפרויקט</a>
       </div>
     </div>
   </section>
@@ -345,7 +351,7 @@ footer a:hover{text-decoration:underline}
           <div class="about-quote">איכות חיים מול נוף פתוח — בשער הכניסה החדש לאלעד.</div>
         </div>
         <div class="about-media rv d1">
-          <img src="/wp-content/uploads/2026/02/Yadot-Elad100005-copy-1024x576.jpg" alt="הדמיית המתחם">
+          <img src="/assets/yadot-elad12-web.jpg" alt="הדמיית המתחם">
         </div>
       </div>
     </div>
@@ -409,14 +415,8 @@ footer a:hover{text-decoration:underline}
       <div class="sec-head rv">
         <h2 class="sec-title"><small>ידיים טובות ומנוסות</small>על החברות</h2>
       </div>
-      <div class="comp-grid">
-        <div class="comp-text rv">
-          <p>מאחורי פרויקט "השדרה" עומדות חברות <strong>גלנור</strong> ו<strong>ידות</strong> — מהחברות המובילות והאמינות בענף הבנייה והיזמות בישראל. עם ותק של עשרות שנים, ניסיון מוכח בליווי משפחות בכל שלבי הרכישה והבנייה, ומאות יחידות דיור שנבנו והושלמו בהצלחה — אתם יכולים להיות בטוחים שהבית שלכם בידיים טובות, יציבות ומנוסות.</p>
-        </div>
-        <div class="comp-logos rv d1">
-          <img src="/wp-content/uploads/2026/02/9ffd54ec-2-e1770776466215-768x278.png" alt="קבוצת גלנור">
-          <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660.png" alt="קבוצת ידות">
-        </div>
+      <div class="comp-text rv">
+        <p>מאחורי פרויקט "השדרה" עומדות חברות <strong>גלנור</strong> ו<strong>ידות</strong> — מהחברות המובילות והאמינות בענף הבנייה והיזמות בישראל. עם ותק של עשרות שנים, ניסיון מוכח בליווי משפחות בכל שלבי הרכישה והבנייה, ומאות יחידות דיור שנבנו והושלמו בהצלחה — אתם יכולים להיות בטוחים שהבית שלכם בידיים טובות, יציבות ומנוסות.</p>
       </div>
     </div>
   </section>
@@ -433,20 +433,20 @@ footer a:hover{text-decoration:underline}
         <div class="veil"></div>
         <svg class="inv-map" viewBox="0 0 2400 1350" preserveAspectRatio="none" aria-label="בחירת בניין">
           <a href="/apartments.html?view=building&amp;bview_building=4" aria-label="בניין 4">
-            <polygon points="222,78 582,156 666,720 210,654"></polygon>
-            <text x="420" y="430">4</text>
+            <polygon points="294,82 564,126 630,684 282,606"></polygon>
+            <text x="450" y="410">4</text>
           </a>
           <a href="/apartments.html?view=building&amp;bview_building=3" aria-label="בניין 3">
-            <polygon points="582,156 960,288 1044,792 666,720"></polygon>
-            <text x="800" y="520">3</text>
+            <polygon points="564,126 960,240 1020,780 630,684"></polygon>
+            <text x="800" y="510">3</text>
           </a>
           <a href="/apartments.html?view=building&amp;bview_building=2" aria-label="בניין 2">
-            <polygon points="960,288 1512,384 1596,888 1044,792"></polygon>
-            <text x="1300" y="650">2</text>
+            <polygon points="960,240 1500,372 1590,900 1020,780"></polygon>
+            <text x="1290" y="640">2</text>
           </a>
           <a href="/apartments.html?view=building&amp;bview_building=1" aria-label="בניין 1">
-            <polygon points="1512,384 2064,480 2388,564 2352,1080 1596,888"></polygon>
-            <text x="1960" y="790">1</text>
+            <polygon points="1500,372 2040,480 2388,552 2352,1068 1590,900"></polygon>
+            <text x="1950" y="790">1</text>
           </a>
         </svg>
         <div class="inv-buttons">
@@ -466,7 +466,7 @@ footer a:hover{text-decoration:underline}
 
 <footer>
   <div class="f-logos">
-    <img src="/wp-content/uploads/2026/02/9ffd54ec-2-e1770776466215-300x109.png" alt="גלנור">
+    <img src="/assets/galnor-logo.png" alt="גלנור">
     <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="ידות">
   </div>
   <div>השדרה אלעד — פרויקט מגורים מבית גלנור וידות</div>
