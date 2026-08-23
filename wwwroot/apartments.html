@@ -98,6 +98,10 @@ main{padding:clamp(110px,15vh,150px) 0 clamp(50px,8vh,80px)}
 .jv-realestate-root .apartment-card.sold::before{content:'נמכר' !important}
 .jv-realestate-root .display-btn,
 .jv-realestate-root .form-select{border-radius:5px !important}
+.jv-realestate-root .apartment-card:not(.sold) .apartment-title::after{
+  content:'פנויה';display:block;
+  font-size:.9rem;font-weight:600;color:#2ecc71;margin-top:2px;
+}
 
 /* ---------- footer (same as front page) ---------- */
 footer{
@@ -110,7 +114,11 @@ footer{
 footer .f-logos{display:flex;align-items:center;gap:16px}
 footer .f-logos img{height:34px;width:auto}
 footer a{color:var(--gold-deep);font-weight:600}
-footer a:hover{text-decoration:underline}
+footer a:hover{text-decoration:underline !important}
+@media (max-width:767px){
+  footer{flex-direction:column;justify-content:center;text-align:center;gap:14px}
+  footer .f-logos{justify-content:center}
+}
 </style>
 </head>
 <body>
