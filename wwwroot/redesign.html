@@ -7,7 +7,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --gold:#B09754;
@@ -19,7 +19,6 @@
   --paper:#FAFAF8;
   --mist:#F1F1F1;
   --line:rgba(176,151,84,.35);
-  --serif:"Frank Ruhl Libre", serif;
   --sans:"Assistant", sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -44,14 +43,14 @@ header{
   position:fixed;inset-inline:0;top:0;z-index:50;
   display:flex;align-items:center;justify-content:space-between;
   padding:14px clamp(16px,4vw,56px);
-  background:linear-gradient(to bottom, rgba(250,250,248,.96), rgba(250,250,248,.88));
+  background:linear-gradient(to bottom, rgba(250,250,248,.97), rgba(250,250,248,.9));
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
   transition:box-shadow .3s;
 }
 header.scrolled{box-shadow:0 6px 30px rgba(42,27,22,.08)}
 .logos{display:flex;align-items:center;gap:18px}
-.logos img{height:40px;width:auto}
+.logos img{height:40px;width:auto;mix-blend-mode:multiply}
 .logos .sep{width:1px;height:30px;background:var(--line)}
 nav{display:flex;gap:clamp(14px,2.5vw,36px);font-weight:600;font-size:.95rem}
 nav a{position:relative;padding-block:4px;color:var(--espresso)}
@@ -80,7 +79,7 @@ nav a:hover::after{width:100%}
 }
 .hero-inner{
   position:relative;z-index:2;width:100%;
-  padding:0 clamp(18px,5vw,72px) clamp(40px,7vh,84px);
+  padding:0 clamp(18px,5vw,72px) clamp(46px,8vh,96px);
   color:#fff;
 }
 .hero-kicker{
@@ -89,9 +88,10 @@ nav a:hover::after{width:100%}
 }
 .hero-kicker::before{content:"";width:52px;height:1px;background:var(--gold-bright)}
 .hero h1{
-  font-family:var(--serif);font-weight:500;
-  font-size:clamp(3.2rem,9vw,7.5rem);
-  line-height:1.05;margin:.15em 0 .1em;
+  font-weight:800;
+  font-size:clamp(2.9rem,8vw,6.2rem);
+  line-height:1.08;margin:.12em 0 .12em;
+  letter-spacing:-.01em;
   text-shadow:0 2px 30px rgba(0,0,0,.35);
 }
 .hero h1 em{font-style:normal;color:var(--gold-bright)}
@@ -107,42 +107,20 @@ nav a:hover::after{width:100%}
 .btn-ghost{border:1px solid rgba(255,255,255,.65);color:#fff}
 .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.12);transform:translateY(-2px)}
 
-/* stats strip */
-.stats{
-  position:relative;z-index:3;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  max-width:1060px;margin:-1px auto 0;
-  background:var(--espresso);color:#fff;
-  transform:translateY(50%);
-  box-shadow:0 24px 60px rgba(42,27,22,.28);
-}
-.stats>div{
-  padding:26px 10px;text-align:center;
-  border-inline-start:1px solid rgba(176,151,84,.25);
-}
-.stats>div:first-child{border-inline-start:none}
-.stats b{
-  display:block;font-family:var(--serif);font-weight:500;
-  font-size:clamp(1.6rem,3vw,2.4rem);color:var(--gold-bright);line-height:1.2;
-}
-.stats span{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.85)}
-
 /* ---------- section scaffolding ---------- */
 section{position:relative}
-.wrap{max-width:1200px;margin:0 auto;padding:clamp(70px,11vh,130px) clamp(18px,4vw,40px)}
-.sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:clamp(30px,5vh,54px)}
-.sec-num{
-  font-family:var(--serif);font-size:clamp(2.6rem,5vw,4rem);
-  color:transparent;-webkit-text-stroke:1px var(--gold);
-  font-weight:500;line-height:1;
-}
+.wrap{max-width:1200px;margin:0 auto;padding:clamp(64px,10vh,120px) clamp(18px,4vw,40px)}
+.sec-head{margin-bottom:clamp(26px,4.5vh,48px)}
 .sec-title{
-  font-family:var(--serif);font-weight:500;
-  font-size:clamp(1.9rem,4vw,3rem);line-height:1.15;
+  font-weight:800;
+  font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.15;
 }
 .sec-title small{
-  display:block;font-family:var(--sans);font-size:.85rem;font-weight:600;
-  letter-spacing:.16em;color:var(--gold-deep);margin-bottom:10px;
+  display:block;font-size:.85rem;font-weight:600;
+  letter-spacing:.16em;color:var(--gold-deep);margin-bottom:8px;
+}
+.sec-head::after{
+  content:"";display:block;width:64px;height:3px;background:var(--gold);margin-top:16px;
 }
 
 /* ---------- about ---------- */
@@ -152,19 +130,9 @@ section{position:relative}
 .about-quote{
   border-inline-start:3px solid var(--gold);
   padding-inline-start:20px;margin-top:28px;
-  font-family:var(--serif);font-size:1.35rem;line-height:1.5;color:var(--gold-deep);
+  font-weight:600;font-size:1.25rem;line-height:1.5;color:var(--gold-deep);
 }
-.about-media{position:relative;padding-bottom:56px}
-.about-media .main{box-shadow:0 30px 70px rgba(42,27,22,.22)}
-.about-media .float{
-  position:absolute;bottom:0;inset-inline-start:-8%;width:58%;
-  border:6px solid var(--paper);
-  box-shadow:0 20px 50px rgba(42,27,22,.25);
-}
-.about-media::before{
-  content:"";position:absolute;top:-26px;inset-inline-end:-26px;
-  width:45%;height:60%;border:1px solid var(--gold);z-index:-1;
-}
+.about-media img{box-shadow:0 30px 70px rgba(42,27,22,.22)}
 
 /* ---------- gallery ---------- */
 .gallery{background:var(--mist)}
@@ -177,22 +145,44 @@ section{position:relative}
 .g-track::-webkit-scrollbar{height:5px}
 .g-track::-webkit-scrollbar-thumb{background:var(--gold)}
 .g-item{
-  flex:0 0 min(78vw,640px);scroll-snap-align:center;
-  aspect-ratio:16/9;overflow:hidden;position:relative;
+  flex:0 0 min(88vw,920px);scroll-snap-align:center;
+  aspect-ratio:16/9;overflow:hidden;position:relative;cursor:zoom-in;
 }
 .g-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.22,.61,.36,1)}
-.g-item:hover img{transform:scale(1.05)}
+.g-item:hover img{transform:scale(1.04)}
 .g-item::after{
   content:attr(data-n);position:absolute;bottom:12px;inset-inline-start:14px;
-  font-family:var(--serif);color:#fff;font-size:1.1rem;
+  color:#fff;font-weight:600;font-size:1.05rem;
   text-shadow:0 1px 8px rgba(0,0,0,.6);
 }
 .g-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
 .g-nav button{
   width:46px;height:46px;border:1px solid var(--gold);background:none;color:var(--gold-deep);
-  font-size:1.2rem;cursor:pointer;transition:background .3s,color .3s;
+  font-size:1.2rem;cursor:pointer;transition:background .3s,color .3s;font-family:var(--sans);
 }
 .g-nav button:hover{background:var(--gold);color:#fff}
+
+/* lightbox */
+.lb{
+  position:fixed;inset:0;z-index:100;display:none;
+  background:rgba(8,0,0,.9);
+  align-items:center;justify-content:center;
+}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.lb button{
+  position:absolute;background:none;border:1px solid rgba(255,255,255,.55);color:#fff;
+  cursor:pointer;font-family:var(--sans);font-size:1.4rem;line-height:1;
+  width:52px;height:52px;transition:background .25s,border-color .25s;
+}
+.lb button:hover{background:var(--gold);border-color:var(--gold)}
+.lb .lb-close{top:20px;inset-inline-end:22px}
+.lb .lb-prev{inset-inline-start:18px;top:50%;transform:translateY(-50%)}
+.lb .lb-next{inset-inline-end:18px;top:50%;transform:translateY(-50%)}
+.lb .lb-count{
+  position:absolute;bottom:20px;inset-inline-start:50%;transform:translateX(50%);
+  color:rgba(255,255,255,.85);font-weight:600;letter-spacing:.08em;
+}
 
 /* ---------- why ---------- */
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
@@ -200,71 +190,78 @@ section{position:relative}
   background:#fff;padding:34px 26px 30px;position:relative;
   border-top:3px solid var(--gold);
   box-shadow:0 10px 34px rgba(42,27,22,.07);
-  transition:transform .35s,box-shadow .35s;
+  transition:transform .3s,box-shadow .3s;
 }
 .why-card:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(42,27,22,.13)}
 .why-card h3{
-  font-family:var(--serif);font-weight:500;font-size:1.45rem;margin-bottom:12px;
+  font-weight:700;font-size:1.35rem;margin-bottom:12px;
   display:flex;align-items:center;gap:12px;
 }
-.why-card h3 svg{width:26px;height:26px;fill:var(--gold)}
+.why-card h3 svg{width:26px;height:26px;fill:var(--gold);flex-shrink:0}
 .why-card p{font-size:.98rem;font-weight:300}
 
-/* ---------- companies (dark band) ---------- */
-.companies{background:var(--espresso);color:#fff}
-.companies .sec-num{-webkit-text-stroke-color:var(--gold-bright)}
-.companies .sec-title{color:#fff}
-.companies .sec-title small{color:var(--gold-bright)}
+/* ---------- companies (bright band) ---------- */
+.companies{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .comp-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,70px);align-items:center}
-.comp-text{font-weight:300;font-size:1.08rem;color:rgba(255,255,255,.9)}
-.comp-text strong{color:var(--gold-bright);font-weight:700}
-.comp-logos{display:grid;gap:18px}
-.comp-logos .card{
-  background:#fff;padding:26px 34px;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 16px 40px rgba(0,0,0,.25);
-}
-.comp-logos img{max-height:84px;width:auto}
+.comp-text{font-weight:300;font-size:1.08rem}
+.comp-text strong{color:var(--gold-deep);font-weight:700}
+.comp-logos{display:grid;gap:34px;justify-items:center}
+.comp-logos img{max-height:96px;width:auto;mix-blend-mode:multiply}
 
 /* ---------- inventory ---------- */
 .inv-lead{max-width:640px;font-weight:300;font-size:1.08rem;margin-bottom:34px}
-.inv-media{position:relative;box-shadow:0 30px 80px rgba(42,27,22,.25)}
-.inv-media img{width:100%}
+.inv-media{position:relative;box-shadow:0 30px 80px rgba(42,27,22,.25);line-height:0}
+.inv-media > img{width:100%}
 .inv-media .veil{
-  position:absolute;inset:0;
-  background:linear-gradient(to top, rgba(8,0,0,.55), transparent 45%);
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top, rgba(8,0,0,.5), transparent 38%);
 }
+.inv-map{position:absolute;inset:0;width:100%;height:100%}
+.inv-map polygon{
+  fill:rgba(176,151,84,0);stroke:rgba(255,255,255,0);stroke-width:3;
+  cursor:pointer;transition:fill .2s,stroke .2s;
+}
+.inv-map a:hover polygon,.inv-map a:focus polygon{
+  fill:rgba(176,151,84,.4);stroke:rgba(255,255,255,.9);
+}
+.inv-map text{
+  font-family:var(--sans);font-weight:800;font-size:120px;fill:#fff;
+  text-anchor:middle;opacity:0;pointer-events:none;transition:opacity .2s;
+  paint-order:stroke;stroke:rgba(8,0,0,.45);stroke-width:8px;
+}
+.inv-map a:hover text,.inv-map a:focus text{opacity:1}
 .inv-buttons{
   position:absolute;bottom:0;inset-inline:0;z-index:2;
   display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
-  padding:0 16px 26px;
+  padding:0 16px 26px;line-height:1.7;
 }
 .inv-btn{
   display:inline-flex;align-items:center;gap:10px;
   background:rgba(250,250,248,.94);color:var(--espresso);
   padding:12px 26px;font-weight:700;
   border:1px solid transparent;
-  transition:background .3s,color .3s,transform .3s;
+  transition:background .25s,color .25s,transform .25s;
 }
-.inv-btn b{font-family:var(--serif);color:var(--gold-deep);font-size:1.25rem;font-weight:500;transition:color .3s}
+.inv-btn b{color:var(--gold-deep);font-size:1.25rem;font-weight:800;transition:color .25s}
 .inv-btn:hover{background:var(--gold);color:#fff;transform:translateY(-3px)}
 .inv-btn:hover b{color:#fff}
 .inv-all{text-align:center;margin-top:34px}
 
 /* ---------- footer ---------- */
 footer{
-  background:var(--ink);color:rgba(255,255,255,.75);
-  padding:34px clamp(18px,4vw,40px);
+  background:var(--mist);color:var(--espresso);
+  border-top:1px solid var(--line);
+  padding:30px clamp(18px,4vw,40px);
   display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
   font-size:.9rem;font-weight:300;
 }
 footer .f-logos{display:flex;align-items:center;gap:16px}
-footer .f-logos img{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.85}
-footer a{color:var(--gold-bright)}
+footer .f-logos img{height:34px;width:auto;mix-blend-mode:multiply}
+footer a{color:var(--gold-deep);font-weight:600}
 footer a:hover{text-decoration:underline}
 
 /* ---------- responsive ---------- */
 @media (max-width:1024px){
-  .stats{grid-template-columns:repeat(4,1fr);max-width:92%}
   .why-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:767px){
@@ -279,14 +276,12 @@ footer a:hover{text-decoration:underline}
   nav a::after{display:none}
   .burger{display:block}
   .nav-cta-wrap{display:none}
-  .stats{grid-template-columns:repeat(2,1fr);transform:translateY(30%)}
-  .stats>div:nth-child(3){border-inline-start:none}
-  .stats>div{border-top:1px solid rgba(176,151,84,.25)}
-  .stats>div:nth-child(-n+2){border-top:none}
   .about-grid,.comp-grid{grid-template-columns:1fr}
   .about-media{margin-top:10px}
   .why-grid{grid-template-columns:1fr}
   .hero p{font-size:1.05rem}
+  .inv-map text{font-size:190px}
+  .inv-buttons{position:static;background:var(--espresso);padding:14px 12px}
 }
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
@@ -337,18 +332,10 @@ footer a:hover{text-decoration:underline}
     </div>
   </section>
 
-  <div class="stats" id="stats">
-    <div class="rv"><b>4</b><span>בניינים בוטיק</span></div>
-    <div class="rv d1"><b>7</b><span>קומות בלבד</span></div>
-    <div class="rv d2"><b>4–6</b><span>חדרים, גן ופנטהאוז</span></div>
-    <div class="rv d3"><b>קו 1</b><span>ראשון לנוף פתוח</span></div>
-  </div>
-
   <!-- ABOUT -->
   <section id="about">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="sec-num">01</span>
         <h2 class="sec-title"><small>ההזדמנות שלכם באלעד</small>על הפרויקט</h2>
       </div>
       <div class="about-grid">
@@ -358,8 +345,7 @@ footer a:hover{text-decoration:underline}
           <div class="about-quote">איכות חיים מול נוף פתוח — בשער הכניסה החדש לאלעד.</div>
         </div>
         <div class="about-media rv d1">
-          <img class="main" src="/wp-content/uploads/2026/02/Yadot-Elad100005-copy-1024x576.jpg" alt="הדמיית המתחם">
-          <img class="float" src="/wp-content/uploads/2026/02/image-6.png" alt="תכנית המתחם">
+          <img src="/wp-content/uploads/2026/02/Yadot-Elad100005-copy-1024x576.jpg" alt="הדמיית המתחם">
         </div>
       </div>
     </div>
@@ -369,7 +355,6 @@ footer a:hover{text-decoration:underline}
   <section id="gallery" class="gallery">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="sec-num">02</span>
         <h2 class="sec-title"><small>מבט אל הבית הבא שלכם</small>גלריה</h2>
       </div>
       <div class="g-track rv" id="gtrack">
@@ -395,7 +380,6 @@ footer a:hover{text-decoration:underline}
   <section id="why">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="sec-num">03</span>
         <h2 class="sec-title"><small>ארבע סיבות טובות</small>למה לבחור בשדרה?</h2>
       </div>
       <div class="why-grid">
@@ -423,7 +407,6 @@ footer a:hover{text-decoration:underline}
   <section id="companies" class="companies">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="sec-num">04</span>
         <h2 class="sec-title"><small>ידיים טובות ומנוסות</small>על החברות</h2>
       </div>
       <div class="comp-grid">
@@ -431,8 +414,8 @@ footer a:hover{text-decoration:underline}
           <p>מאחורי פרויקט "השדרה" עומדות חברות <strong>גלנור</strong> ו<strong>ידות</strong> — מהחברות המובילות והאמינות בענף הבנייה והיזמות בישראל. עם ותק של עשרות שנים, ניסיון מוכח בליווי משפחות בכל שלבי הרכישה והבנייה, ומאות יחידות דיור שנבנו והושלמו בהצלחה — אתם יכולים להיות בטוחים שהבית שלכם בידיים טובות, יציבות ומנוסות.</p>
         </div>
         <div class="comp-logos rv d1">
-          <div class="card"><img src="/wp-content/uploads/2026/02/9ffd54ec-2-e1770776466215-768x278.png" alt="קבוצת גלנור"></div>
-          <div class="card"><img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660.png" alt="קבוצת ידות"></div>
+          <img src="/wp-content/uploads/2026/02/9ffd54ec-2-e1770776466215-768x278.png" alt="קבוצת גלנור">
+          <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660.png" alt="קבוצת ידות">
         </div>
       </div>
     </div>
@@ -442,13 +425,30 @@ footer a:hover{text-decoration:underline}
   <section id="inventory">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="sec-num">05</span>
         <h2 class="sec-title"><small>בחרו בניין לצפייה</small>מלאי דירות</h2>
       </div>
-      <p class="inv-lead rv">בחרו את הבניין המבוקש לצפייה במלאי הדירות העדכני, בתכניות ובמחירים.</p>
+      <p class="inv-lead rv">עברו עם העכבר על הבניין המבוקש ולחצו לצפייה במלאי הדירות העדכני, בתכניות ובמחירים.</p>
       <div class="inv-media rv">
-        <img src="/wp-content/uploads/2026/02/Yadot-Elad100005-copy-scaled.jpg" alt="מבט על על מתחם השדרה">
+        <img src="/assets/yadot-elad12-web.jpg" alt="מבט על על מתחם השדרה">
         <div class="veil"></div>
+        <svg class="inv-map" viewBox="0 0 2400 1350" preserveAspectRatio="none" aria-label="בחירת בניין">
+          <a href="/apartments.html?view=building&amp;bview_building=4" aria-label="בניין 4">
+            <polygon points="222,78 582,156 666,720 210,654"></polygon>
+            <text x="420" y="430">4</text>
+          </a>
+          <a href="/apartments.html?view=building&amp;bview_building=3" aria-label="בניין 3">
+            <polygon points="582,156 960,288 1044,792 666,720"></polygon>
+            <text x="800" y="520">3</text>
+          </a>
+          <a href="/apartments.html?view=building&amp;bview_building=2" aria-label="בניין 2">
+            <polygon points="960,288 1512,384 1596,888 1044,792"></polygon>
+            <text x="1300" y="650">2</text>
+          </a>
+          <a href="/apartments.html?view=building&amp;bview_building=1" aria-label="בניין 1">
+            <polygon points="1512,384 2064,480 2388,564 2352,1080 1596,888"></polygon>
+            <text x="1960" y="790">1</text>
+          </a>
+        </svg>
         <div class="inv-buttons">
           <a class="inv-btn" href="/apartments.html?view=building&bview_building=1"><b>1</b> בניין</a>
           <a class="inv-btn" href="/apartments.html?view=building&bview_building=2"><b>2</b> בניין</a>
@@ -473,6 +473,14 @@ footer a:hover{text-decoration:underline}
   <div>Powered by <a href="http://einstein-web.co.il">Einstein-web</a></div>
 </footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="תצוגת תמונה מוגדלת">
+  <button class="lb-close" id="lbclose" aria-label="סגירה">&#10005;</button>
+  <button class="lb-prev" id="lbprev" aria-label="הקודם">&#8594;</button>
+  <img id="lbimg" src="" alt="">
+  <button class="lb-next" id="lbnext" aria-label="הבא">&#8592;</button>
+  <div class="lb-count" id="lbcount"></div>
+</div>
+
 <script>
 (function(){
   var hdr=document.getElementById('hdr');
@@ -489,10 +497,42 @@ footer a:hover{text-decoration:underline}
   document.getElementById('gnext').addEventListener('click',function(){track.scrollBy({left:-track.clientWidth*0.8,behavior:'smooth'})});
   document.getElementById('gprev').addEventListener('click',function(){track.scrollBy({left:track.clientWidth*0.8,behavior:'smooth'})});
 
+  // reveal on scroll; strip classes afterwards so hover effects react instantly
   var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        var el=e.target;
+        el.classList.add('in');
+        io.unobserve(el);
+        setTimeout(function(){el.classList.remove('rv','in','d1','d2','d3')},1400);
+      }
+    });
   },{threshold:.12});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+  // lightbox
+  var items=Array.prototype.slice.call(document.querySelectorAll('.g-item img'));
+  var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcount=document.getElementById('lbcount');
+  var idx=0;
+  function show(i){
+    idx=(i+items.length)%items.length;
+    lbimg.src=items[idx].src;
+    lbimg.alt=items[idx].alt;
+    lbcount.textContent=(idx+1)+' / '+items.length;
+  }
+  function openLb(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden'}
+  function closeLb(){lb.classList.remove('open');document.body.style.overflow=''}
+  items.forEach(function(img,i){img.parentNode.addEventListener('click',function(){openLb(i)})});
+  document.getElementById('lbclose').addEventListener('click',closeLb);
+  document.getElementById('lbnext').addEventListener('click',function(e){e.stopPropagation();show(idx+1)});
+  document.getElementById('lbprev').addEventListener('click',function(e){e.stopPropagation();show(idx-1)});
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+  addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeLb();
+    if(e.key==='ArrowLeft')show(idx+1);
+    if(e.key==='ArrowRight')show(idx-1);
+  });
 })();
 </script>
 
