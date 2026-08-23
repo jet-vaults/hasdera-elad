@@ -119,9 +119,6 @@ section{position:relative}
   display:block;font-size:.85rem;font-weight:600;
   letter-spacing:.16em;color:var(--gold-deep);margin-bottom:8px;
 }
-.sec-head::after{
-  content:"";display:block;width:64px;height:3px;background:var(--gold);margin-top:16px;
-}
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,70px);align-items:center}
@@ -134,10 +131,36 @@ section{position:relative}
 }
 .about-media{position:relative}
 .about-media img{box-shadow:0 30px 70px rgba(42,27,22,.22);border-radius:16px}
-.about-media::before{
+.about-media.framed::before{
   content:"";position:absolute;top:-26px;inset-inline-end:-26px;
   width:45%;height:60%;border:1px solid var(--gold);border-radius:16px;z-index:-1;
 }
+
+/* about variants (design options) */
+.variant-badge{
+  position:absolute;top:20px;inset-inline-start:20px;z-index:5;
+  background:var(--gold);color:#fff;font-weight:700;font-size:.85rem;
+  padding:6px 18px;border-radius:100px;letter-spacing:.05em;
+}
+.v-sep{max-width:1200px;margin:0 auto;border:none;border-top:1px dashed var(--line)}
+.about-media.has-card{margin-bottom:34px}
+.about-media .m-card{
+  position:absolute;bottom:-30px;inset-inline-start:-16px;
+  background:#fff;border-radius:14px;box-shadow:0 18px 50px rgba(42,27,22,.2);
+  padding:14px 20px;width:52%;
+}
+.about-media .m-card img{border-radius:0;box-shadow:none;width:100%}
+.about-center .sec-head{text-align:center}
+.about-emblem{display:block;width:min(360px,72%);margin:0 auto 10px}
+.about-center .about-text{max-width:780px;margin:0 auto;text-align:center}
+.about-center .about-quote{border:none;padding:0;margin-top:20px;text-align:center}
+.about-center .about-media{margin-top:38px}
+.about-center .about-media img{width:100%}
+.about-logo-panel{
+  margin-top:28px;border:1px solid var(--gold);border-radius:16px;
+  padding:16px 24px;display:flex;justify-content:center;background:#fff;
+}
+.about-logo-panel img{max-height:110px;width:auto}
 
 /* ---------- gallery ---------- */
 .gallery{background:var(--mist)}
@@ -208,12 +231,11 @@ section{position:relative}
 /* ---------- companies (bright band) ---------- */
 .companies{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .companies .sec-head{text-align:center}
-.companies .sec-head::after{margin-inline:auto}
 .comp-text{
   font-weight:300;font-size:1.3rem;line-height:1.85;
   max-width:860px;margin:0 auto;text-align:center;
 }
-.comp-text strong{color:var(--gold-deep);font-weight:700}
+.comp-text strong{color:inherit;font-weight:inherit}
 
 /* ---------- inventory ---------- */
 .inv-lead{max-width:640px;font-weight:300;font-size:1.18rem;margin-bottom:34px}
@@ -338,8 +360,9 @@ footer a:hover{text-decoration:underline}
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ABOUT — variant 1: logo card over the photo -->
   <section id="about">
+    <span class="variant-badge">אפשרות 1</span>
     <div class="wrap">
       <div class="sec-head rv">
         <h2 class="sec-title"><small>ההזדמנות שלכם באלעד</small>על הפרויקט</h2>
@@ -349,6 +372,50 @@ footer a:hover{text-decoration:underline}
           <p>בקו הראשון לנוף, במיקום הפתוח ביותר באלעד, קם פרויקט המגורים <strong>"השדרה"</strong>, מבית חברות הנדל״ן גלנור וידות. ארבעה בניינים בני 7 קומות, שתוכננו בקפידה כדי להעניק לכם חוויית מגורים איכותית באמת: נוף פתוח למערב, אוויר הרים צלול, מבט פנורמי אל מרחבי המרכז — וכל זה עם גישה נוחה ומהירה לכל מקום שצריך.</p>
           <p>השדרה מציעה שילוב ייחודי של סביבה קהילתית חמה, איכות בניה גבוהה ותכנון חכם שכולל גם הזדמנות כלכלית יוצאת דופן, באחד המיקומים האטרקטיביים ביותר בעיר אלעד. כעת בשיווק מבחר דירות בשוק החופשי.</p>
           <div class="about-quote">איכות חיים מול נוף פתוח — בשער הכניסה החדש לאלעד.</div>
+        </div>
+        <div class="about-media framed has-card rv d1">
+          <img src="/assets/yadot-elad12-web.jpg" alt="הדמיית המתחם">
+          <div class="m-card"><img src="/wp-content/uploads/2026/02/image-6.png" alt="השדרה — לוגו הפרויקט"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="v-sep">
+
+  <!-- ABOUT — variant 2: centered emblem -->
+  <section id="about-v2" class="about-center">
+    <span class="variant-badge">אפשרות 2</span>
+    <div class="wrap">
+      <img class="about-emblem rv" src="/wp-content/uploads/2026/02/image-6.png" alt="השדרה — לוגו הפרויקט">
+      <div class="sec-head rv">
+        <h2 class="sec-title"><small>ההזדמנות שלכם באלעד</small>על הפרויקט</h2>
+      </div>
+      <div class="about-text rv">
+        <p>בקו הראשון לנוף, במיקום הפתוח ביותר באלעד, קם פרויקט המגורים <strong>"השדרה"</strong>, מבית חברות הנדל״ן גלנור וידות. ארבעה בניינים בני 7 קומות, שתוכננו בקפידה כדי להעניק לכם חוויית מגורים איכותית באמת: נוף פתוח למערב, אוויר הרים צלול, מבט פנורמי אל מרחבי המרכז — וכל זה עם גישה נוחה ומהירה לכל מקום שצריך.</p>
+        <p>השדרה מציעה שילוב ייחודי של סביבה קהילתית חמה, איכות בניה גבוהה ותכנון חכם שכולל גם הזדמנות כלכלית יוצאת דופן, באחד המיקומים האטרקטיביים ביותר בעיר אלעד. כעת בשיווק מבחר דירות בשוק החופשי.</p>
+        <div class="about-quote">איכות חיים מול נוף פתוח — בשער הכניסה החדש לאלעד.</div>
+      </div>
+      <div class="about-media rv d1">
+        <img src="/assets/yadot-elad12-web.jpg" alt="הדמיית המתחם">
+      </div>
+    </div>
+  </section>
+
+  <hr class="v-sep">
+
+  <!-- ABOUT — variant 3: logo panel under the text -->
+  <section id="about-v3">
+    <span class="variant-badge">אפשרות 3</span>
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 class="sec-title"><small>ההזדמנות שלכם באלעד</small>על הפרויקט</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text rv">
+          <p>בקו הראשון לנוף, במיקום הפתוח ביותר באלעד, קם פרויקט המגורים <strong>"השדרה"</strong>, מבית חברות הנדל״ן גלנור וידות. ארבעה בניינים בני 7 קומות, שתוכננו בקפידה כדי להעניק לכם חוויית מגורים איכותית באמת: נוף פתוח למערב, אוויר הרים צלול, מבט פנורמי אל מרחבי המרכז — וכל זה עם גישה נוחה ומהירה לכל מקום שצריך.</p>
+          <p>השדרה מציעה שילוב ייחודי של סביבה קהילתית חמה, איכות בניה גבוהה ותכנון חכם שכולל גם הזדמנות כלכלית יוצאת דופן, באחד המיקומים האטרקטיביים ביותר בעיר אלעד. כעת בשיווק מבחר דירות בשוק החופשי.</p>
+          <div class="about-logo-panel"><img src="/wp-content/uploads/2026/02/image-6.png" alt="השדרה — לוגו הפרויקט"></div>
         </div>
         <div class="about-media rv d1">
           <img src="/assets/yadot-elad12-web.jpg" alt="הדמיית המתחם">
@@ -416,7 +483,7 @@ footer a:hover{text-decoration:underline}
         <h2 class="sec-title"><small>ידיים טובות ומנוסות</small>על החברות</h2>
       </div>
       <div class="comp-text rv">
-        <p>מאחורי פרויקט "השדרה" עומדות חברות <strong>גלנור</strong> ו<strong>ידות</strong> — מהחברות המובילות והאמינות בענף הבנייה והיזמות בישראל. עם ותק של עשרות שנים, ניסיון מוכח בליווי משפחות בכל שלבי הרכישה והבנייה, ומאות יחידות דיור שנבנו והושלמו בהצלחה — אתם יכולים להיות בטוחים שהבית שלכם בידיים טובות, יציבות ומנוסות.</p>
+        <p>מאחורי פרויקט "השדרה" עומדות חברות גלנור וידות — מהחברות המובילות והאמינות בענף הבנייה והיזמות בישראל. עם ותק של עשרות שנים, ניסיון מוכח בליווי משפחות בכל שלבי הרכישה והבנייה, ומאות יחידות דיור שנבנו והושלמו בהצלחה — אתם יכולים להיות בטוחים שהבית שלכם בידיים טובות, יציבות ומנוסות.</p>
       </div>
     </div>
   </section>
@@ -433,20 +500,20 @@ footer a:hover{text-decoration:underline}
         <div class="veil"></div>
         <svg class="inv-map" viewBox="0 0 2400 1350" preserveAspectRatio="none" aria-label="בחירת בניין">
           <a href="/apartments.html?view=building&amp;bview_building=4" aria-label="בניין 4">
-            <polygon points="294,82 564,126 630,684 282,606"></polygon>
+            <polygon points="302,79 562,120 634,714 286,614"></polygon>
             <text x="450" y="410">4</text>
           </a>
           <a href="/apartments.html?view=building&amp;bview_building=3" aria-label="בניין 3">
-            <polygon points="564,126 960,240 1020,780 630,684"></polygon>
-            <text x="800" y="510">3</text>
+            <polygon points="566,122 1020,216 1030,794 634,714"></polygon>
+            <text x="810" y="510">3</text>
           </a>
           <a href="/apartments.html?view=building&amp;bview_building=2" aria-label="בניין 2">
-            <polygon points="960,240 1500,372 1590,900 1020,780"></polygon>
-            <text x="1290" y="640">2</text>
+            <polygon points="1032,286 1482,366 1510,926 1030,794"></polygon>
+            <text x="1270" y="640">2</text>
           </a>
           <a href="/apartments.html?view=building&amp;bview_building=1" aria-label="בניין 1">
-            <polygon points="1500,372 2040,480 2388,552 2352,1068 1590,900"></polygon>
-            <text x="1950" y="790">1</text>
+            <polygon points="1510,374 2038,478 2198,562 2182,1006 1746,1056 1514,948"></polygon>
+            <text x="1840" y="760">1</text>
           </a>
         </svg>
         <div class="inv-buttons">
