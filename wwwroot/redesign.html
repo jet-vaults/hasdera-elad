@@ -1,0 +1,500 @@
+<!doctype html>
+<html dir="rtl" lang="he-IL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>galnor yadot</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#B09754;
+  --gold-deep:#af8b44;
+  --gold-bright:#C9A43F;
+  --espresso:#2A1B16;
+  --ink:#080000;
+  --rust:#7F2103;
+  --paper:#FAFAF8;
+  --mist:#F1F1F1;
+  --line:rgba(176,151,84,.35);
+  --serif:"Frank Ruhl Libre", serif;
+  --sans:"Assistant", sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--espresso);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ---------- reveal on scroll ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+
+/* ---------- header ---------- */
+header{
+  position:fixed;inset-inline:0;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(16px,4vw,56px);
+  background:linear-gradient(to bottom, rgba(250,250,248,.96), rgba(250,250,248,.88));
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .3s;
+}
+header.scrolled{box-shadow:0 6px 30px rgba(42,27,22,.08)}
+.logos{display:flex;align-items:center;gap:18px}
+.logos img{height:40px;width:auto}
+.logos .sep{width:1px;height:30px;background:var(--line)}
+nav{display:flex;gap:clamp(14px,2.5vw,36px);font-weight:600;font-size:.95rem}
+nav a{position:relative;padding-block:4px;color:var(--espresso)}
+nav a::after{
+  content:"";position:absolute;bottom:0;right:0;height:2px;width:0;
+  background:var(--gold);transition:width .35s cubic-bezier(.22,.61,.36,1);
+}
+nav a:hover::after{width:100%}
+.nav-cta{
+  border:1px solid var(--gold);color:var(--gold-deep);
+  padding:8px 22px;font-weight:700;font-size:.9rem;letter-spacing:.02em;
+  transition:background .3s,color .3s;
+}
+.nav-cta:hover{background:var(--gold);color:#fff}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.burger span{display:block;width:24px;height:2px;background:var(--espresso);margin:5px 0;transition:.3s}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;animation:heroZoom 18s ease-out forwards}
+@keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(8,0,0,.72) 0%, rgba(8,0,0,.25) 45%, rgba(8,0,0,.15) 100%);
+}
+.hero-inner{
+  position:relative;z-index:2;width:100%;
+  padding:0 clamp(18px,5vw,72px) clamp(40px,7vh,84px);
+  color:#fff;
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:14px;
+  font-weight:600;letter-spacing:.14em;font-size:.85rem;color:var(--gold-bright);
+}
+.hero-kicker::before{content:"";width:52px;height:1px;background:var(--gold-bright)}
+.hero h1{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(3.2rem,9vw,7.5rem);
+  line-height:1.05;margin:.15em 0 .1em;
+  text-shadow:0 2px 30px rgba(0,0,0,.35);
+}
+.hero h1 em{font-style:normal;color:var(--gold-bright)}
+.hero p{max-width:520px;font-size:clamp(1.05rem,1.6vw,1.3rem);font-weight:300;color:rgba(255,255,255,.92)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 34px;font-weight:700;font-size:1rem;letter-spacing:.02em;
+  transition:transform .3s,background .3s,color .3s,border-color .3s;
+}
+.btn-gold{background:var(--gold);color:#fff;border:1px solid var(--gold)}
+.btn-gold:hover{background:var(--gold-bright);border-color:var(--gold-bright);transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(255,255,255,.65);color:#fff}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.12);transform:translateY(-2px)}
+
+/* stats strip */
+.stats{
+  position:relative;z-index:3;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  max-width:1060px;margin:-1px auto 0;
+  background:var(--espresso);color:#fff;
+  transform:translateY(50%);
+  box-shadow:0 24px 60px rgba(42,27,22,.28);
+}
+.stats>div{
+  padding:26px 10px;text-align:center;
+  border-inline-start:1px solid rgba(176,151,84,.25);
+}
+.stats>div:first-child{border-inline-start:none}
+.stats b{
+  display:block;font-family:var(--serif);font-weight:500;
+  font-size:clamp(1.6rem,3vw,2.4rem);color:var(--gold-bright);line-height:1.2;
+}
+.stats span{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.85)}
+
+/* ---------- section scaffolding ---------- */
+section{position:relative}
+.wrap{max-width:1200px;margin:0 auto;padding:clamp(70px,11vh,130px) clamp(18px,4vw,40px)}
+.sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:clamp(30px,5vh,54px)}
+.sec-num{
+  font-family:var(--serif);font-size:clamp(2.6rem,5vw,4rem);
+  color:transparent;-webkit-text-stroke:1px var(--gold);
+  font-weight:500;line-height:1;
+}
+.sec-title{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(1.9rem,4vw,3rem);line-height:1.15;
+}
+.sec-title small{
+  display:block;font-family:var(--sans);font-size:.85rem;font-weight:600;
+  letter-spacing:.16em;color:var(--gold-deep);margin-bottom:10px;
+}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,70px);align-items:center}
+.about-text p{margin-bottom:1.2em;font-size:1.08rem;font-weight:300}
+.about-text p strong{font-weight:700;color:var(--ink)}
+.about-quote{
+  border-inline-start:3px solid var(--gold);
+  padding-inline-start:20px;margin-top:28px;
+  font-family:var(--serif);font-size:1.35rem;line-height:1.5;color:var(--gold-deep);
+}
+.about-media{position:relative;padding-bottom:56px}
+.about-media .main{box-shadow:0 30px 70px rgba(42,27,22,.22)}
+.about-media .float{
+  position:absolute;bottom:0;inset-inline-start:-8%;width:58%;
+  border:6px solid var(--paper);
+  box-shadow:0 20px 50px rgba(42,27,22,.25);
+}
+.about-media::before{
+  content:"";position:absolute;top:-26px;inset-inline-end:-26px;
+  width:45%;height:60%;border:1px solid var(--gold);z-index:-1;
+}
+
+/* ---------- gallery ---------- */
+.gallery{background:var(--mist)}
+.g-track{
+  display:flex;gap:18px;overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:6px 6px 22px;
+  scrollbar-width:thin;scrollbar-color:var(--gold) transparent;
+}
+.g-track::-webkit-scrollbar{height:5px}
+.g-track::-webkit-scrollbar-thumb{background:var(--gold)}
+.g-item{
+  flex:0 0 min(78vw,640px);scroll-snap-align:center;
+  aspect-ratio:16/9;overflow:hidden;position:relative;
+}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.22,.61,.36,1)}
+.g-item:hover img{transform:scale(1.05)}
+.g-item::after{
+  content:attr(data-n);position:absolute;bottom:12px;inset-inline-start:14px;
+  font-family:var(--serif);color:#fff;font-size:1.1rem;
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
+}
+.g-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+.g-nav button{
+  width:46px;height:46px;border:1px solid var(--gold);background:none;color:var(--gold-deep);
+  font-size:1.2rem;cursor:pointer;transition:background .3s,color .3s;
+}
+.g-nav button:hover{background:var(--gold);color:#fff}
+
+/* ---------- why ---------- */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.why-card{
+  background:#fff;padding:34px 26px 30px;position:relative;
+  border-top:3px solid var(--gold);
+  box-shadow:0 10px 34px rgba(42,27,22,.07);
+  transition:transform .35s,box-shadow .35s;
+}
+.why-card:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(42,27,22,.13)}
+.why-card h3{
+  font-family:var(--serif);font-weight:500;font-size:1.45rem;margin-bottom:12px;
+  display:flex;align-items:center;gap:12px;
+}
+.why-card h3 svg{width:26px;height:26px;fill:var(--gold)}
+.why-card p{font-size:.98rem;font-weight:300}
+
+/* ---------- companies (dark band) ---------- */
+.companies{background:var(--espresso);color:#fff}
+.companies .sec-num{-webkit-text-stroke-color:var(--gold-bright)}
+.companies .sec-title{color:#fff}
+.companies .sec-title small{color:var(--gold-bright)}
+.comp-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,70px);align-items:center}
+.comp-text{font-weight:300;font-size:1.08rem;color:rgba(255,255,255,.9)}
+.comp-text strong{color:var(--gold-bright);font-weight:700}
+.comp-logos{display:grid;gap:18px}
+.comp-logos .card{
+  background:#fff;padding:26px 34px;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 16px 40px rgba(0,0,0,.25);
+}
+.comp-logos img{max-height:84px;width:auto}
+
+/* ---------- inventory ---------- */
+.inv-lead{max-width:640px;font-weight:300;font-size:1.08rem;margin-bottom:34px}
+.inv-media{position:relative;box-shadow:0 30px 80px rgba(42,27,22,.25)}
+.inv-media img{width:100%}
+.inv-media .veil{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(8,0,0,.55), transparent 45%);
+}
+.inv-buttons{
+  position:absolute;bottom:0;inset-inline:0;z-index:2;
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  padding:0 16px 26px;
+}
+.inv-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(250,250,248,.94);color:var(--espresso);
+  padding:12px 26px;font-weight:700;
+  border:1px solid transparent;
+  transition:background .3s,color .3s,transform .3s;
+}
+.inv-btn b{font-family:var(--serif);color:var(--gold-deep);font-size:1.25rem;font-weight:500;transition:color .3s}
+.inv-btn:hover{background:var(--gold);color:#fff;transform:translateY(-3px)}
+.inv-btn:hover b{color:#fff}
+.inv-all{text-align:center;margin-top:34px}
+
+/* ---------- footer ---------- */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.75);
+  padding:34px clamp(18px,4vw,40px);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  font-size:.9rem;font-weight:300;
+}
+footer .f-logos{display:flex;align-items:center;gap:16px}
+footer .f-logos img{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.85}
+footer a{color:var(--gold-bright)}
+footer a:hover{text-decoration:underline}
+
+/* ---------- responsive ---------- */
+@media (max-width:1024px){
+  .stats{grid-template-columns:repeat(4,1fr);max-width:92%}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:767px){
+  nav{
+    position:fixed;top:69px;inset-inline:0;
+    flex-direction:column;gap:0;
+    background:var(--paper);border-bottom:1px solid var(--line);
+    max-height:0;overflow:hidden;transition:max-height .4s ease;
+  }
+  nav.open{max-height:340px}
+  nav a{padding:15px 24px;border-top:1px solid var(--mist)}
+  nav a::after{display:none}
+  .burger{display:block}
+  .nav-cta-wrap{display:none}
+  .stats{grid-template-columns:repeat(2,1fr);transform:translateY(30%)}
+  .stats>div:nth-child(3){border-inline-start:none}
+  .stats>div{border-top:1px solid rgba(176,151,84,.25)}
+  .stats>div:nth-child(-n+2){border-top:none}
+  .about-grid,.comp-grid{grid-template-columns:1fr}
+  .about-media{margin-top:10px}
+  .why-grid{grid-template-columns:1fr}
+  .hero p{font-size:1.05rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .hero-bg img{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="logos">
+    <a href="#top" aria-label="דף הבית">
+      <img src="/wp-content/uploads/2026/02/9ffd54ec-2-e1770776466215-300x109.png" alt="קבוצת גלנור">
+    </a>
+    <span class="sep"></span>
+    <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
+  </div>
+  <nav id="nav">
+    <a href="#about">על הפרויקט</a>
+    <a href="#gallery">גלריה</a>
+    <a href="#why">למה לבחור בשדרה</a>
+    <a href="#companies">על החברות</a>
+    <a href="#inventory">מלאי דירות</a>
+  </nav>
+  <div class="nav-cta-wrap">
+    <a class="nav-cta" href="/apartments.html?view=building&bview_building=1">לתכנית דירה ומחירים</a>
+  </div>
+  <button class="burger" id="burger" aria-label="פתיחת תפריט" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/wp-content/uploads/2026/02/Yadot-Elad100001-copy-scaled.jpg" alt="הדמיית פרויקט השדרה אלעד">
+    </div>
+    <div class="hero-inner">
+      <span class="hero-kicker">גלנור וידות מציגות</span>
+      <h1>השדרה <em>אלעד</em></h1>
+      <p>מתחם המגורים החדש של גלנור וידות באלעד — איכות חיים מול נוף פתוח, בקו הראשון לנוף ובשער הכניסה החדש לעיר.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="/apartments.html?view=building&bview_building=1">לתכנית דירה ומחירים</a>
+        <a class="btn btn-ghost" href="#about">להכיר את הפרויקט</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats" id="stats">
+    <div class="rv"><b>4</b><span>בניינים בוטיק</span></div>
+    <div class="rv d1"><b>7</b><span>קומות בלבד</span></div>
+    <div class="rv d2"><b>4–6</b><span>חדרים, גן ופנטהאוז</span></div>
+    <div class="rv d3"><b>קו 1</b><span>ראשון לנוף פתוח</span></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title"><small>ההזדמנות שלכם באלעד</small>על הפרויקט</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text rv">
+          <p>בקו הראשון לנוף, במיקום הפתוח ביותר באלעד, קם פרויקט המגורים <strong>"השדרה"</strong>, מבית חברות הנדל״ן גלנור וידות. ארבעה בניינים בני 7 קומות, שתוכננו בקפידה כדי להעניק לכם חוויית מגורים איכותית באמת: נוף פתוח למערב, אוויר הרים צלול, מבט פנורמי אל מרחבי המרכז — וכל זה עם גישה נוחה ומהירה לכל מקום שצריך.</p>
+          <p>השדרה מציעה שילוב ייחודי של סביבה קהילתית חמה, איכות בניה גבוהה ותכנון חכם שכולל גם הזדמנות כלכלית יוצאת דופן, באחד המיקומים האטרקטיביים ביותר בעיר אלעד. כעת בשיווק מבחר דירות בשוק החופשי.</p>
+          <div class="about-quote">איכות חיים מול נוף פתוח — בשער הכניסה החדש לאלעד.</div>
+        </div>
+        <div class="about-media rv d1">
+          <img class="main" src="/wp-content/uploads/2026/02/Yadot-Elad100005-copy-1024x576.jpg" alt="הדמיית המתחם">
+          <img class="float" src="/wp-content/uploads/2026/02/image-6.png" alt="תכנית המתחם">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="gallery">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title"><small>מבט אל הבית הבא שלכם</small>גלריה</h2>
+      </div>
+      <div class="g-track rv" id="gtrack">
+        <figure class="g-item" data-n="01"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100003-copy-scaled.jpg" alt="הדמיה 1"></figure>
+        <figure class="g-item" data-n="02"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100006-copy-scaled.jpg" alt="הדמיה 2"></figure>
+        <figure class="g-item" data-n="03"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100007-copy-scaled.jpg" alt="הדמיה 3"></figure>
+        <figure class="g-item" data-n="04"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100008-copy-scaled.jpg" alt="הדמיה 4"></figure>
+        <figure class="g-item" data-n="05"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100009-copy-scaled.jpg" alt="הדמיה 5"></figure>
+        <figure class="g-item" data-n="06"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100000-copy-scaled.jpg" alt="הדמיה 6"></figure>
+        <figure class="g-item" data-n="07"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100001-copy-scaled.jpg" alt="הדמיה 7"></figure>
+        <figure class="g-item" data-n="08"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100002-copy-scaled.jpg" alt="הדמיה 8"></figure>
+        <figure class="g-item" data-n="09"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100005-copy-scaled.jpg" alt="הדמיה 9"></figure>
+        <figure class="g-item" data-n="10"><img loading="lazy" src="/wp-content/uploads/2026/02/Yadot-Elad100004-copy-scaled.jpg" alt="הדמיה 10"></figure>
+      </div>
+      <div class="g-nav rv">
+        <button id="gprev" aria-label="הקודם">&#8594;</button>
+        <button id="gnext" aria-label="הבא">&#8592;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title"><small>ארבע סיבות טובות</small>למה לבחור בשדרה?</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card rv">
+          <h3><svg viewBox="0 0 640 640"><path d="M320 64C214 64 128 148.4 128 252.6C128 371.9 248.2 514.9 298.4 569.4C310.2 582.2 329.8 582.2 341.6 569.4C391.8 514.9 512 371.9 512 252.6C512 148.4 426 64 320 64z"/></svg>מיקום</h3>
+          <p>הפרויקט ממוקם בשער הכניסה החדש לאלעד במיקום נגיש במיוחד, המאפשר הליכה קצרה למוסדות חינוך, בתי כנסת, מרכזים מסחריים ותחבורה ציבורית. במרחק של דקה אחת בלבד אתם כבר מחוץ לעיר, על הצירים המרכזיים של גוש דן.</p>
+        </div>
+        <div class="why-card rv d1">
+          <h3><svg viewBox="0 0 640 640"><path d="M130.4 268.2C135.4 280.2 147 288 160 288L480 288C492.9 288 504.6 280.2 509.6 268.2C514.6 256.2 511.8 242.5 502.7 233.3L342.7 73.3C330.2 60.8 309.9 60.8 297.4 73.3L137.4 233.3C128.2 242.5 125.5 256.2 130.5 268.2zM130.4 371.7C125.4 383.7 128.2 397.4 137.3 406.6L297.3 566.6C309.8 579.1 330.1 579.1 342.6 566.6L502.6 406.6C511.8 397.4 514.5 383.7 509.5 371.7C504.5 359.7 492.9 352 480 352L160 352C147.1 352 135.4 359.8 130.4 371.8z"/></svg>מבחר</h3>
+          <p>השדרה מציעה מגוון רחב של דירות: דירות 4-6 חדרים, דירות גן מרווחות עם חצר פרטית, ופנטהאוזים מעוצבים עם נוף פתוח. כל דירה מתוכננת בקפידה עם דגש על מרחב, אוורור ואור טבעי.</p>
+        </div>
+        <div class="why-card rv d2">
+          <h3><svg viewBox="0 0 640 640"><path d="M97 505.7C101.5 527.5 120.8 544 144 544L496 544C522.5 544 544 522.5 544 496L544 400C544 373.5 522.5 352 496 352L448 352L448 424C448 437.3 437.3 448 424 448C410.7 448 400 437.3 400 424L400 352L336 352L336 424C336 437.3 325.3 448 312 448C298.7 448 288 437.3 288 424L288 352L216 352C202.7 352 192 341.3 192 328C192 314.7 202.7 304 216 304L288 304L288 240L216 240C202.7 240 192 229.3 192 216C192 202.7 202.7 192 216 192L288 192L288 144C288 117.5 266.5 96 240 96L144 96C117.5 96 96 117.5 96 144L96 496C96 499.3 96.3 502.6 97 505.7z"/></svg>תכנון</h3>
+          <p>שתי כניסות נפרדות (מבואות) בכל בניין, לובי מפואר, שתי מעליות מרווחות כולל מעלית שבת בכשרות מהודרת, חניה מקורה ומחסן פרטי, מספר דיירים קטן בכל קומה המבטיח פרטיות, שקט ואיכות חיים גבוהה יותר.</p>
+        </div>
+        <div class="why-card rv d3">
+          <h3><svg viewBox="0 0 640 640"><path d="M320 64C355.3 64 384 92.7 384 128C384 163.3 355.3 192 320 192C284.7 192 256 163.3 256 128C256 92.7 284.7 64 320 64zM416 376C416 401 403.3 423 384 435.9L384 528C384 554.5 362.5 576 336 576L304 576C277.5 576 256 554.5 256 528L256 435.9C236.7 423 224 401 224 376L224 336C224 283 267 240 320 240C373 240 416 283 416 336L416 376zM160 96C190.9 96 216 121.1 216 152C216 182.9 190.9 208 160 208C129.1 208 104 182.9 104 152C104 121.1 129.1 96 160 96zM176 336L176 368C176 400.5 188.1 430.1 208 452.7L208 528C208 529.2 208 530.5 208.1 531.7C199.6 539.3 188.4 544 176 544L144 544C117.5 544 96 522.5 96 496L96 439.4C76.9 428.4 64 407.7 64 384L64 352C64 299 107 256 160 256C172.7 256 184.8 258.5 195.9 262.9C183.3 284.3 176 309.3 176 336zM432 528L432 452.7C451.9 430.2 464 400.5 464 368L464 336C464 309.3 456.7 284.4 444.1 262.9C455.2 258.4 467.3 256 480 256C533 256 576 299 576 352L576 384C576 407.7 563.1 428.4 544 439.4L544 496C544 522.5 522.5 544 496 544L464 544C451.7 544 440.4 539.4 431.9 531.7C431.9 530.5 432 529.2 432 528zM480 96C510.9 96 536 121.1 536 152C536 182.9 510.9 208 480 208C449.1 208 424 182.9 424 152C424 121.1 449.1 96 480 96z"/></svg>קהילה</h3>
+          <p>השדרה נבנית כחלק מסביבה קהילתית ערכית, תוססת ומגובשת. בסביבה הקרובה תמצאו מוסדות חינוך מצוינים, בתי כנסת, פארקים רחבי ידיים ושפע שירותים קהילתיים — בדיוק כמו שאתם מחפשים למשפחה שלכם.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPANIES -->
+  <section id="companies" class="companies">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title"><small>ידיים טובות ומנוסות</small>על החברות</h2>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-text rv">
+          <p>מאחורי פרויקט "השדרה" עומדות חברות <strong>גלנור</strong> ו<strong>ידות</strong> — מהחברות המובילות והאמינות בענף הבנייה והיזמות בישראל. עם ותק של עשרות שנים, ניסיון מוכח בליווי משפחות בכל שלבי הרכישה והבנייה, ומאות יחידות דיור שנבנו והושלמו בהצלחה — אתם יכולים להיות בטוחים שהבית שלכם בידיים טובות, יציבות ומנוסות.</p>
+        </div>
+        <div class="comp-logos rv d1">
+          <div class="card"><img src="/wp-content/uploads/2026/02/9ffd54ec-2-e1770776466215-768x278.png" alt="קבוצת גלנור"></div>
+          <div class="card"><img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660.png" alt="קבוצת ידות"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVENTORY -->
+  <section id="inventory">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="sec-num">05</span>
+        <h2 class="sec-title"><small>בחרו בניין לצפייה</small>מלאי דירות</h2>
+      </div>
+      <p class="inv-lead rv">בחרו את הבניין המבוקש לצפייה במלאי הדירות העדכני, בתכניות ובמחירים.</p>
+      <div class="inv-media rv">
+        <img src="/wp-content/uploads/2026/02/Yadot-Elad100005-copy-scaled.jpg" alt="מבט על על מתחם השדרה">
+        <div class="veil"></div>
+        <div class="inv-buttons">
+          <a class="inv-btn" href="/apartments.html?view=building&bview_building=1"><b>1</b> בניין</a>
+          <a class="inv-btn" href="/apartments.html?view=building&bview_building=2"><b>2</b> בניין</a>
+          <a class="inv-btn" href="/apartments.html?view=building&bview_building=3"><b>3</b> בניין</a>
+          <a class="inv-btn" href="/apartments.html?view=building&bview_building=4"><b>4</b> בניין</a>
+        </div>
+      </div>
+      <div class="inv-all rv">
+        <a class="btn btn-gold" href="/apartments.html">לכל מלאי הדירות</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="f-logos">
+    <img src="/wp-content/uploads/2026/02/9ffd54ec-2-e1770776466215-300x109.png" alt="גלנור">
+    <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="ידות">
+  </div>
+  <div>השדרה אלעד — פרויקט מגורים מבית גלנור וידות</div>
+  <div>Powered by <a href="http://einstein-web.co.il">Einstein-web</a></div>
+</footer>
+
+<script>
+(function(){
+  var hdr=document.getElementById('hdr');
+  addEventListener('scroll',function(){hdr.classList.toggle('scrolled',scrollY>10)},{passive:true});
+
+  var burger=document.getElementById('burger'),nav=document.getElementById('nav');
+  burger.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+  });
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open')})});
+
+  var track=document.getElementById('gtrack');
+  document.getElementById('gnext').addEventListener('click',function(){track.scrollBy({left:-track.clientWidth*0.8,behavior:'smooth'})});
+  document.getElementById('gprev').addEventListener('click',function(){track.scrollBy({left:track.clientWidth*0.8,behavior:'smooth'})});
+
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+})();
+</script>
+
+</body>
+</html>
