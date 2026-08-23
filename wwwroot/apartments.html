@@ -145,7 +145,8 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 			<h1 class="title" style="color:#b09754;padding:15px;font-size:3rem;font-weight:bold;text-align:center;">השדרה- אלעד</h1>
 		</div>
 		<style>
-			.jv-realestate-root { --main-color: #b09754; }
+			/* the widget applies project.json colors as inline styles; !important wins over those */
+			.jv-realestate-root { --main-color: #b09754 !important; }
 		</style>
 		<script src="/assets/jetvaults-real-estate.js" data-container="hasdera-elad" data-project="hasdera-elad"></script>
 	</div>
