@@ -106,6 +106,25 @@ nav a:hover::after{width:100%}
 .btn-gold:hover{background:var(--gold-bright);border-color:var(--gold-bright);transform:translateY(-2px)}
 .btn-ghost{border:1px solid rgba(255,255,255,.65);color:#fff}
 .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.hero-badge{top:92px}
+.hero-emblem-chip{
+  display:inline-block;background:rgba(250,250,248,.93);border-radius:14px;
+  padding:12px 20px;margin-bottom:18px;box-shadow:0 10px 40px rgba(0,0,0,.25);
+}
+.hero-emblem-chip img{width:min(260px,58vw)}
+.hero-logo-panel{
+  display:inline-block;background:rgba(250,250,248,.95);border-radius:18px;
+  padding:24px 34px;margin-bottom:22px;box-shadow:0 16px 50px rgba(0,0,0,.3);
+}
+.hero-logo-panel img{width:min(460px,76vw)}
+.hero-center{align-items:center}
+.hero-center .hero-bg::after{background:rgba(8,0,0,.45)}
+.hero-center .hero-inner{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding-block:110px 60px;
+}
+.hero-center .hero p{max-width:640px}
+.hero-center .hero-actions,.hero-center .hero-inner .hero-actions{justify-content:center}
 
 /* ---------- section scaffolding ---------- */
 section{position:relative}
@@ -345,12 +364,14 @@ footer a:hover{text-decoration:underline}
 
 <main id="top">
 
-  <!-- HERO -->
+  <!-- HERO — option 1: logo chip above the headline -->
   <section class="hero">
+    <span class="variant-badge hero-badge">אפשרות 1</span>
     <div class="hero-bg">
       <img src="/wp-content/uploads/2026/02/Yadot-Elad100001-copy-scaled.jpg" alt="הדמיית פרויקט השדרה אלעד">
     </div>
     <div class="hero-inner">
+      <span class="hero-emblem-chip"><img src="/wp-content/uploads/2026/02/image-6.png" alt="השדרה — לוגו הפרויקט"></span>
       <h1>השדרה <em>אלעד</em></h1>
       <p>מתחם המגורים החדש של גלנור וידות באלעד — איכות חיים מול נוף פתוח, בקו הראשון לנוף ובשער הכניסה החדש לעיר.</p>
       <div class="hero-actions">
@@ -360,9 +381,40 @@ footer a:hover{text-decoration:underline}
     </div>
   </section>
 
-  <!-- ABOUT — variant 1: logo card over the photo -->
+  <!-- HERO — option 2: logo replaces the headline -->
+  <section class="hero">
+    <span class="variant-badge hero-badge">אפשרות 2</span>
+    <div class="hero-bg">
+      <img src="/wp-content/uploads/2026/02/Yadot-Elad100001-copy-scaled.jpg" alt="הדמיית פרויקט השדרה אלעד">
+    </div>
+    <div class="hero-inner">
+      <span class="hero-logo-panel"><img src="/wp-content/uploads/2026/02/image-6.png" alt="השדרה אלעד"></span>
+      <p>מתחם המגורים החדש של גלנור וידות באלעד — איכות חיים מול נוף פתוח, בקו הראשון לנוף ובשער הכניסה החדש לעיר.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="/apartments.html?view=building&bview_building=1">לתכנית דירה ומחירים</a>
+        <a class="btn btn-ghost" href="#about">על הפרויקט</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO — option 3: centered composition -->
+  <section class="hero hero-center">
+    <span class="variant-badge hero-badge">אפשרות 3</span>
+    <div class="hero-bg">
+      <img src="/wp-content/uploads/2026/02/Yadot-Elad100001-copy-scaled.jpg" alt="הדמיית פרויקט השדרה אלעד">
+    </div>
+    <div class="hero-inner">
+      <span class="hero-logo-panel"><img src="/wp-content/uploads/2026/02/image-6.png" alt="השדרה אלעד"></span>
+      <p>מתחם המגורים החדש של גלנור וידות באלעד — איכות חיים מול נוף פתוח, בקו הראשון לנוף ובשער הכניסה החדש לעיר.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="/apartments.html?view=building&bview_building=1">לתכנית דירה ומחירים</a>
+        <a class="btn btn-ghost" href="#about">על הפרויקט</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
   <section id="about">
-    <span class="variant-badge">אפשרות 1</span>
     <div class="wrap">
       <div class="sec-head rv">
         <h2 class="sec-title"><small>ההזדמנות שלכם באלעד</small>על הפרויקט</h2>
@@ -373,51 +425,7 @@ footer a:hover{text-decoration:underline}
           <p>השדרה מציעה שילוב ייחודי של סביבה קהילתית חמה, איכות בניה גבוהה ותכנון חכם שכולל גם הזדמנות כלכלית יוצאת דופן, באחד המיקומים האטרקטיביים ביותר בעיר אלעד. כעת בשיווק מבחר דירות בשוק החופשי.</p>
           <div class="about-quote">איכות חיים מול נוף פתוח — בשער הכניסה החדש לאלעד.</div>
         </div>
-        <div class="about-media framed has-card rv d1">
-          <img src="/assets/yadot-elad12-web.jpg" alt="הדמיית המתחם">
-          <div class="m-card"><img src="/wp-content/uploads/2026/02/image-6.png" alt="השדרה — לוגו הפרויקט"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="v-sep">
-
-  <!-- ABOUT — variant 2: centered emblem -->
-  <section id="about-v2" class="about-center">
-    <span class="variant-badge">אפשרות 2</span>
-    <div class="wrap">
-      <img class="about-emblem rv" src="/wp-content/uploads/2026/02/image-6.png" alt="השדרה — לוגו הפרויקט">
-      <div class="sec-head rv">
-        <h2 class="sec-title"><small>ההזדמנות שלכם באלעד</small>על הפרויקט</h2>
-      </div>
-      <div class="about-text rv">
-        <p>בקו הראשון לנוף, במיקום הפתוח ביותר באלעד, קם פרויקט המגורים <strong>"השדרה"</strong>, מבית חברות הנדל״ן גלנור וידות. ארבעה בניינים בני 7 קומות, שתוכננו בקפידה כדי להעניק לכם חוויית מגורים איכותית באמת: נוף פתוח למערב, אוויר הרים צלול, מבט פנורמי אל מרחבי המרכז — וכל זה עם גישה נוחה ומהירה לכל מקום שצריך.</p>
-        <p>השדרה מציעה שילוב ייחודי של סביבה קהילתית חמה, איכות בניה גבוהה ותכנון חכם שכולל גם הזדמנות כלכלית יוצאת דופן, באחד המיקומים האטרקטיביים ביותר בעיר אלעד. כעת בשיווק מבחר דירות בשוק החופשי.</p>
-        <div class="about-quote">איכות חיים מול נוף פתוח — בשער הכניסה החדש לאלעד.</div>
-      </div>
-      <div class="about-media rv d1">
-        <img src="/assets/yadot-elad12-web.jpg" alt="הדמיית המתחם">
-      </div>
-    </div>
-  </section>
-
-  <hr class="v-sep">
-
-  <!-- ABOUT — variant 3: logo panel under the text -->
-  <section id="about-v3">
-    <span class="variant-badge">אפשרות 3</span>
-    <div class="wrap">
-      <div class="sec-head rv">
-        <h2 class="sec-title"><small>ההזדמנות שלכם באלעד</small>על הפרויקט</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-text rv">
-          <p>בקו הראשון לנוף, במיקום הפתוח ביותר באלעד, קם פרויקט המגורים <strong>"השדרה"</strong>, מבית חברות הנדל״ן גלנור וידות. ארבעה בניינים בני 7 קומות, שתוכננו בקפידה כדי להעניק לכם חוויית מגורים איכותית באמת: נוף פתוח למערב, אוויר הרים צלול, מבט פנורמי אל מרחבי המרכז — וכל זה עם גישה נוחה ומהירה לכל מקום שצריך.</p>
-          <p>השדרה מציעה שילוב ייחודי של סביבה קהילתית חמה, איכות בניה גבוהה ותכנון חכם שכולל גם הזדמנות כלכלית יוצאת דופן, באחד המיקומים האטרקטיביים ביותר בעיר אלעד. כעת בשיווק מבחר דירות בשוק החופשי.</p>
-          <div class="about-logo-panel"><img src="/wp-content/uploads/2026/02/image-6.png" alt="השדרה — לוגו הפרויקט"></div>
-        </div>
-        <div class="about-media rv d1">
+        <div class="about-media framed rv d1">
           <img src="/assets/yadot-elad12-web.jpg" alt="הדמיית המתחם">
         </div>
       </div>
