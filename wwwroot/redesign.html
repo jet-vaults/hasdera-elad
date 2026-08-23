@@ -215,7 +215,12 @@ section{position:relative}
 
 /* ---------- inventory ---------- */
 .inv-lead{max-width:640px;font-weight:300;font-size:1.18rem;margin-bottom:34px}
-.inv-media{position:relative;box-shadow:0 30px 80px rgba(42,27,22,.25);line-height:0;border-radius:6px;overflow:hidden}
+.inv-frame{position:relative}
+.inv-frame::before{
+  content:"";position:absolute;top:-24px;inset-inline-end:-24px;
+  width:45%;height:60%;border:1px solid var(--gold);border-radius:6px;
+}
+.inv-media{position:relative;z-index:1;box-shadow:0 30px 80px rgba(42,27,22,.25);line-height:0;border-radius:6px;overflow:hidden}
 .inv-media > img{width:100%}
 .inv-media .veil{
   position:absolute;inset:0;pointer-events:none;
@@ -424,7 +429,8 @@ footer a:hover{text-decoration:underline}
         <h2 class="sec-title"><small>בחרו בניין לצפייה</small>מלאי דירות</h2>
       </div>
       <p class="inv-lead rv">עברו עם העכבר על הבניין המבוקש ולחצו לצפייה במלאי הדירות העדכני, בתכניות ובמחירים.</p>
-      <div class="inv-media rv">
+      <div class="inv-frame rv">
+      <div class="inv-media">
         <img src="/assets/yadot-elad12-web.jpg" alt="מבט על על מתחם השדרה">
         <div class="veil"></div>
         <svg class="inv-map" viewBox="0 0 2400 1350" preserveAspectRatio="none" aria-label="בחירת בניין">
@@ -451,6 +457,7 @@ footer a:hover{text-decoration:underline}
           <a class="inv-btn" href="/apartments.html?view=building&bview_building=3"><b>3</b> בניין</a>
           <a class="inv-btn" href="/apartments.html?view=building&bview_building=4"><b>4</b> בניין</a>
         </div>
+      </div>
       </div>
       <div class="inv-all rv">
         <a class="btn btn-gold" href="/apartments.html">לכל מלאי הדירות</a>
