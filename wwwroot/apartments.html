@@ -148,6 +148,30 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 			/* the widget applies project.json colors as inline styles; !important wins over those */
 			.jv-realestate-root { --main-color: #b09754 !important; }
 		</style>
+		<script>
+		// Drop garbled duplicate-header rows (all "?" — an Excel encoding artifact)
+		// from apartment CSVs before the widget parses them.
+		(function () {
+			var desc = Object.getOwnPropertyDescriptor(XMLHttpRequest.prototype, "responseText");
+			var origOpen = XMLHttpRequest.prototype.open;
+			XMLHttpRequest.prototype.open = function (method, url) {
+				this.__jvUrl = url;
+				return origOpen.apply(this, arguments);
+			};
+			Object.defineProperty(XMLHttpRequest.prototype, "responseText", {
+				configurable: true,
+				get: function () {
+					var text = desc.get.call(this);
+					if (this.__jvUrl && /\.csv(\?|$)/i.test(this.__jvUrl) && typeof text === "string") {
+						return text.split(/\r?\n/).filter(function (line) {
+							return !(/\?/.test(line) && /^[?",\s]+$/.test(line));
+						}).join("\n");
+					}
+					return text;
+				}
+			});
+		})();
+		</script>
 		<script src="/assets/jetvaults-real-estate.js" data-container="hasdera-elad" data-project="hasdera-elad"></script>
 	</div>
 </main>
