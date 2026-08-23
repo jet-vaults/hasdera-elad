@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/wp-content/plugins/draw-attention/public/assets/css/public.css">
 <style>
 :root{
   --gold:#B09754;
@@ -431,32 +432,145 @@ footer a:hover{text-decoration:underline}
       <p class="inv-lead rv">עברו עם העכבר על הבניין המבוקש ולחצו לצפייה במלאי הדירות העדכני, בתכניות ובמחירים.</p>
       <div class="inv-frame rv">
       <div class="inv-media">
-        <img src="/assets/yadot-elad12-web.jpg" alt="מבט על על מתחם השדרה">
-        <div class="veil"></div>
-        <svg class="inv-map" viewBox="0 0 2400 1350" preserveAspectRatio="none" aria-label="בחירת בניין">
-          <a href="/apartments.html?view=building&amp;bview_building=4" aria-label="בניין 4">
-            <polygon points="300,88 458,100 562,120 628,700 480,655 360,628 245,598 228,425 235,290 262,170"></polygon>
-            <text x="410" y="400">4</text>
-          </a>
-          <a href="/apartments.html?view=building&amp;bview_building=3" aria-label="בניין 3">
-            <polygon points="610,170 640,195 790,215 900,232 985,255 1035,700 1050,778 860,745 700,705 632,688"></polygon>
-            <text x="830" y="490">3</text>
-          </a>
-          <a href="/apartments.html?view=building&amp;bview_building=2" aria-label="בניין 2">
-            <polygon points="1030,300 1240,288 1315,315 1425,358 1500,640 1560,860 1565,905 1350,868 1150,815 1055,788 1015,690 1025,450"></polygon>
-            <text x="1280" y="610">2</text>
-          </a>
-          <a href="/apartments.html?view=building&amp;bview_building=1" aria-label="בניין 1">
-            <polygon points="1565,425 1755,392 1955,455 2048,478 2052,880 2070,1020 2060,1070 1850,1075 1660,1050 1572,1000 1560,900 1562,600"></polygon>
-            <text x="1800" y="750">1</text>
-          </a>
-        </svg>
-        <div class="inv-buttons">
-          <a class="inv-btn" href="/apartments.html?view=building&bview_building=1"><b>1</b> בניין</a>
-          <a class="inv-btn" href="/apartments.html?view=building&bview_building=2"><b>2</b> בניין</a>
-          <a class="inv-btn" href="/apartments.html?view=building&bview_building=3"><b>3</b> בניין</a>
-          <a class="inv-btn" href="/apartments.html?view=building&bview_building=4"><b>4</b> בניין</a>
-        </div>
+<style>
+	#hotspot-80 .hotspots-image-container,
+	#hotspot-80 .leaflet-container {
+		background: #efefef	}
+
+	#hotspot-80 .hotspots-placeholder {
+		background: #2E2D29;
+		border: 0 #2E2D29 solid;
+		color: #DFEBE5;
+	}
+
+	#hotspot-80 .hotspot-title {
+		color: #93C7A4;
+	}
+
+			#hotspot-80 .hotspot-default {
+			stroke-width: -1;
+			fill: #ffffff;
+			fill-opacity: 0;
+			stroke: #ffffff;
+			stroke-opacity: 0;
+		}
+		#hotspot-80 .hotspot-default:hover,
+		#hotspot-80 .hotspot-default:focus-visible,
+		#hotspot-80 .hotspot-default.hotspot-active {
+			fill: #0064bc;
+			fill-opacity: 0.41;
+			stroke: #235B6E;
+			stroke-opacity: 0.01;
+		}
+		#hotspot-80 .leaflet-tooltip,
+	#hotspot-80 .leaflet-rrose-content-wrapper {
+		background: #2E2D29;
+		border-color: #2E2D29;
+		color: #DFEBE5;
+	}
+
+	#hotspot-80 a.leaflet-rrose-close-button {
+		color: #93C7A4;
+	}
+
+	#hotspot-80 .leaflet-rrose-tip {
+		background: #2E2D29;
+	}
+
+	#hotspot-80 .leaflet-popup-scrolled {
+		border-bottom-color: #DFEBE5;
+		border-top-color: #DFEBE5;
+	}
+
+	#hotspot-80 .leaflet-tooltip-top:before {
+		border-top-color: #2E2D29;
+	}
+
+	#hotspot-80 .leaflet-tooltip-bottom:before {
+		border-bottom-color: #2E2D29;
+	}
+	#hotspot-80 .leaflet-tooltip-left:before {
+		border-left-color: #2E2D29;
+	}
+	#hotspot-80 .leaflet-tooltip-right:before {
+		border-right-color: #2E2D29;
+	}
+</style>
+
+	<div class="hotspots-container links-only layout-left event-click" id="hotspot-80" data-layout="left" data-trigger="click">
+		<div class="hotspots-interaction">
+			<div class="hotspots-image-container">
+	<img
+		width="2560"
+		height="1440"
+		src="/wp-content/uploads/2026/02/Yadot-Elad100005-copy-scaled.jpg"
+		alt="גלנור"
+		class="hotspots-image skip-lazy"
+		usemap="#hotspots-image-80"
+		data-image-title="גלנור"
+		data-image-description=""
+		data-event-trigger="click"
+		data-always-visible="false"
+		data-id="80"
+		data-no-lazy="1"
+		data-lazy-src=""
+		data-lazy="false"
+		loading="eager"
+		data-skip-lazy="1"
+		>
+</div>		</div>
+		<map name="hotspots-image-80" class="hotspots-map">
+											<area
+					shape="polygon"
+					coords="1505,902,1504,861,1555,822,1563,517,1596,495,1594,484,1589,481,1591,466,1595,465,1634,441,1643,434,1646,392,1673,396,1698,381,1696,404,1718,407,1737,395,1793,405,1808,396,2051,438,2042,447,2171,470,2171,487,2233,501,2199,765,2233,773,2225,835,2385,876,2309,1053,2300,1081,2167,1045,2134,1088,2052,1163,2062,1065,2050,1078,2022,1069,2024,1057,2010,1070,1818,1016,1819,995,1827,988,1827,969,1703,933,1697,938,1690,947,1688,979,1502,926"
+					href="/apartments.html?view=building&bview_building=1"
+					rel=""
+					title="1"
+					alt="1"
+					data-action="url"
+					data-color-scheme=""
+					target=""
+					class="url-area"
+					>
+											<area
+					shape="polygon"
+					coords="1504,862,1555,823,1571,573,1561,570,1561,517,1593,496,1593,484,1589,468,1596,465,1595,459,1646,429,1647,392,1671,397,1698,381,1661,371,1661,356,1574,336,1565,339,1533,334,1532,325,1514,321,1328,286,1314,294,1266,285,1169,330,1168,337,1131,351,1132,413,1095,429,1094,459,1106,461,1107,583,1101,586,1098,635,986,702,989,737,1202,790,1219,777,1324,809,1323,822,1496,873,1501,874"
+					href="/apartments.html?view=building&bview_building=2"
+					rel=""
+					title="2"
+					alt="2"
+					data-action="url"
+					data-color-scheme=""
+					target=""
+					class="url-area"
+					>
+											<area
+					shape="polygon"
+					coords="986,702,1098,639,1099,588,1107,582,1106,461,1094,459,1096,433,1132,412,1134,352,1150,345,1147,326,1120,317,1118,243,1096,237,1095,222,1021,207,995,216,991,203,959,196,967,191,796,158,781,166,742,160,633,193,618,200,623,245,578,257,596,531,564,546,565,584,675,613,675,606,690,599,773,621,773,637,768,644"
+					href="/apartments.html?view=building&bview_building=3"
+					rel=""
+					title="3"
+					alt="3"
+					data-action="url"
+					data-color-scheme=""
+					target=""
+					class="url-area"
+					>
+											<area
+					shape="polygon"
+					coords="525,566,532,567,547,558,565,562,595,546,588,449,593,444,578,256,623,242,618,198,696,174,714,169,746,159,746,146,737,142,737,129,666,118,643,114,625,123,623,107,605,106,606,98,460,73,445,78,410,72,295,100,300,170,275,175,276,195,286,305,265,312,271,363,241,382,227,396,217,408,212,425,216,443,225,458,242,471,338,497,336,488,355,480,426,499,424,516,419,519,419,536"
+					href="/apartments.html?view=building&bview_building=4"
+					rel=""
+					title="4"
+					alt="4"
+					data-action="url"
+					data-color-scheme=""
+					target=""
+					class="url-area"
+					>
+					</map>
+
+	</div>
       </div>
       </div>
       <div class="inv-all rv">
@@ -483,6 +597,12 @@ footer a:hover{text-decoration:underline}
   <button class="lb-next" id="lbnext" aria-label="הבא">&#8592;</button>
   <div class="lb-count" id="lbcount"></div>
 </div>
+
+<script src="/wp-includes/js/jquery/jquery.min.js"></script>
+<script src="/wp-content/plugins/draw-attention/public/assets/js/leaflet.js"></script>
+<script src="/wp-content/plugins/draw-attention/public/assets/js/leaflet.responsive.popup-min.js"></script>
+<script>var drawattentionData = {"isLoggedIn":"","closeLabel":"Close","isAdmin":""};</script>
+<script src="/wp-content/plugins/draw-attention/public/assets/js/public.js"></script>
 
 <script>
 (function(){
