@@ -259,6 +259,15 @@ section{position:relative}
 .inv-btn:hover b{color:#fff}
 .inv-all{text-align:center;margin-top:34px}
 .inv-mobile{display:none}
+.inv-mobile .inv-img-wrap{position:relative;line-height:0}
+.inv-num{
+  position:absolute;transform:translate(-50%,-50%);
+  width:30px;height:30px;border-radius:50%;
+  background:var(--gold);color:#fff;border:2px solid #fff;
+  display:grid;place-items:center;
+  font-weight:800;font-size:.95rem;line-height:1;
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+}
 .g-nav button.dim{opacity:.35;pointer-events:none}
 
 /* ---------- footer ---------- */
@@ -313,9 +322,10 @@ footer a:hover{text-decoration:underline}
   #hotspot-80{display:none}
   .inv-mobile{display:block}
   .inv-buttons{
-    position:static;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
-    background:var(--espresso);padding:14px 12px;line-height:1.7;
+    position:static;display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    background:var(--mist);padding:14px 12px;line-height:1.7;
   }
+  .inv-btn{border:1px solid var(--gold);justify-content:center;background:#fff}
 }
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
@@ -593,7 +603,13 @@ footer a:hover{text-decoration:underline}
 
 	</div>
         <div class="inv-mobile">
-          <img src="/assets/yadot-elad12-web.jpg" alt="מבט על על מתחם השדרה">
+          <div class="inv-img-wrap">
+            <img src="/assets/yadot-elad12-web.jpg" alt="מבט על על מתחם השדרה">
+            <span class="inv-num" style="left:75%;top:52%">1</span>
+            <span class="inv-num" style="left:53.3%;top:42%">2</span>
+            <span class="inv-num" style="left:34.6%;top:33%">3</span>
+            <span class="inv-num" style="left:17.1%;top:26%">4</span>
+          </div>
           <div class="inv-buttons">
             <a class="inv-btn" href="/apartments.html?view=building&bview_building=1"><b>1</b> בניין</a>
             <a class="inv-btn" href="/apartments.html?view=building&bview_building=2"><b>2</b> בניין</a>
