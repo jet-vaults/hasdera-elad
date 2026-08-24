@@ -270,6 +270,25 @@ section{position:relative}
 }
 .g-nav button.dim{opacity:.35;pointer-events:none}
 
+/* ---------- building plans ---------- */
+.plans{background:var(--mist)}
+.plans-list{max-width:820px;margin:0 auto;display:grid;gap:14px}
+.plan-row{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:#fff;border:1px solid var(--line);border-radius:6px;
+  padding:16px 22px;transition:box-shadow .25s,transform .25s;
+}
+.plan-row:hover{box-shadow:0 12px 30px rgba(42,27,22,.1);transform:translateY(-2px)}
+.plan-name{font-weight:600;font-size:1.08rem}
+.plan-dl{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:#fff;font-weight:700;font-size:.95rem;
+  padding:9px 22px;border-radius:5px;transition:background .25s;
+  white-space:nowrap;
+}
+.plan-dl svg{width:15px;height:15px;fill:currentColor}
+.plan-dl:hover{background:var(--gold-bright)}
+
 /* ---------- footer ---------- */
 footer{
   background:var(--mist);color:var(--espresso);
@@ -621,6 +640,38 @@ footer a:hover{text-decoration:underline}
       </div>
       <div class="inv-all rv">
         <a class="btn btn-gold" href="/apartments.html">לכל מלאי הדירות</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILDING PLANS -->
+  <section id="plans" class="plans">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 class="sec-title"><small>להורדה ולעיון</small>תכניות בניין</h2>
+      </div>
+      <div class="plans-list">
+        <div class="plan-row rv">
+          <span class="plan-name">תוכניות בניינים 1-2</span>
+          <a class="plan-dl" href="/assets/plans/plans-buildings-1-2.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V2h4v8h4l-6 6zm-8 4h16v2H4v-2z"/></svg>
+            להורדה
+          </a>
+        </div>
+        <div class="plan-row rv d1">
+          <span class="plan-name">תוכניות בניינים 3-4</span>
+          <a class="plan-dl" href="/assets/plans/plans-buildings-3-4.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V2h4v8h4l-6 6zm-8 4h16v2H4v-2z"/></svg>
+            להורדה
+          </a>
+        </div>
+        <div class="plan-row rv d2">
+          <span class="plan-name">קומות מסחר, פיתוח וחניות</span>
+          <a class="plan-dl" href="/assets/plans/plans-commercial-parking.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V2h4v8h4l-6 6zm-8 4h16v2H4v-2z"/></svg>
+            להורדה
+          </a>
+        </div>
       </div>
     </div>
   </section>
