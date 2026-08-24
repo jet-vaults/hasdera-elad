@@ -77,9 +77,10 @@ nav a:hover::after{width:100%}
   padding-block:clamp(124px,17vh,190px) clamp(56px,8vh,96px);
 }
 .hero-grid{
-  display:grid;grid-template-columns:1.25fr .75fr;
+  display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);
   gap:clamp(30px,5vw,70px);align-items:center;width:100%;
 }
+.hero-grid > *{min-width:0;max-width:100%}
 .hero .wrap{padding-block:0}
 .hero-copy{text-align:center}
 .hero-logo{width:min(400px,78%);margin:0 auto 4px}
@@ -257,6 +258,8 @@ section{position:relative}
 .inv-btn:hover{background:var(--gold);color:#fff;transform:translateY(-3px)}
 .inv-btn:hover b{color:#fff}
 .inv-all{text-align:center;margin-top:34px}
+.inv-mobile{display:none}
+.g-nav button.dim{opacity:.35;pointer-events:none}
 
 /* ---------- footer ---------- */
 footer{
@@ -296,10 +299,23 @@ footer a:hover{text-decoration:underline}
   .why-grid{grid-template-columns:1fr}
   .hero{padding-top:104px;padding-bottom:40px}
   .hero-grid{grid-template-columns:1fr}
-  .hero-copy{order:1}
-  .hero-media{order:2;margin-top:24px}
-  .inv-map text{font-size:190px}
-  .inv-buttons{position:static;background:var(--espresso);padding:14px 12px}
+  /* logo → photo → diamond → tagline → button */
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-copy{display:contents}
+  .hero-logo{order:1;width:min(320px,80vw)}
+  .hero-media{order:2;margin-top:8px}
+  .hero-diamond{order:3;text-align:center}
+  .hero-copy p{order:4}
+  .hero-actions{order:5}
+  /* no gold frame accents on mobile */
+  .hero-media::before,.about-media.framed::before,.inv-frame::before{display:none}
+  /* the interactive hotspot map breaks the mobile layout — swap to image + buttons */
+  #hotspot-80{display:none}
+  .inv-mobile{display:block}
+  .inv-buttons{
+    position:static;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+    background:var(--espresso);padding:14px 12px;line-height:1.7;
+  }
 }
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
@@ -576,6 +592,15 @@ footer a:hover{text-decoration:underline}
 					</map>
 
 	</div>
+        <div class="inv-mobile">
+          <img src="/assets/yadot-elad12-web.jpg" alt="מבט על על מתחם השדרה">
+          <div class="inv-buttons">
+            <a class="inv-btn" href="/apartments.html?view=building&bview_building=1"><b>1</b> בניין</a>
+            <a class="inv-btn" href="/apartments.html?view=building&bview_building=2"><b>2</b> בניין</a>
+            <a class="inv-btn" href="/apartments.html?view=building&bview_building=3"><b>3</b> בניין</a>
+            <a class="inv-btn" href="/apartments.html?view=building&bview_building=4"><b>4</b> בניין</a>
+          </div>
+        </div>
       </div>
       </div>
       <div class="inv-all rv">
@@ -624,8 +649,19 @@ footer a:hover{text-decoration:underline}
   nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open')})});
 
   var track=document.getElementById('gtrack');
-  document.getElementById('gnext').addEventListener('click',function(){track.scrollBy({left:-track.clientWidth*0.8,behavior:'smooth'})});
-  document.getElementById('gprev').addEventListener('click',function(){track.scrollBy({left:track.clientWidth*0.8,behavior:'smooth'})});
+  var gnext=document.getElementById('gnext'),gprev=document.getElementById('gprev');
+  gnext.addEventListener('click',function(){track.scrollBy({left:-track.clientWidth*0.8,behavior:'smooth'})});
+  gprev.addEventListener('click',function(){track.scrollBy({left:track.clientWidth*0.8,behavior:'smooth'})});
+  // dim an arrow when there is nothing further to scroll to
+  function updateNav(){
+    var max=track.scrollWidth-track.clientWidth;
+    var pos=Math.abs(track.scrollLeft);
+    gprev.classList.toggle('dim',pos<5);
+    gnext.classList.toggle('dim',pos>max-5);
+  }
+  track.addEventListener('scroll',updateNav,{passive:true});
+  addEventListener('resize',updateNav);
+  updateNav();
 
   // reveal on scroll; strip classes afterwards so hover effects react instantly
   var io=new IntersectionObserver(function(es){
@@ -657,6 +693,15 @@ footer a:hover{text-decoration:underline}
   document.getElementById('lbnext').addEventListener('click',function(e){e.stopPropagation();show(idx+1)});
   document.getElementById('lbprev').addEventListener('click',function(e){e.stopPropagation();show(idx-1)});
   lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+  // swipe to change image on touch screens
+  var swipeX=null;
+  lb.addEventListener('touchstart',function(e){swipeX=e.touches[0].clientX},{passive:true});
+  lb.addEventListener('touchend',function(e){
+    if(swipeX===null)return;
+    var dx=e.changedTouches[0].clientX-swipeX;
+    swipeX=null;
+    if(Math.abs(dx)>40){ if(dx<0){show(idx+1)}else{show(idx-1)} }
+  },{passive:true});
   addEventListener('keydown',function(e){
     if(!lb.classList.contains('open'))return;
     if(e.key==='Escape')closeLb();
