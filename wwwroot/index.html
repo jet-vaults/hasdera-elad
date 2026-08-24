@@ -309,13 +309,13 @@ footer a:hover{text-decoration:underline}
   .hero{padding-top:104px;padding-bottom:40px}
   .hero-grid{grid-template-columns:1fr}
   /* logo → photo → diamond → tagline → button */
-  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:14px}
   .hero-copy{display:contents}
   .hero-logo{order:1;width:min(320px,80vw)}
   .hero-media{order:2;margin-top:8px}
-  .hero-diamond{order:3;text-align:center}
-  .hero-copy p{order:4}
-  .hero-actions{order:5}
+  .hero-diamond{order:3;text-align:center;margin:6px 0 0}
+  .hero-copy p{order:4;margin-bottom:0}
+  .hero-actions{order:5;margin-top:4px}
   /* no gold frame accents on mobile */
   .hero-media::before,.about-media.framed::before,.inv-frame::before{display:none}
   /* the interactive hotspot map breaks the mobile layout — swap to image + buttons */
