@@ -1,0 +1,807 @@
+<!doctype html>
+<html dir="rtl" lang="he-IL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>השדרה אלעד - החיים שתמיד חלמתם עליהם</title>
+<meta name="description" content="פרויקט השדרה באלעד מבית גלנור וידות: דירות 4-6 חדרים, דירות גן ופנטהאוזים מול נוף פתוח, בכניסה החדשה לעיר.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Heebo:wght@500;700;800;900&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/assets/v2/silk-hero.jpg">
+<link rel="preload" as="image" href="/assets/yadot-elad12-c1.jpg">
+<style>
+:root{
+  --cream:#EEE8DB;
+  --cream-2:#F5F1E8;
+  --gold:#D1A45B;
+  --gold-2:#B8893F;
+  --gold-soft:rgba(209,164,91,.35);
+  --char:#2B2B2B;
+  --ink:#1E1D1B;
+  --slate:#54565A;
+  --paper-ink:#3A3733;
+  --line:rgba(43,43,43,.18);
+  --sans:"Assistant",sans-serif;
+  --head:"Heebo","Assistant",sans-serif;
+  --num:"Bodoni Moda","Times New Roman",serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+::selection{background:var(--gold);color:#fff}
+
+.wrap{width:min(1180px,calc(100% - 2*clamp(18px,5vw,64px)));margin-inline:auto}
+
+/* grain overlay */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}.rv.d5{transition-delay:.5s}
+.line-x{position:relative;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform 1.4s var(--ease)}
+.line-x.in{transform:scaleX(1)}
+
+/* ---------- header ---------- */
+header{
+  position:fixed;inset-inline:0;top:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px clamp(18px,4vw,56px);
+  background:var(--cream);
+  transition:background .5s,box-shadow .5s,padding .4s;
+}
+header::after{
+  content:"";position:absolute;inset-inline:0;bottom:0;height:1px;
+  background:linear-gradient(to left,transparent,var(--gold-soft) 20%,var(--gold-soft) 80%,transparent);
+  opacity:0;transition:opacity .5s;
+}
+header.scrolled{background:rgba(238,232,219,.92);backdrop-filter:blur(12px);padding-block:10px;box-shadow:0 10px 40px rgba(30,29,27,.08)}
+header.scrolled::after{opacity:1}
+.logos{display:flex;align-items:center;gap:22px}
+.logos img{height:44px;width:auto;transition:height .4s}
+header.scrolled .logos img{height:36px}
+.logos .sep{width:1px;height:32px;background:var(--line)}
+nav.main-nav{display:flex;gap:clamp(16px,2.4vw,34px);font-weight:600;font-size:.95rem}
+nav.main-nav a{position:relative;padding-block:4px}
+nav.main-nav a::after{content:"";position:absolute;bottom:0;right:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
+nav.main-nav a:hover::after{width:100%}
+.hdr-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--gold);color:var(--gold-2);padding:8px 20px;border-radius:999px;
+  font-weight:700;font-size:.9rem;transition:background .3s,color .3s,transform .3s;
+}
+.hdr-cta:hover{background:var(--gold);color:#fff;transform:translateY(-1px)}
+.burger{display:none;background:none;border:none;width:40px;height:40px;position:relative;z-index:70}
+.burger span{position:absolute;left:8px;width:24px;height:2px;background:currentColor;transition:transform .4s var(--ease),opacity .3s,top .4s var(--ease)}
+.burger span:nth-child(1){top:12px}.burger span:nth-child(2){top:19px}.burger span:nth-child(3){top:26px}
+.burger.open span:nth-child(1){top:19px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:19px;transform:rotate(-45deg)}
+
+.menu{
+  position:fixed;inset:0;z-index:65;background:var(--char);color:var(--cream);
+  display:grid;place-items:center;text-align:center;
+  clip-path:circle(0 at calc(100% - 38px) 38px);transition:clip-path .8s var(--ease-out);
+  visibility:hidden;
+}
+.menu.open{clip-path:circle(150% at calc(100% - 38px) 38px);visibility:visible}
+.menu a{display:block;font-family:var(--head);font-weight:800;font-size:clamp(1.8rem,7vw,3rem);line-height:1.5;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .6s var(--ease)}
+.menu.open a{opacity:1;transform:none}
+.menu a:nth-child(1){transition-delay:.25s}.menu a:nth-child(2){transition-delay:.32s}.menu a:nth-child(3){transition-delay:.39s}.menu a:nth-child(4){transition-delay:.46s}.menu a:nth-child(5){transition-delay:.53s}.menu a:nth-child(6){transition-delay:.6s}
+.menu a.gold{color:var(--gold)}
+.menu .menu-tel{font-family:var(--sans);font-weight:400;font-size:1.1rem;margin-top:24px;color:var(--gold)}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;min-height:100svh;display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);
+  background:#0B0B0B;color:var(--cream);overflow:hidden;isolation:isolate;
+}
+.hero-bg{position:absolute;inset:-8% 0;z-index:-1;background:url(/assets/v2/silk-hero.jpg) center/cover;will-change:transform;
+  animation:heroBg 1.8s var(--ease-out) both}
+@keyframes heroBg{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:none}}
+.hero-media{
+  grid-column:2;grid-row:1;position:relative;align-self:stretch;margin-top:76px;
+  clip-path:polygon(0 0,100% 0,84% 100%,0 100%);
+  animation:heroMedia 1.6s var(--ease-out) .25s both;
+}
+@keyframes heroMedia{from{clip-path:polygon(0 0,0 0,0 100%,0 100%);opacity:0}to{clip-path:polygon(0 0,100% 0,84% 100%,0 100%);opacity:1}}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:40% 50%;
+  animation:heroImg 12s ease-out both;
+  -webkit-mask-image:linear-gradient(to right,#000 72%,transparent 100%);mask-image:linear-gradient(to right,#000 72%,transparent 100%)}
+@keyframes heroImg{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.55),transparent 40%)}
+.hero-copy{
+  grid-column:1;grid-row:1;align-self:center;position:relative;z-index:2;
+  padding:clamp(130px,18vh,190px) clamp(18px,5vw,64px) clamp(70px,10vh,110px);
+  max-width:600px;margin-inline-start:auto;
+}
+.hero-title{
+  font-family:var(--head);font-weight:900;font-size:clamp(3rem,7.4vw,6.4rem);line-height:1.02;letter-spacing:-.01em;
+  color:#F3EEE3;
+}
+.hero-title .w{display:block;overflow:hidden}
+.hero-title .w span{display:block;transform:translateY(110%);animation:rise 1.1s var(--ease-out) forwards}
+.hero-title .w:nth-child(1) span{animation-delay:.55s}
+.hero-title .w:nth-child(2) span{animation-delay:.68s}
+.hero-title .w:nth-child(3) span{animation-delay:.81s}
+.hero-title .w:nth-child(4) span{animation-delay:.94s}
+@keyframes rise{to{transform:none}}
+.hero-rule{margin-block:clamp(28px,4vh,44px) clamp(22px,3vh,32px);display:grid;gap:8px}
+.hero-rule i{display:block;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;animation:ruleIn 1.4s var(--ease) 1.2s forwards}
+.hero-rule i:nth-child(2){opacity:.55;animation-delay:1.35s}
+@keyframes ruleIn{to{transform:scaleX(1)}}
+.hero-logo{width:min(300px,62%);opacity:0;animation:fadeUp 1.2s var(--ease) 1.5s forwards}
+.hero-sub{margin-top:18px;font-weight:300;font-size:1.05rem;letter-spacing:.02em;color:rgba(243,238,227,.8);opacity:0;animation:fadeUp 1.2s var(--ease) 1.75s forwards}
+.hero-cta{margin-top:26px;opacity:0;animation:fadeUp 1.2s var(--ease) 1.9s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.btn{
+  display:inline-flex;align-items:center;gap:14px;
+  background:var(--gold);color:var(--char);font-weight:700;font-size:1.05rem;
+  padding:14px 26px 14px 18px;border-radius:999px;border:1px solid var(--gold);
+  transition:transform .35s var(--ease),box-shadow .35s,background .3s,color .3s;
+  position:relative;overflow:hidden;
+}
+.btn .arr{width:34px;height:34px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;flex:none;transition:transform .4s var(--ease)}
+.btn .arr svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(209,164,91,.35)}
+.btn:hover .arr{transform:translateX(-5px)}
+.btn.ghost{background:transparent;color:var(--gold);border-color:var(--gold)}
+.btn.ghost:hover{background:var(--gold);color:var(--char)}
+
+.scroll-cue{
+  position:absolute;bottom:34px;inset-inline-end:clamp(20px,6vw,90px);z-index:3;
+  width:74px;height:74px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;
+  color:var(--gold);opacity:0;animation:fadeUp 1s var(--ease) 2.2s forwards;
+}
+.scroll-cue::before{content:"";position:absolute;top:-70px;width:1px;height:70px;background:linear-gradient(to bottom,transparent,var(--gold))}
+.scroll-cue svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
+
+/* ---------- intro ---------- */
+.intro{padding:clamp(80px,12vh,130px) 0 clamp(48px,7vh,80px);text-align:center}
+.intro h2{font-family:var(--head);font-weight:800;font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.35;color:var(--char)}
+.intro h2 em{font-style:normal;display:block;font-weight:700;color:var(--paper-ink)}
+.intro p{max-width:920px;margin:26px auto 0;font-size:1.12rem;line-height:1.85;color:var(--paper-ink)}
+.intro p strong{color:var(--char);font-weight:700}
+
+/* ---------- stats ---------- */
+.stats{padding:clamp(20px,4vh,40px) 0 clamp(70px,10vh,110px)}
+.stats-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;position:relative;
+}
+.stats-top{display:grid;grid-template-columns:1fr 1.4fr}
+.stats-bottom{display:grid;grid-template-columns:1fr 1fr 1fr}
+.stat{padding:clamp(22px,4vh,40px) clamp(10px,2vw,28px);display:flex;align-items:flex-end;justify-content:center;gap:16px;position:relative}
+.stats-top .stat:first-child,.stats-bottom .stat:not(:last-child){border-inline-start:1px solid var(--gold)}
+.stats-top .stat:first-child{border-inline-start:none;border-inline-end:1px solid var(--gold)}
+.stats-bottom .stat:not(:last-child){border-inline-start:none;border-inline-end:1px solid var(--gold)}
+.stat .n{
+  font-family:var(--num);font-weight:400;font-size:clamp(3.4rem,8vw,6.6rem);line-height:.9;color:var(--char);
+  font-variant-numeric:lining-nums tabular-nums;direction:ltr;letter-spacing:-.01em;
+}
+.stat .l{display:flex;flex-direction:column;line-height:1.35;padding-bottom:8px}
+.stat .l b{font-family:var(--head);font-weight:700;font-size:1.15rem;color:var(--char)}
+.stat .l small{font-size:.92rem;color:var(--paper-ink)}
+.stats-rule{position:relative;height:1px;background:var(--gold);margin-block:2px;transform:scaleX(0);transform-origin:right;transition:transform 1.6s var(--ease)}
+.stats-rule.in{transform:scaleX(1)}
+.stats-rule::after{
+  content:"";position:absolute;left:-1px;top:-4px;width:9px;height:9px;border-left:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(45deg);
+  opacity:0;transition:opacity .4s 1.4s;
+}
+.stats-rule.in::after{opacity:1}
+
+/* ---------- gallery ---------- */
+.gallery{padding:clamp(20px,4vh,40px) 0 clamp(80px,12vh,130px);position:relative}
+.gal{position:relative}
+.gal-frame{position:relative;overflow:hidden;aspect-ratio:16/9.2;background:#dcd6c8;direction:ltr;box-shadow:0 40px 90px -30px rgba(30,29,27,.35)}
+.gal-track{display:flex;height:100%;transition:transform .9s var(--ease-out)}
+.gal-track figure{flex:0 0 100%;height:100%;position:relative}
+.gal-track img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 6s ease-out}
+.gal-track figure.on img{transform:scale(1)}
+.gal-track figcaption{position:absolute;bottom:18px;left:22px;direction:rtl;color:#fff;font-size:.85rem;letter-spacing:.06em;opacity:0;transform:translateY(8px);transition:opacity .6s .3s,transform .6s .3s;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.gal-track figure.on figcaption{opacity:1;transform:none}
+.gal-line{position:absolute;top:18%;inset-inline-end:-6vw;width:52%;height:1px;background:var(--char);z-index:2;pointer-events:none}
+.gal-line::after{content:"";position:absolute;inset-inline:0;top:10px;height:1px;background:var(--char);opacity:.6}
+.gal-btn{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:clamp(56px,7vw,92px);height:clamp(56px,7vw,92px);border-radius:50%;border:1px solid var(--gold);background:rgba(238,232,219,.55);
+  backdrop-filter:blur(4px);color:var(--gold-2);display:grid;place-items:center;transition:background .3s,transform .3s,color .3s;
+}
+.gal-btn:hover{background:var(--gold);color:var(--char);transform:translateY(-50%) scale(1.06)}
+.gal-btn svg{width:60%;height:60%;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.gal-btn.prev{inset-inline-start:calc(-1 * clamp(28px,3.5vw,46px))}
+.gal-btn.next{inset-inline-end:calc(-1 * clamp(28px,3.5vw,46px))}
+.gal-dots{display:flex;justify-content:center;gap:14px;margin-top:22px;direction:ltr}
+.gal-dots button{width:10px;height:10px;border:none;background:var(--char);transition:background .3s,transform .3s;padding:0}
+.gal-dots button.on{background:var(--gold);transform:scale(1.25)}
+.gal-progress{height:2px;background:rgba(43,43,43,.12);margin-top:14px;overflow:hidden;direction:ltr}
+.gal-progress i{display:block;height:100%;background:var(--gold);width:0}
+.gal-progress i.run{animation:prog 5.5s linear forwards}
+@keyframes prog{to{width:100%}}
+
+/* ---------- section titles ---------- */
+.sec-title{
+  font-family:var(--head);font-weight:900;font-size:clamp(2rem,4.6vw,3.2rem);color:var(--char);text-align:center;line-height:1.2;
+}
+.sec-title.lined{display:flex;align-items:center;gap:22px}
+.sec-title.lined::before,.sec-title.lined::after{content:"";flex:1;height:1px;background:linear-gradient(to left,var(--char),transparent);opacity:.35}
+.sec-title.lined::after{background:linear-gradient(to right,var(--char),transparent)}
+
+/* ---------- why ---------- */
+.why{padding:0 0 clamp(80px,12vh,130px)}
+.why-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.6vw,22px);margin-top:clamp(36px,6vh,60px)}
+.card{
+  --bg:var(--char);--fg:var(--cream);--num:var(--gold);--title:var(--gold);
+  background:var(--bg);color:var(--fg);display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:transform .5s var(--ease),box-shadow .5s;
+}
+.card.alt{--bg:var(--gold);--fg:var(--char);--num:var(--char);--title:var(--char)}
+.card:hover{transform:translateY(-10px);box-shadow:0 30px 60px -20px rgba(30,29,27,.45)}
+.card .num{font-family:var(--head);font-weight:800;font-size:clamp(1.8rem,2.6vw,2.4rem);color:var(--num);text-align:center;padding:26px 0 18px;letter-spacing:.04em;line-height:1}
+.card .ph{aspect-ratio:375/218;overflow:hidden;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.card:hover .ph img{transform:scale(1.08)}
+.card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg),transparent 45%);opacity:.55}
+.card .body{padding:22px 18px 30px;text-align:center;display:flex;flex-direction:column;gap:12px;flex:1}
+.card h3{font-family:var(--head);font-weight:800;font-size:clamp(1.5rem,2.2vw,2rem);color:var(--title);line-height:1.2}
+.card p{font-size:1rem;line-height:1.7;font-weight:400}
+.card.alt p{font-weight:600}
+.card::before{content:"";position:absolute;inset-inline:0;top:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--ease)}
+.card.alt::before{background:var(--char)}
+.card:hover::before{transform:scaleX(1)}
+
+/* ---------- developers ---------- */
+.devs{padding:0 0 clamp(80px,12vh,130px);text-align:center}
+.devs p{max-width:960px;margin:28px auto 0;font-size:1.12rem;line-height:1.85;color:var(--paper-ink)}
+.devs p strong{color:var(--char)}
+.dev-logos{display:flex;justify-content:center;align-items:center;gap:clamp(30px,6vw,80px);margin-top:44px;flex-wrap:wrap}
+.dev-logos img{height:64px;width:auto;filter:grayscale(1);opacity:.75;transition:filter .5s,opacity .5s,transform .5s}
+.dev-logos img:hover{filter:none;opacity:1;transform:translateY(-3px)}
+
+/* ---------- inventory ---------- */
+.inventory{padding:0 0 clamp(90px,13vh,140px)}
+.board{
+  position:relative;border:1px solid var(--char);padding:clamp(28px,4vw,56px) clamp(16px,3vw,44px) clamp(70px,8vw,96px);
+  margin-top:clamp(36px,6vh,60px);background:linear-gradient(to bottom,rgba(255,255,255,.18),transparent);
+}
+.board-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,34px);align-items:start;position:relative;z-index:1}
+.bld{display:flex;flex-direction:column;gap:12px;padding-top:var(--offset,0)}
+.bld:nth-child(2),.bld:nth-child(3){--offset:clamp(30px,6vw,96px)}
+.bld h3{font-family:var(--head);font-weight:800;font-size:clamp(1.15rem,1.7vw,1.5rem);text-align:center;line-height:1.25;color:var(--char);margin-bottom:8px}
+.bld h3 small{display:block;font-weight:700;font-size:.92em}
+.apt{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;
+  background:var(--gold);color:var(--char);padding:6px 14px;font-weight:700;font-size:clamp(.95rem,1.35vw,1.15rem);
+  position:relative;transition:transform .35s var(--ease),box-shadow .35s;
+}
+.apt:hover{transform:translateX(-6px);box-shadow:-8px 10px 30px -10px rgba(30,29,27,.5)}
+.apt .dash{height:1px;background:var(--char);position:relative;opacity:.8}
+.apt .dash::after{content:"";position:absolute;left:0;top:-3px;width:6px;height:6px;border-left:1px solid var(--char);border-bottom:1px solid var(--char);transform:rotate(45deg)}
+.apt .rooms{font-weight:600;font-size:.9em;white-space:nowrap}
+.apt.pent{margin-bottom:22px}
+.apt.pent::after{
+  content:"פנטהאוז";position:absolute;inset-inline:16px;bottom:-20px;height:20px;background:var(--char);color:var(--cream);
+  font-size:.78rem;font-weight:700;display:grid;place-items:center;letter-spacing:.06em;
+}
+.board-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.board-deco svg{position:absolute;bottom:0;width:clamp(180px,26vw,360px);height:auto;fill:none;stroke:var(--char);stroke-width:1.2;opacity:.7}
+.board-deco .r{inset-inline-end:2%}
+.board-deco .l{inset-inline-start:2%;transform:scaleX(-1)}
+.board-cta{display:flex;justify-content:center;margin-top:-30px;position:relative;z-index:2}
+.board-cta .btn{font-family:var(--head);font-weight:800;font-size:clamp(1.15rem,2.2vw,1.7rem);padding:12px 34px 12px 16px}
+
+/* ---------- contact ---------- */
+.contact{background:var(--slate);color:var(--cream);padding:clamp(70px,11vh,120px) 0;position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 85% 50%,rgba(209,164,91,.12),transparent 60%);pointer-events:none}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.4fr;gap:clamp(32px,6vw,90px);align-items:center;position:relative}
+.contact-copy h2{font-family:var(--head);font-weight:900;font-size:clamp(3rem,6vw,4.6rem);line-height:1;color:var(--gold)}
+.contact-copy .rules{margin:24px 0 20px;display:grid;gap:7px;max-width:340px}
+.contact-copy .rules i{display:block;height:1px;background:var(--cream);opacity:.8}
+.contact-copy p{font-size:1.35rem;line-height:1.45;font-weight:400}
+form.lead{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+form.lead .full{grid-column:1/-1}
+.field{position:relative}
+.field input{
+  width:100%;background:transparent;border:1px solid rgba(238,232,219,.75);border-radius:999px;color:var(--cream);
+  padding:16px 24px;font:inherit;font-size:1.05rem;outline:none;transition:border-color .3s,box-shadow .3s;
+}
+.field input::placeholder{color:rgba(238,232,219,.75)}
+.field input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(209,164,91,.2)}
+.field input:not(:placeholder-shown):invalid{border-color:#e08a7a}
+.field label{position:absolute;inset-inline-end:24px;top:-9px;background:var(--slate);padding:0 8px;font-size:.78rem;color:var(--gold);opacity:0;transform:translateY(6px);transition:.3s;pointer-events:none}
+.field input:not(:placeholder-shown)+label{opacity:1;transform:none}
+form.lead .btn{width:100%;justify-content:center;font-family:var(--head);font-weight:800;font-size:clamp(1.05rem,1.8vw,1.35rem);padding:13px 24px 13px 14px}
+form.lead .btn.sending{pointer-events:none;opacity:.7}
+.form-note{grid-column:1/-1;font-size:.85rem;opacity:.7}
+.form-ok{grid-column:1/-1;display:none;background:rgba(209,164,91,.15);border:1px solid var(--gold);padding:18px 22px;border-radius:24px;font-size:1.05rem}
+form.lead.done .form-ok{display:block}
+form.lead.done .field,form.lead.done .btn,form.lead.done .form-note{display:none}
+
+/* ---------- map ---------- */
+.map{position:relative;overflow:hidden;background:#e9e4d8}
+.map a{display:block;position:relative}
+.map img{width:100%;height:clamp(300px,52vw,640px);object-fit:cover;transition:transform 8s ease-out}
+.map:hover img{transform:scale(1.04)}
+.map-pin{
+  position:absolute;inset-inline-start:50%;top:50%;transform:translate(50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.map-pin .tag{background:var(--char);color:var(--cream);padding:8px 16px;font-weight:700;font-size:.95rem;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25);border-bottom:2px solid var(--gold)}
+.map-pin .dot{width:14px;height:14px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 0 rgba(209,164,91,.6);animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{to{box-shadow:0 0 0 22px rgba(209,164,91,0)}}
+.map-hint{position:absolute;bottom:14px;inset-inline-start:16px;background:rgba(238,232,219,.9);padding:6px 14px;font-size:.85rem;font-weight:600;color:var(--char)}
+
+/* ---------- footer ---------- */
+footer{background:#0B0B0B url(/assets/v2/silk-footer.jpg) center/cover;color:var(--cream);text-align:center;padding:clamp(70px,11vh,120px) 0 40px;position:relative}
+footer::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25)}
+footer .wrap{position:relative}
+footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.5rem);color:var(--gold);line-height:1.3}
+.f-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,50px);margin-top:clamp(36px,5vh,56px)}
+.f-col svg{width:40px;height:40px;margin:0 auto 14px;fill:none;stroke:var(--gold);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.f-col h3{font-family:var(--head);font-weight:800;font-size:1.25rem;margin-bottom:6px}
+.f-col p{font-size:1.05rem;line-height:1.6}
+.f-col a{transition:color .3s}.f-col a:hover{color:var(--gold)}
+.f-col .num{direction:ltr;unicode-bidi:embed}
+.f-logos{display:flex;justify-content:center;align-items:center;gap:40px;margin-top:clamp(46px,7vh,70px)}
+.f-logos img{height:64px;width:auto;filter:brightness(0) invert(.95)}
+.f-rule{width:min(320px,80%);height:1px;background:rgba(238,232,219,.7);margin:22px auto}
+.f-rafael img{height:44px;width:auto;margin:0 auto}
+.f-legal{margin-top:40px;font-size:.85rem;opacity:.7;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.f-legal a:hover{color:var(--gold)}
+
+/* floating whatsapp */
+.wa{
+  position:fixed;bottom:22px;inset-inline-start:22px;z-index:55;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;
+  display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .3s;
+}
+.wa:hover{transform:scale(1.08)}
+.wa svg{width:30px;height:30px;fill:currentColor}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  nav.main-nav{display:none}
+}
+@media (max-width:960px){
+  .hdr-cta{display:none}
+  .burger{display:block}
+  .hero{grid-template-columns:1fr;grid-template-rows:auto auto;min-height:0}
+  .hero-media{grid-column:1;grid-row:1;height:min(58vh,440px);margin-top:70px;clip-path:polygon(0 0,100% 0,100% 100%,0 86%)}
+  @keyframes heroMedia{from{clip-path:polygon(0 0,100% 0,100% 0,0 0);opacity:0}to{clip-path:polygon(0 0,100% 0,100% 100%,0 86%);opacity:1}}
+  .hero-media img{-webkit-mask-image:none;mask-image:none;object-position:55% 50%}
+  .hero-copy{grid-column:1;grid-row:2;padding:34px clamp(18px,5vw,64px) 120px;max-width:none;margin:0}
+  .hero-title{font-size:clamp(2.8rem,13vw,4.4rem)}
+  .scroll-cue{bottom:26px;inset-inline-end:auto;inset-inline-start:clamp(18px,5vw,64px);width:60px;height:60px}
+  .scroll-cue::before{display:none}
+  .why-grid{grid-template-columns:repeat(3,1fr)}
+  .board-grid{grid-template-columns:repeat(2,1fr)}
+  .bld:nth-child(2),.bld:nth-child(3){--offset:0}
+  .contact-grid{grid-template-columns:1fr}
+  .contact-copy .rules{max-width:none}
+  .f-cols{grid-template-columns:1fr;gap:34px}
+}
+@media (max-width:640px){
+  .logos img{height:36px}
+  .stats-top,.stats-bottom{grid-template-columns:1fr}
+  .stats-top .stat:first-child{border-inline-end:none}
+  .stats-top .stat,.stats-bottom .stat:not(:last-child){border-inline-end:none;border-bottom:1px solid var(--gold-soft)}
+  .stats-rule{display:none}
+  .stat{justify-content:flex-start;padding-inline:8px}
+  .stat .n{font-size:3.6rem}
+  .gal-frame{aspect-ratio:4/3}
+  .gal-btn.prev{inset-inline-start:8px}.gal-btn.next{inset-inline-end:8px}
+  .gal-line{display:none}
+  .why-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:14px;margin-inline:calc(-1*clamp(18px,5vw,64px));padding-inline:clamp(18px,5vw,64px);scrollbar-width:none}
+  .why-grid::-webkit-scrollbar{display:none}
+  .card{flex:0 0 78%;scroll-snap-align:center}
+  .board-grid{grid-template-columns:1fr}
+  .board-deco{display:none}
+  .board{padding-bottom:60px}
+  form.lead{grid-template-columns:1fr}
+  .map-pin .tag{font-size:.82rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0s !important;transition-duration:.01ms !important}
+  .rv,.line-x,.stats-rule{opacity:1;transform:none}
+  .hero-title .w span{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="logos">
+    <a href="#top" aria-label="דף הבית"><img src="/assets/galnor-logo.png" alt="קבוצת גלנור"></a>
+    <span class="sep"></span>
+    <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
+  </div>
+  <nav class="main-nav" aria-label="ניווט ראשי">
+    <a href="#about">על הפרויקט</a>
+    <a href="#gallery">גלריה</a>
+    <a href="#why">למה לבחור בשדרה</a>
+    <a href="#developers">היזמים</a>
+    <a href="#inventory">מלאי דירות</a>
+  </nav>
+  <a class="hdr-cta" href="#contact">צרו קשר</a>
+  <button class="burger" id="burger" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div>
+    <a href="#about">על הפרויקט</a>
+    <a href="#gallery">גלריה</a>
+    <a href="#why">למה לבחור בשדרה</a>
+    <a href="#developers">היזמים</a>
+    <a href="#inventory">מלאי דירות</a>
+    <a href="#contact" class="gold">צרו קשר</a>
+    <div class="menu-tel"><a href="tel:+972528939050">052-893-9050</a></div>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-media">
+      <img src="/assets/yadot-elad12-c1.jpg" alt="הדמיית פרויקט השדרה אלעד" fetchpriority="high">
+    </div>
+    <div class="hero-copy">
+      <h1 class="hero-title">
+        <span class="w"><span>החיים</span></span>
+        <span class="w"><span>שתמיד</span></span>
+        <span class="w"><span>חלמתם</span></span>
+        <span class="w"><span>עליהם</span></span>
+      </h1>
+      <div class="hero-rule"><i></i><i></i></div>
+      <img class="hero-logo" src="/assets/v2/hasdera-logo-light.png" alt="השדרה - כל מה שטוב באלעד החדשה">
+      <p class="hero-sub">מתחם המגורים החדש של גלנור וידות באלעד</p>
+      <div class="hero-cta">
+        <a class="btn" href="#contact"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת פרטים ומחירים</a>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#about" aria-label="גלילה למטה">
+      <svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro" id="about">
+    <div class="wrap">
+      <h2 class="rv">מתחם המגורים החדש של גלנור וידות באלעד<em>מציע איכות חיים מול נוף פתוח</em></h2>
+      <p class="rv d1">בקו הראשון לנוף, במיקום הפתוח ביותר באלעד, <strong>קם פרויקט המגורים "השדרה", מבית חברות הנדל״ן גלנור וידות.</strong> ארבעה בניינים בני 7 קומות, שתוכננו בקפידה כדי להעניק לכם חוויית מגורים איכותית באמת: נוף פתוח למערב, אוויר הרים צלול, מבט פנורמי אל מרחבי המרכז וכל זה עם גישה נוחה ומהירה לכל מקום שצריך. השדרה מציעה שילוב ייחודי של סביבה קהילתית חמה, איכות בניה גבוהה, ותכנון חכם שכולל גם הזדמנות כלכלית יוצאת דופן, וכל זה באחד המיקומים האטרקטיביים ביותר בעיר אלעד.</p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stats-top">
+        <div class="stat rv"><span class="n" data-count="30">0</span><span class="l"><b>דירות</b></span></div>
+        <div class="stat rv d1"><span class="n" data-count="2028" data-from="1990">1990</span><span class="l"><b>אכלוס צפוי</b></span></div>
+      </div>
+      <div class="stats-rule" id="statsRule"></div>
+      <div class="stats-bottom">
+        <div class="stat rv d1"><span class="n" data-count="43">0</span><span class="l"><b>מ״ר</b><small>רוב הדירות מלוות ביחידת מגורים נפרדת</small></span></div>
+        <div class="stat rv d2"><span class="n" data-count="2">0</span><span class="l"><b>מעליות</b><small>כולל מעלית שבת</small></span></div>
+        <div class="stat rv d3"><span class="n" data-count="5">0</span><span class="l"><b>דקות</b><small>מהמרכזים המסחריים של העיר</small></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="wrap">
+      <div class="gal rv">
+        <div class="gal-line"></div>
+        <div class="gal-frame" id="galFrame">
+          <div class="gal-track" id="galTrack">
+            <figure class="on"><img src="/assets/v2/rendering-sky.jpg" alt="הדמיית חזית הפרויקט"><figcaption>הדמיה 01</figcaption></figure>
+            <figure><img loading="lazy" src="/assets/yadot-elad12-web.jpg" alt="הדמיית הכיכר והמסחר"><figcaption>הדמיה 02</figcaption></figure>
+            <figure><img loading="lazy" src="/assets/yadot-elad12-c1.jpg" alt="הדמיית הרחוב"><figcaption>הדמיה 03</figcaption></figure>
+            <figure><img loading="lazy" src="/assets/yadot-elad12-c6.jpg" alt="הדמיה מול הנוף"><figcaption>הדמיה 04</figcaption></figure>
+            <figure><img loading="lazy" src="/assets/yadot-elad12-c8.jpg" alt="הדמיית מבט על"><figcaption>הדמיה 05</figcaption></figure>
+            <figure><img loading="lazy" src="/assets/yadot-elad12-c9.jpg" alt="הדמיית המתחם מהאוויר"><figcaption>הדמיה 06</figcaption></figure>
+          </div>
+        </div>
+        <button class="gal-btn prev" id="galPrev" aria-label="הבא"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+        <button class="gal-btn next" id="galNext" aria-label="הקודם"><svg viewBox="0 0 24 24"><path d="M20 12H4M10 6l-6 6 6 6"/></svg></button>
+      </div>
+      <div class="gal-dots rv" id="galDots"></div>
+      <div class="gal-progress rv"><i id="galProg"></i></div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why" id="why">
+    <div class="wrap">
+      <h2 class="sec-title rv">למה לבחור בשדרה?</h2>
+      <div class="why-grid">
+        <article class="card rv">
+          <div class="num">01</div>
+          <div class="ph"><img loading="lazy" src="/assets/yadot-elad12-c1.jpg" alt=""></div>
+          <div class="body">
+            <h3>מיקום</h3>
+            <p>הפרויקט ממוקם בשער הכניסה החדש לאלעד במיקום נגיש במיוחד, המאפשר הליכה קצרה למוסדות חינוך, בתי כנסת, מרכזים מסחריים ותחבורה ציבורית. במרחק של דקה אחת בלבד אתם כבר מחוץ לעיר, על הצירים המרכזיים של גוש דן.</p>
+          </div>
+        </article>
+        <article class="card alt rv d1">
+          <div class="num">02</div>
+          <div class="ph"><img loading="lazy" src="/assets/yadot-elad12-c9.jpg" alt=""></div>
+          <div class="body">
+            <h3>מבחר</h3>
+            <p>השדרה מציעה מגוון רחב של דירות: דירות 4-6 חדרים, דירות גן מרווחות עם חצר פרטית, ופנטהאוזים מעוצבים עם נוף פתוח. כל דירה מתוכננת בקפידה עם דגש על מרחב, אוורור ואור טבעי.</p>
+          </div>
+        </article>
+        <article class="card rv d2">
+          <div class="num">03</div>
+          <div class="ph"><img loading="lazy" src="/assets/v2/living.jpg" alt=""></div>
+          <div class="body">
+            <h3>משתלם</h3>
+            <p>רוב הדירות כוללות יחידת מגורים עצמאית בגודל כ־43 מ"ר עם כניסה נפרדת, מטבחון, שירותים ומקלחת. פתרון מושלם להשכרה, עסק עצמאי, או יחידות דיור לאירוח בני משפחה.</p>
+          </div>
+        </article>
+        <article class="card alt rv d3">
+          <div class="num">04</div>
+          <div class="ph"><img loading="lazy" src="/assets/v2/elevator.jpg" alt=""></div>
+          <div class="body">
+            <h3>תכנון</h3>
+            <p>שתי כניסות נפרדות (מבואות) בכל בניין, לובי מפואר, שתי מעליות מרווחות כולל מעלית שבת בכשרות מהודרת, חניה מקורה ומחסן פרטי, מספר דיירים קטן בכל קומה המבטיח פרטיות, שקט ואיכות חיים גבוהה יותר.</p>
+          </div>
+        </article>
+        <article class="card rv d4">
+          <div class="num">05</div>
+          <div class="ph"><img loading="lazy" src="/assets/v2/family.jpg" alt=""></div>
+          <div class="body">
+            <h3>קהילה</h3>
+            <p>השדרה נבנית כחלק מסביבה קהילתית ערכית, תוססת ומגובשת. בסביבה הקרובה תמצאו מוסדות חינוך מצוינים, בתי כנסת, פארקים רחבי ידיים ושפע שירותים קהילתיים בדיוק כמו שאתם מחפשים למשפחה שלכם.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVELOPERS -->
+  <section class="devs" id="developers">
+    <div class="wrap">
+      <h2 class="sec-title lined rv">היזמים</h2>
+      <p class="rv d1">מאחורי פרויקט "השדרה" עומדות <strong>חברות גלנור וידות</strong> מהחברות המובילות והאמינות בענף הבנייה והיזמות בישראל. עם ותק של עשרות שנים, ניסיון מוכח בליווי משפחות בכל שלבי הרכישה והבנייה, ומאות יחידות דיור שבנו והשלימו בהצלחה אתם יכולים להיות בטוחים שהבית שלכם בידיים טובות, יציבות ומנוסות.</p>
+      <div class="dev-logos rv d2">
+        <img src="/assets/galnor-logo.png" alt="קבוצת גלנור">
+        <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
+      </div>
+    </div>
+  </section>
+
+  <!-- INVENTORY -->
+  <section class="inventory" id="inventory">
+    <div class="wrap">
+      <h2 class="sec-title rv">מלאי דירות</h2>
+      <div class="board rv">
+        <div class="board-deco" aria-hidden="true">
+          <svg class="r" viewBox="0 0 360 200">
+            <path d="M40 200v-70h60v70"/>
+            <circle cx="150" cy="120" r="22"/><path d="M150 142v58"/>
+            <path d="M190 200c0-20 18-32 34-24 4-22 40-26 50-6 16-8 36 6 30 24 12 0 20 8 20 18H190z"/>
+            <path d="M0 200c0-14 12-24 26-20 4-16 30-18 36-4 12-4 24 6 20 18 8 0 12 6 12 12H0z"/>
+          </svg>
+          <svg class="l" viewBox="0 0 360 200">
+            <path d="M40 200v-70h60v70"/>
+            <path d="M190 200c0-20 18-32 34-24 4-22 40-26 50-6 16-8 36 6 30 24 12 0 20 8 20 18H190z"/>
+            <path d="M0 200c0-14 12-24 26-20 4-16 30-18 36-4 12-4 24 6 20 18 8 0 12 6 12 12H0z"/>
+          </svg>
+        </div>
+        <div class="board-grid" id="board"></div>
+      </div>
+      <div class="board-cta rv">
+        <a class="btn" href="/apartments.html"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לצפייה במפרט הטכני המלא</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-copy rv">
+        <h2>צרו<br>קשר</h2>
+        <div class="rules"><i class="line-x"></i><i class="line-x" style="transition-delay:.15s"></i></div>
+        <p>השאירו פרטים<br>ונחזור אליכם<br>בהקדם</p>
+      </div>
+      <form class="lead rv d1" id="leadForm" novalidate>
+        <div class="field"><input type="text" name="name" id="fName" placeholder="שם מלא" autocomplete="name" required><label for="fName">שם מלא</label></div>
+        <div class="field"><input type="tel" name="phone" id="fPhone" placeholder="טלפון" autocomplete="tel" inputmode="tel" pattern="[0-9+\-\s()]{8,}" required><label for="fPhone">טלפון</label></div>
+        <div class="field full"><input type="email" name="email" id="fEmail" placeholder="מייל" autocomplete="email"><label for="fEmail">מייל</label></div>
+        <div class="full"><button class="btn" type="submit" id="leadBtn"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת פרטים על דירת החלומות שלכם</button></div>
+        <div class="form-note">הפרטים ישמשו ליצירת קשר בנוגע לפרויקט בלבד.</div>
+        <div class="form-ok" id="formOk">תודה! הפרטים התקבלו ונציג מטעמנו יחזור אליכם בהקדם.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map">
+    <a href="https://www.google.com/maps/search/?api=1&query=%D7%A8%D7%91%D7%99+%D7%99%D7%94%D7%95%D7%93%D7%94+%D7%94%D7%A0%D7%A9%D7%99%D7%90+29+%D7%90%D7%9C%D7%A2%D7%93" target="_blank" rel="noopener" aria-label="פתיחת מפה בגוגל מפות">
+      <img loading="lazy" src="/assets/v2/map-elad.jpg" alt="מפת אלעד">
+      <div class="map-pin"><div class="tag">השדרה - בכניסה החדשה לאלעד</div><div class="dot"></div></div>
+      <div class="map-hint">לחצו לפתיחה בגוגל מפות</div>
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2 class="rv">למידע נוסף ולהתרשמות מהדירות:</h2>
+    <div class="f-cols">
+      <div class="f-col rv">
+        <svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <h3>מיקום הפרוייקט:</h3>
+        <p>בכניסה החדשה<br>לעיר אלעד</p>
+      </div>
+      <div class="f-col rv d1">
+        <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+        <h3>לפרטים נוספים:</h3>
+        <p>רפאל: <a class="num" href="tel:+972528939050">052.893.9050</a><br>משרד: <a class="num" href="tel:+97239088872">03.908.8872</a></p>
+      </div>
+      <div class="f-col rv d2">
+        <svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9h8M8 12h5"/></svg>
+        <h3>משרד מכירות:</h3>
+        <p>רח' רבי יהודה הנשיא 29<br>(על הככר) אלעד</p>
+      </div>
+    </div>
+    <div class="f-logos rv">
+      <img src="/assets/galnor-logo.png" alt="קבוצת גלנור">
+      <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
+    </div>
+    <div class="f-rule"></div>
+    <div class="f-rafael rv"><img src="/assets/v2/rafael-logo.png" alt="רפאל - להוביל בעולם הנדל״ן"></div>
+    <div class="f-legal">
+      <a href="/accessibility/">הצהרת נגישות</a><span>·</span><a href="/privacy/">מדיניות פרטיות</a><span>·</span><span>Powered by <a href="http://einstein-web.co.il">Einstein-web</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/972528939050?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%D7%94%D7%A9%D7%93%D7%A8%D7%94%20%D7%91%D7%90%D7%9C%D7%A2%D7%93" target="_blank" rel="noopener" aria-label="וואטסאפ">
+  <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.5L3 29l6.7-1.7c1.9 1 4.1 1.6 6.3 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 0 1 5.4 16C5.4 10.2 10.2 5.4 16 5.4S26.6 10.2 26.6 16 21.8 26.6 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.9 1.1 3.4.9 4.1.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<script src="/assets/a11y.js" defer></script>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* header */
+  var hdr=document.getElementById('hdr');
+  function onScroll(){hdr.classList.toggle('scrolled',scrollY>40)}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* hero parallax */
+  var bg=document.getElementById('heroBg');
+  if(!reduce){
+    addEventListener('scroll',function(){
+      var y=scrollY;if(y<innerHeight*1.2)bg.style.transform='translateY('+(y*.25)+'px)';
+    },{passive:true});
+  }
+
+  /* menu */
+  var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  function setMenu(open){
+    menu.classList.toggle('open',open);burger.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open);menu.setAttribute('aria-hidden',!open);
+    document.body.style.overflow=open?'hidden':'';
+  }
+  burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+
+  /* reveal */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv,.line-x,.stats-rule').forEach(function(el){io.observe(el)});
+
+  /* count up */
+  var cio=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;cio.unobserve(e.target);
+      var el=e.target,to=+el.dataset.count,from=+(el.dataset.from||0),dur=reduce?0:1800,t0=null;
+      function step(t){
+        if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur);p=1-Math.pow(1-p,3);
+        el.textContent=Math.round(from+(to-from)*p);
+        if(p<1)requestAnimationFrame(step);
+      }
+      if(dur)requestAnimationFrame(step);else el.textContent=to;
+    });
+  },{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el)});
+
+  /* gallery */
+  var track=document.getElementById('galTrack'),figs=[].slice.call(track.children),n=figs.length,i=0,timer,
+      dots=document.getElementById('galDots'),prog=document.getElementById('galProg'),frame=document.getElementById('galFrame');
+  figs.forEach(function(_,k){
+    var b=document.createElement('button');b.setAttribute('aria-label','תמונה '+(k+1));
+    b.addEventListener('click',function(){go(k)});dots.appendChild(b);
+  });
+  function go(k){
+    i=(k+n)%n;track.style.transform='translateX('+(-i*100)+'%)';
+    figs.forEach(function(f,j){f.classList.toggle('on',j===i)});
+    [].forEach.call(dots.children,function(d,j){d.classList.toggle('on',j===i)});
+    prog.classList.remove('run');void prog.offsetWidth;if(!reduce)prog.classList.add('run');
+    restart();
+  }
+  function restart(){clearInterval(timer);if(!reduce)timer=setInterval(function(){go(i+1)},5500)}
+  document.getElementById('galNext').addEventListener('click',function(){go(i+1)});
+  document.getElementById('galPrev').addEventListener('click',function(){go(i-1)});
+  var sx=0,sy=0;
+  frame.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+  frame.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))go(dx<0?i+1:i-1);
+  });
+  frame.addEventListener('mouseenter',function(){clearInterval(timer)});
+  frame.addEventListener('mouseleave',restart);
+  go(0);
+
+  /* inventory board */
+  var buildings=[
+    {name:'בניין 22',wing:'אגף ימין',apts:[[1,6],[4,4],[5,6],[30,5,1],[31,5,1],[32,6]]},
+    {name:'בניין 22',wing:'אגף שמאל',apts:[[1,6],[4,4],[5,6],[10,6],[30,5,1],[31,5,1],[32,6]]},
+    {name:'בניין 21',wing:'אגף ימין',apts:[[1,6],[6,6],[10,6],[30,5,1],[31,5,1],[32,6]]},
+    {name:'בניין 21',wing:'אגף שמאל',apts:[[1,6],[6,6],[10,6],[30,5,1],[31,5,1],[32,6]]}
+  ];
+  var board=document.getElementById('board'),delay=0;
+  buildings.forEach(function(b){
+    var col=document.createElement('div');col.className='bld';
+    var h=document.createElement('h3');h.innerHTML=b.name+'<small>'+b.wing+'</small>';col.appendChild(h);
+    b.apts.forEach(function(a){
+      var row=document.createElement('div');row.className='apt rv'+(a[2]?' pent':'');
+      row.style.transitionDelay=(delay+=.045)+'s';
+      row.innerHTML='<span>דירה '+a[0]+'</span><span class="dash"></span><span class="rooms">'+a[1]+' חד׳</span>';
+      col.appendChild(row);io.observe(row);
+    });
+    board.appendChild(col);
+  });
+
+  /* lead form */
+  var FORM_KEY='';  /* Web3Forms access key; leave empty to fall back to WhatsApp */
+  var form=document.getElementById('leadForm'),btn=document.getElementById('leadBtn');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){form.querySelector(':invalid').focus();return}
+    var d={name:form.name.value.trim(),phone:form.phone.value.trim(),email:form.email.value.trim()};
+    if(FORM_KEY){
+      btn.classList.add('sending');
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({access_key:FORM_KEY,subject:'ליד חדש - השדרה אלעד',from_name:'hasdera-elad.com',name:d.name,phone:d.phone,email:d.email})})
+      .then(function(r){return r.json()}).then(function(){form.classList.add('done')})
+      .catch(function(){btn.classList.remove('sending');alert('אירעה שגיאה בשליחה, נסו שוב או התקשרו 052-893-9050')});
+    }else{
+      var msg='שלום, אשמח לקבל פרטים על פרויקט השדרה באלעד.\nשם: '+d.name+'\nטלפון: '+d.phone+(d.email?'\nמייל: '+d.email:'');
+      window.open('https://wa.me/972528939050?text='+encodeURIComponent(msg),'_blank','noopener');
+      form.classList.add('done');
+    }
+  });
+})();
+</script>
+</body>
+</html>
