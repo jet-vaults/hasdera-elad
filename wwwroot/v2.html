@@ -9,7 +9,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Heebo:wght@500;700;800;900&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Heebo:wght@500;700;800;900&family=Poiret+One&family=Josefin+Sans:wght@200;300&family=Cormorant+Garamond:wght@400;500&family=Marcellus&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="/assets/v2/silk-hero.jpg">
 <link rel="preload" as="image" href="/assets/yadot-elad12-c1.jpg">
 <style>
@@ -26,10 +26,14 @@
   --line:rgba(43,43,43,.18);
   --sans:"Assistant",sans-serif;
   --head:"Heebo","Assistant",sans-serif;
-  --num:"Bodoni Moda","Times New Roman",serif;
+  --num:"Poiret One","Assistant",sans-serif;
+  --num-weight:400;
   --ease:cubic-bezier(.22,.61,.36,1);
   --ease-out:cubic-bezier(.16,1,.3,1);
 }
+body[data-num="2"]{--num:"Josefin Sans",sans-serif;--num-weight:200}
+body[data-num="3"]{--num:"Cormorant Garamond",serif;--num-weight:500}
+body[data-num="4"]{--num:"Marcellus",serif;--num-weight:400}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
@@ -45,6 +49,7 @@ button{font:inherit;cursor:pointer}
 ::selection{background:var(--gold);color:#fff}
 
 .wrap{width:min(1180px,calc(100% - 2*clamp(18px,5vw,64px)));margin-inline:auto}
+.wide{width:calc(100% - 2*clamp(18px,4vw,56px));margin-inline:auto}
 
 /* grain overlay */
 body::before{
@@ -109,17 +114,18 @@ nav.main-nav a:hover::after{width:100%}
 .menu a.gold{color:var(--gold)}
 .menu .menu-tel{font-family:var(--sans);font-weight:400;font-size:1.1rem;margin-top:24px;color:var(--gold)}
 
-/* ---------- hero ---------- */
+/* ---------- hero (shared) ---------- */
 .hero{
   position:relative;min-height:100svh;display:grid;
-  grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);
+  grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
   background:#0B0B0B;color:var(--cream);overflow:hidden;isolation:isolate;
+  padding-top:76px;
 }
 .hero-bg{position:absolute;inset:-8% 0;z-index:-1;background:url(/assets/v2/silk-hero.jpg) center/cover;will-change:transform;
   animation:heroBg 1.8s var(--ease-out) both}
 @keyframes heroBg{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:none}}
 .hero-media{
-  grid-column:2;grid-row:1;position:relative;align-self:stretch;margin-top:76px;
+  grid-column:2;grid-row:1;position:relative;align-self:stretch;
   clip-path:polygon(0 0,100% 0,84% 100%,0 100%);
   animation:heroMedia 1.6s var(--ease-out) .25s both;
 }
@@ -131,11 +137,11 @@ nav.main-nav a:hover::after{width:100%}
 .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.55),transparent 40%)}
 .hero-copy{
   grid-column:1;grid-row:1;align-self:center;position:relative;z-index:2;
-  padding:clamp(130px,18vh,190px) clamp(18px,5vw,64px) clamp(70px,10vh,110px);
-  max-width:600px;margin-inline-start:auto;
+  padding:clamp(24px,4vh,50px) clamp(18px,5vw,72px) clamp(80px,10vh,110px);
+  width:100%;
 }
 .hero-title{
-  font-family:var(--head);font-weight:900;font-size:clamp(3rem,7.4vw,6.4rem);line-height:1.02;letter-spacing:-.01em;
+  font-family:var(--head);font-weight:900;font-size:clamp(3rem,6.6vw,6.2rem);line-height:1;letter-spacing:-.01em;
   color:#F3EEE3;
 }
 .hero-title .w{display:block;overflow:hidden}
@@ -145,12 +151,12 @@ nav.main-nav a:hover::after{width:100%}
 .hero-title .w:nth-child(3) span{animation-delay:.81s}
 .hero-title .w:nth-child(4) span{animation-delay:.94s}
 @keyframes rise{to{transform:none}}
-.hero-rule{margin-block:clamp(28px,4vh,44px) clamp(22px,3vh,32px);display:grid;gap:8px}
+.hero-rule{margin-block:clamp(22px,3.4vh,36px) clamp(18px,2.6vh,26px);display:grid;gap:8px;max-width:560px}
 .hero-rule i{display:block;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;animation:ruleIn 1.4s var(--ease) 1.2s forwards}
 .hero-rule i:nth-child(2){opacity:.55;animation-delay:1.35s}
 @keyframes ruleIn{to{transform:scaleX(1)}}
-.hero-logo{width:min(300px,62%);opacity:0;animation:fadeUp 1.2s var(--ease) 1.5s forwards}
-.hero-sub{margin-top:18px;font-weight:300;font-size:1.05rem;letter-spacing:.02em;color:rgba(243,238,227,.8);opacity:0;animation:fadeUp 1.2s var(--ease) 1.75s forwards}
+.hero-logo{width:min(280px,70%);opacity:0;animation:fadeUp 1.2s var(--ease) 1.5s forwards}
+.hero-sub{margin-top:14px;font-weight:300;font-size:1.1rem;letter-spacing:.02em;color:rgba(243,238,227,.8);opacity:0;animation:fadeUp 1.2s var(--ease) 1.75s forwards}
 .hero-cta{margin-top:26px;opacity:0;animation:fadeUp 1.2s var(--ease) 1.9s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
@@ -169,13 +175,57 @@ nav.main-nav a:hover::after{width:100%}
 .btn.ghost:hover{background:var(--gold);color:var(--char)}
 
 .scroll-cue{
-  position:absolute;bottom:34px;inset-inline-end:clamp(20px,6vw,90px);z-index:3;
-  width:74px;height:74px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;
+  position:absolute;bottom:36px;inset-inline-end:clamp(20px,6vw,90px);z-index:3;
+  width:88px;height:88px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;
   color:var(--gold);opacity:0;animation:fadeUp 1s var(--ease) 2.2s forwards;
+  background:rgba(11,11,11,.35);backdrop-filter:blur(3px);
+  box-shadow:0 0 0 0 rgba(209,164,91,.45);
 }
-.scroll-cue::before{content:"";position:absolute;top:-70px;width:1px;height:70px;background:linear-gradient(to bottom,transparent,var(--gold))}
-.scroll-cue svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;animation:bob 1.8s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
+.scroll-cue::before{content:"";position:absolute;top:-80px;width:2px;height:78px;background:linear-gradient(to bottom,transparent,var(--gold))}
+.scroll-cue::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--gold);animation:cuePulse 2.4s ease-out infinite;opacity:0}
+@keyframes cuePulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.55);opacity:0}}
+.scroll-cue svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;animation:bob 1.8s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(209,164,91,.7))}
+@keyframes bob{0%,100%{transform:translateY(-4px)}50%{transform:translateY(5px)}}
+
+/* hero B: panorama */
+body[data-hero="b"] .hero{grid-template-columns:1fr}
+body[data-hero="b"] .hero-media{grid-column:1;position:absolute;inset:0;clip-path:none;animation:heroFade 1.6s var(--ease-out) both}
+@keyframes heroFade{from{opacity:0}to{opacity:1}}
+body[data-hero="b"] .hero-media img{-webkit-mask-image:none;mask-image:none;object-position:30% 50%;animation:kenburns 22s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1) translateX(0)}to{transform:scale(1.1) translateX(-2%)}}
+body[data-hero="b"] .hero-media::after{background:linear-gradient(to top,rgba(11,11,11,.7),transparent 45%)}
+body[data-hero="b"] .hero-bg{inset:0;z-index:1;-webkit-mask-image:linear-gradient(to left,#000 38%,rgba(0,0,0,.85) 52%,transparent 78%);mask-image:linear-gradient(to left,#000 38%,rgba(0,0,0,.85) 52%,transparent 78%);animation:none}
+body[data-hero="b"] .hero-copy{grid-column:1;max-width:680px;padding-inline-start:clamp(18px,6vw,96px)}
+body[data-hero="b"] .scroll-cue{inset-inline-end:auto;inset-inline-start:auto;left:clamp(20px,6vw,90px)}
+
+/* hero C: gold frame */
+body[data-hero="c"] .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;padding-bottom:0}
+body[data-hero="c"] .hero-media{
+  clip-path:none;align-self:center;margin:clamp(30px,6vh,60px) clamp(18px,5vw,72px) -70px clamp(18px,4vw,56px);
+  aspect-ratio:4/3;border:1px solid var(--gold);padding:14px;
+  animation:frameIn 1.6s var(--ease-out) .3s both;box-shadow:0 50px 100px -30px rgba(0,0,0,.8);position:relative;
+}
+@keyframes frameIn{from{opacity:0;transform:translateY(40px) rotate(-1deg)}to{opacity:1;transform:none}}
+body[data-hero="c"] .hero-media::before{content:"";position:absolute;inset:-16px;border:1px solid rgba(209,164,91,.35);pointer-events:none}
+body[data-hero="c"] .hero-media::after{content:none}
+body[data-hero="c"] .hero-media img{-webkit-mask-image:none;mask-image:none;object-position:45% 50%;animation:none;height:100%}
+body[data-hero="c"] .hero-copy{padding-bottom:clamp(120px,16vh,170px)}
+body[data-hero="c"] + .intro,body[data-hero="c"] .intro{padding-top:150px}
+
+/* hero D: wide headline */
+body[data-hero="d"] .hero{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);min-height:0}
+body[data-hero="d"] .hero-copy{grid-column:1;grid-row:1;padding:clamp(40px,7vh,80px) clamp(18px,4vw,56px) clamp(30px,5vh,50px);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,4vw,60px);align-items:end}
+body[data-hero="d"] .hero-title{font-size:clamp(3.2rem,9vw,8.6rem);line-height:.98}
+body[data-hero="d"] .hero-title .w{display:inline-block;margin-inline-end:.22em}
+body[data-hero="d"] .hero-side{display:flex;flex-direction:column;align-items:flex-start;padding-bottom:.6em}
+body[data-hero="d"] .hero-rule{margin-block:0 22px;width:100%}
+body[data-hero="d"] .hero-media{grid-column:1;grid-row:2;height:min(60vh,620px);clip-path:polygon(0 12%,100% 0,100% 100%,0 100%);animation:heroMediaD 1.6s var(--ease-out) .4s both;margin:0}
+@keyframes heroMediaD{from{clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);opacity:0}to{clip-path:polygon(0 12%,100% 0,100% 100%,0 100%);opacity:1}}
+body[data-hero="d"] .hero-media img{-webkit-mask-image:none;mask-image:none;object-position:50% 60%}
+body[data-hero="d"] .hero-media::after{background:linear-gradient(to top,rgba(11,11,11,.5),transparent 50%)}
+body[data-hero="d"] .scroll-cue{inset-inline-end:auto;inset-inline-start:50%;transform:translateX(50%);bottom:28px}
+body[data-hero="d"] .scroll-cue::before{display:none}
+.hero-side{display:contents}
 
 /* ---------- intro ---------- */
 .intro{padding:clamp(80px,12vh,130px) 0 clamp(48px,7vh,80px);text-align:center}
@@ -186,18 +236,14 @@ nav.main-nav a:hover::after{width:100%}
 
 /* ---------- stats ---------- */
 .stats{padding:clamp(20px,4vh,40px) 0 clamp(70px,10vh,110px)}
-.stats-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;position:relative;
-}
 .stats-top{display:grid;grid-template-columns:1fr 1.4fr}
 .stats-bottom{display:grid;grid-template-columns:1fr 1fr 1fr}
 .stat{padding:clamp(22px,4vh,40px) clamp(10px,2vw,28px);display:flex;align-items:flex-end;justify-content:center;gap:16px;position:relative}
-.stats-top .stat:first-child,.stats-bottom .stat:not(:last-child){border-inline-start:1px solid var(--gold)}
-.stats-top .stat:first-child{border-inline-start:none;border-inline-end:1px solid var(--gold)}
-.stats-bottom .stat:not(:last-child){border-inline-start:none;border-inline-end:1px solid var(--gold)}
+.stats-top .stat:first-child{border-inline-end:1px solid var(--gold)}
+.stats-bottom .stat:not(:last-child){border-inline-end:1px solid var(--gold)}
 .stat .n{
-  font-family:var(--num);font-weight:400;font-size:clamp(3.4rem,8vw,6.6rem);line-height:.9;color:var(--char);
-  font-variant-numeric:lining-nums tabular-nums;direction:ltr;letter-spacing:-.01em;
+  font-family:var(--num);font-weight:var(--num-weight);font-size:clamp(3.6rem,8.4vw,7rem);line-height:.9;color:var(--char);
+  font-variant-numeric:lining-nums tabular-nums;direction:ltr;letter-spacing:.01em;
 }
 .stat .l{display:flex;flex-direction:column;line-height:1.35;padding-bottom:8px}
 .stat .l b{font-family:var(--head);font-weight:700;font-size:1.15rem;color:var(--char)}
@@ -234,10 +280,6 @@ nav.main-nav a:hover::after{width:100%}
 .gal-dots{display:flex;justify-content:center;gap:14px;margin-top:22px;direction:ltr}
 .gal-dots button{width:10px;height:10px;border:none;background:var(--char);transition:background .3s,transform .3s;padding:0}
 .gal-dots button.on{background:var(--gold);transform:scale(1.25)}
-.gal-progress{height:2px;background:rgba(43,43,43,.12);margin-top:14px;overflow:hidden;direction:ltr}
-.gal-progress i{display:block;height:100%;background:var(--gold);width:0}
-.gal-progress i.run{animation:prog 5.5s linear forwards}
-@keyframes prog{to{width:100%}}
 
 /* ---------- section titles ---------- */
 .sec-title{
@@ -247,7 +289,7 @@ nav.main-nav a:hover::after{width:100%}
 .sec-title.lined::before,.sec-title.lined::after{content:"";flex:1;height:1px;background:linear-gradient(to left,var(--char),transparent);opacity:.35}
 .sec-title.lined::after{background:linear-gradient(to right,var(--char),transparent)}
 
-/* ---------- why ---------- */
+/* ---------- why (A: columns) ---------- */
 .why{padding:0 0 clamp(80px,12vh,130px)}
 .why-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.6vw,22px);margin-top:clamp(36px,6vh,60px)}
 .card{
@@ -270,6 +312,82 @@ nav.main-nav a:hover::after{width:100%}
 .card.alt::before{background:var(--char)}
 .card:hover::before{transform:scaleX(1)}
 
+/* why B: editorial rows */
+body[data-cards="b"] .why-grid{display:block}
+body[data-cards="b"] .card{
+  --bg:transparent;--fg:var(--ink);--num:var(--gold);--title:var(--char);
+  display:grid;grid-template-columns:120px minmax(0,1.1fr) minmax(0,1fr);gap:clamp(18px,3vw,48px);align-items:center;
+  padding:clamp(28px,4vh,44px) 0;border-bottom:1px solid var(--line);overflow:visible;
+}
+body[data-cards="b"] .card:first-child{border-top:1px solid var(--line)}
+body[data-cards="b"] .card.alt{--bg:transparent;--fg:var(--ink);--num:var(--gold);--title:var(--char)}
+body[data-cards="b"] .card:nth-child(even){grid-template-columns:120px minmax(0,1fr) minmax(0,1.1fr)}
+body[data-cards="b"] .card:nth-child(even) .ph{order:3}
+body[data-cards="b"] .card:nth-child(even) .body{order:2}
+body[data-cards="b"] .card:hover{transform:none;box-shadow:none}
+body[data-cards="b"] .card::before{content:none}
+body[data-cards="b"] .card .num{font-family:var(--num);font-weight:var(--num-weight);font-size:clamp(3.4rem,6vw,5.6rem);padding:0;text-align:center;color:var(--gold);line-height:1;direction:ltr}
+body[data-cards="b"] .card .ph{aspect-ratio:16/10;box-shadow:0 30px 60px -30px rgba(30,29,27,.5)}
+body[data-cards="b"] .card .ph::after{content:none}
+body[data-cards="b"] .card .body{text-align:start;padding:0;gap:14px}
+body[data-cards="b"] .card h3{font-size:clamp(1.8rem,3vw,2.6rem);position:relative;padding-bottom:12px}
+body[data-cards="b"] .card h3::after{content:"";position:absolute;bottom:0;right:0;width:56px;height:2px;background:var(--gold);transition:width .6s var(--ease)}
+body[data-cards="b"] .card:hover h3::after{width:120px}
+body[data-cards="b"] .card p{font-size:1.1rem;line-height:1.8;font-weight:400;color:var(--paper-ink)}
+
+/* why C: photo tiles */
+body[data-cards="c"] .card{
+  --bg:var(--char);--fg:#fff;aspect-ratio:3/4.2;display:block;background:var(--char);
+}
+body[data-cards="c"] .card.alt{--bg:var(--char);--fg:#fff;--title:var(--gold);--num:var(--gold)}
+body[data-cards="c"] .card::before{content:none}
+body[data-cards="c"] .card .ph{position:absolute;inset:0;aspect-ratio:auto}
+body[data-cards="c"] .card .ph::after{background:linear-gradient(to top,rgba(20,19,17,.96) 0%,rgba(20,19,17,.75) 38%,rgba(20,19,17,.1) 70%,transparent);opacity:1;transition:opacity .6s}
+body[data-cards="c"] .card .ph img{transition:transform 1.6s var(--ease),filter .8s;filter:saturate(.85)}
+body[data-cards="c"] .card:hover .ph img{transform:scale(1.1);filter:saturate(1)}
+body[data-cards="c"] .card .num{position:absolute;z-index:2;top:18px;inset-inline-start:18px;padding:0;font-family:var(--num);font-weight:var(--num-weight);font-size:2.4rem;color:var(--gold);direction:ltr;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+body[data-cards="c"] .card .body{position:absolute;z-index:2;inset-inline:0;bottom:0;padding:22px 20px 24px;text-align:start;gap:8px;transform:translateY(calc(100% - 78px));transition:transform .7s var(--ease)}
+body[data-cards="c"] .card:hover .body{transform:none}
+body[data-cards="c"] .card h3{color:var(--gold);font-size:clamp(1.6rem,2.2vw,2rem);min-height:1.2em;margin-bottom:4px}
+body[data-cards="c"] .card p{font-size:.98rem;line-height:1.65;color:rgba(255,255,255,.92);font-weight:400;opacity:0;transition:opacity .5s .15s}
+body[data-cards="c"] .card:hover p{opacity:1}
+body[data-cards="c"] .card:hover{transform:translateY(-6px)}
+
+/* why D: interactive showcase */
+body[data-cards="d"] .why-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(24px,4vw,64px);align-items:stretch}
+body[data-cards="d"] .why-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+body[data-cards="d"] .why-item{
+  display:grid;grid-template-columns:70px 1fr auto;align-items:center;gap:16px;padding:22px 8px;border-bottom:1px solid var(--line);
+  cursor:pointer;position:relative;transition:padding .4s var(--ease),background .4s;
+}
+body[data-cards="d"] .why-item .n{font-family:var(--num);font-weight:var(--num-weight);font-size:2.2rem;color:var(--gold);direction:ltr;line-height:1}
+body[data-cards="d"] .why-item h3{font-family:var(--head);font-weight:800;font-size:clamp(1.3rem,2vw,1.7rem);color:var(--char);transition:color .3s}
+body[data-cards="d"] .why-item .ar{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);opacity:0;transform:translateX(8px);transition:opacity .35s,transform .35s var(--ease)}
+body[data-cards="d"] .why-item .ar svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+body[data-cards="d"] .why-item.on{padding-inline-start:18px;background:linear-gradient(to left,rgba(209,164,91,.12),transparent)}
+body[data-cards="d"] .why-item.on .ar{opacity:1;transform:none}
+body[data-cards="d"] .why-item::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform .4s var(--ease)}
+body[data-cards="d"] .why-item.on::before{transform:scaleY(1)}
+body[data-cards="d"] .why-stage{position:relative;background:var(--char);color:var(--cream);overflow:hidden;min-height:520px;box-shadow:0 40px 80px -30px rgba(30,29,27,.5)}
+body[data-cards="d"] .why-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s var(--ease);display:flex;flex-direction:column;justify-content:flex-end}
+body[data-cards="d"] .why-slide.on{opacity:1}
+body[data-cards="d"] .why-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 9s ease-out}
+body[data-cards="d"] .why-slide.on img{transform:scale(1)}
+body[data-cards="d"] .why-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,19,17,.95) 0%,rgba(20,19,17,.6) 40%,transparent 75%)}
+body[data-cards="d"] .why-slide .txt{position:relative;z-index:1;padding:clamp(24px,4vw,44px);transform:translateY(20px);transition:transform .8s var(--ease) .1s}
+body[data-cards="d"] .why-slide.on .txt{transform:none}
+body[data-cards="d"] .why-slide .txt small{display:block;color:var(--gold);font-family:var(--num);font-size:1.6rem;direction:ltr;text-align:right;margin-bottom:6px}
+body[data-cards="d"] .why-slide .txt h3{font-family:var(--head);font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--gold);margin-bottom:10px}
+body[data-cards="d"] .why-slide .txt p{font-size:1.08rem;line-height:1.75;max-width:640px}
+body[data-cards="d"] .why-bar{position:absolute;top:0;inset-inline:0;height:3px;background:rgba(255,255,255,.15);z-index:2}
+body[data-cards="d"] .why-bar i{display:block;height:100%;background:var(--gold);width:0}
+body[data-cards="d"] .why-bar i.run{animation:prog 5s linear forwards}
+@keyframes prog{to{width:100%}}
+.why-list,.why-stage{display:none}
+body[data-cards="d"] .why-grid > .card{display:none}
+body[data-cards="d"] .why-list,body[data-cards="d"] .why-stage{display:flex}
+body[data-cards="d"] .why-stage{display:block}
+
 /* ---------- developers ---------- */
 .devs{padding:0 0 clamp(80px,12vh,130px);text-align:center}
 .devs p{max-width:960px;margin:28px auto 0;font-size:1.12rem;line-height:1.85;color:var(--paper-ink)}
@@ -280,21 +398,23 @@ nav.main-nav a:hover::after{width:100%}
 
 /* ---------- inventory ---------- */
 .inventory{padding:0 0 clamp(90px,13vh,140px)}
+.inv-lead{text-align:center;margin-top:14px;color:var(--paper-ink);font-size:1.05rem}
 .board{
   position:relative;border:1px solid var(--char);padding:clamp(28px,4vw,56px) clamp(16px,3vw,44px) clamp(70px,8vw,96px);
-  margin-top:clamp(36px,6vh,60px);background:linear-gradient(to bottom,rgba(255,255,255,.18),transparent);
+  margin-top:clamp(28px,5vh,48px);background:linear-gradient(to bottom,rgba(255,255,255,.18),transparent);min-height:420px;
 }
 .board-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,34px);align-items:start;position:relative;z-index:1}
 .bld{display:flex;flex-direction:column;gap:12px;padding-top:var(--offset,0)}
-.bld:nth-child(2),.bld:nth-child(3){--offset:clamp(30px,6vw,96px)}
+.bld.low{--offset:clamp(30px,6vw,96px)}
 .bld h3{font-family:var(--head);font-weight:800;font-size:clamp(1.15rem,1.7vw,1.5rem);text-align:center;line-height:1.25;color:var(--char);margin-bottom:8px}
 .bld h3 small{display:block;font-weight:700;font-size:.92em}
 .apt{
-  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;width:100%;
   background:var(--gold);color:var(--char);padding:6px 14px;font-weight:700;font-size:clamp(.95rem,1.35vw,1.15rem);
-  position:relative;transition:transform .35s var(--ease),box-shadow .35s;
+  border:none;text-align:start;position:relative;transition:transform .15s ease-out,box-shadow .15s ease-out,background .15s;
 }
-.apt:hover{transform:translateX(-6px);box-shadow:-8px 10px 30px -10px rgba(30,29,27,.5)}
+.apt:hover,.apt:focus-visible{transform:translateX(-4px);box-shadow:-6px 8px 22px -8px rgba(30,29,27,.5);background:#DAB06A;outline:none}
+.apt:active{transform:translateX(-2px) scale(.99)}
 .apt .dash{height:1px;background:var(--char);position:relative;opacity:.8}
 .apt .dash::after{content:"";position:absolute;left:0;top:-3px;width:6px;height:6px;border-left:1px solid var(--char);border-bottom:1px solid var(--char);transform:rotate(45deg)}
 .apt .rooms{font-weight:600;font-size:.9em;white-space:nowrap}
@@ -309,6 +429,40 @@ nav.main-nav a:hover::after{width:100%}
 .board-deco .l{inset-inline-start:2%;transform:scaleX(-1)}
 .board-cta{display:flex;justify-content:center;margin-top:-30px;position:relative;z-index:2}
 .board-cta .btn{font-family:var(--head);font-weight:800;font-size:clamp(1.15rem,2.2vw,1.7rem);padding:12px 34px 12px 16px}
+.board-status{text-align:center;color:var(--paper-ink);padding:40px 0;font-size:1rem}
+
+/* apartment modal */
+.modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:18px;visibility:hidden;opacity:0;transition:opacity .35s,visibility .35s}
+.modal.open{visibility:visible;opacity:1}
+.modal-bg{position:absolute;inset:0;background:rgba(11,11,11,.72);backdrop-filter:blur(6px)}
+.modal-box{
+  position:relative;width:min(560px,100%);max-height:calc(100svh - 36px);overflow:auto;background:var(--char);color:var(--cream);
+  border:1px solid rgba(209,164,91,.5);box-shadow:0 40px 100px rgba(0,0,0,.6);
+  transform:translateY(24px) scale(.98);transition:transform .45s var(--ease);
+}
+.modal.open .modal-box{transform:none}
+.modal-box::before{content:"";position:absolute;inset:10px;border:1px solid rgba(209,164,91,.25);pointer-events:none}
+.modal-close{position:absolute;top:14px;left:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);background:transparent;color:var(--gold);display:grid;place-items:center;z-index:2;transition:background .25s,color .25s}
+.modal-close:hover{background:var(--gold);color:var(--char)}
+.modal-close svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.m-head{padding:clamp(28px,5vw,40px) clamp(24px,5vw,40px) 18px;text-align:start}
+.m-head small{display:block;color:var(--gold);font-weight:700;letter-spacing:.06em;font-size:.9rem}
+.m-head h3{font-family:var(--head);font-weight:900;font-size:clamp(2.2rem,5vw,3rem);line-height:1.1;margin-top:4px}
+.m-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.m-tags span{border:1px solid var(--gold);color:var(--gold);padding:3px 12px;border-radius:999px;font-size:.85rem;font-weight:700}
+.m-tags span.dark{background:var(--gold);color:var(--char)}
+.m-specs{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(238,232,219,.15);margin:8px clamp(24px,5vw,40px) 0}
+.m-specs div{padding:14px 4px;border-bottom:1px solid rgba(238,232,219,.15)}
+.m-specs div:nth-child(odd){border-inline-end:1px solid rgba(238,232,219,.15);padding-inline-end:14px}
+.m-specs div:nth-child(even){padding-inline-start:14px}
+.m-specs small{display:block;font-size:.82rem;color:rgba(238,232,219,.65)}
+.m-specs b{font-family:var(--num);font-weight:var(--num-weight);font-size:1.7rem;color:var(--cream);direction:ltr;display:inline-block;line-height:1.1}
+.m-specs b i{font-style:normal;font-family:var(--sans);font-size:.85rem;color:var(--gold);margin-inline-start:4px;font-weight:600}
+.m-actions{display:flex;gap:12px;flex-wrap:wrap;padding:22px clamp(24px,5vw,40px) clamp(28px,5vw,40px)}
+.m-actions .btn{font-size:.98rem;padding:11px 20px 11px 14px}
+.m-actions .btn .arr{width:30px;height:30px}
+.m-actions .link{align-self:center;font-size:.9rem;color:rgba(238,232,219,.7);text-decoration:underline;text-underline-offset:4px;margin-inline-start:auto}
+.m-actions .link:hover{color:var(--gold)}
 
 /* ---------- contact ---------- */
 .contact{background:var(--slate);color:var(--cream);padding:clamp(70px,11vh,120px) 0;position:relative;overflow:hidden}
@@ -330,21 +484,22 @@ form.lead .full{grid-column:1/-1}
 .field input:not(:placeholder-shown):invalid{border-color:#e08a7a}
 .field label{position:absolute;inset-inline-end:24px;top:-9px;background:var(--slate);padding:0 8px;font-size:.78rem;color:var(--gold);opacity:0;transform:translateY(6px);transition:.3s;pointer-events:none}
 .field input:not(:placeholder-shown)+label{opacity:1;transform:none}
+.form-apt{grid-column:1/-1;display:none;align-items:center;gap:10px;font-size:.95rem;color:var(--gold)}
+.form-apt.on{display:flex}
+.form-apt button{background:none;border:none;color:rgba(238,232,219,.7);text-decoration:underline;font-size:.85rem}
 form.lead .btn{width:100%;justify-content:center;font-family:var(--head);font-weight:800;font-size:clamp(1.05rem,1.8vw,1.35rem);padding:13px 24px 13px 14px}
 form.lead .btn.sending{pointer-events:none;opacity:.7}
 .form-note{grid-column:1/-1;font-size:.85rem;opacity:.7}
 .form-ok{grid-column:1/-1;display:none;background:rgba(209,164,91,.15);border:1px solid var(--gold);padding:18px 22px;border-radius:24px;font-size:1.05rem}
 form.lead.done .form-ok{display:block}
-form.lead.done .field,form.lead.done .btn,form.lead.done .form-note{display:none}
+form.lead.done .field,form.lead.done .btn,form.lead.done .form-note,form.lead.done .form-apt{display:none}
 
 /* ---------- map ---------- */
 .map{position:relative;overflow:hidden;background:#e9e4d8}
 .map a{display:block;position:relative}
 .map img{width:100%;height:clamp(300px,52vw,640px);object-fit:cover;transition:transform 8s ease-out}
 .map:hover img{transform:scale(1.04)}
-.map-pin{
-  position:absolute;inset-inline-start:50%;top:50%;transform:translate(50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px;
-}
+.map-pin{position:absolute;inset-inline-start:50%;top:50%;transform:translate(50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px}
 .map-pin .tag{background:var(--char);color:var(--cream);padding:8px 16px;font-weight:700;font-size:.95rem;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25);border-bottom:2px solid var(--gold)}
 .map-pin .dot{width:14px;height:14px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 0 rgba(209,164,91,.6);animation:pulse 2.2s ease-out infinite}
 @keyframes pulse{to{box-shadow:0 0 0 22px rgba(209,164,91,0)}}
@@ -376,6 +531,22 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 .wa:hover{transform:scale(1.08)}
 .wa svg{width:30px;height:30px;fill:currentColor}
 
+/* ---------- design picker (review tool) ---------- */
+.picker{
+  position:fixed;top:92px;left:14px;z-index:58;background:rgba(43,43,43,.94);color:var(--cream);
+  border:1px solid rgba(209,164,91,.5);font-size:.8rem;width:230px;box-shadow:0 20px 50px rgba(0,0,0,.4);backdrop-filter:blur(8px);
+  transition:transform .4s var(--ease);
+}
+.picker.min{transform:translateX(calc(-100% + 34px))}
+.picker-head{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid rgba(209,164,91,.35);font-weight:700;color:var(--gold)}
+.picker-head button{background:none;border:none;color:var(--gold);font-size:1rem;line-height:1;width:22px}
+.picker-row{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.picker-row b{display:block;margin-bottom:5px;color:rgba(238,232,219,.75);font-weight:600}
+.picker-opts{display:flex;gap:4px;flex-wrap:wrap}
+.picker-opts button{background:transparent;border:1px solid rgba(238,232,219,.3);color:var(--cream);padding:3px 8px;border-radius:999px;font-size:.75rem;transition:.2s}
+.picker-opts button.on{background:var(--gold);border-color:var(--gold);color:var(--char);font-weight:700}
+.picker-foot{padding:6px 10px;font-size:.7rem;color:rgba(238,232,219,.55)}
+
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
   nav.main-nav{display:none}
@@ -383,20 +554,42 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 @media (max-width:960px){
   .hdr-cta{display:none}
   .burger{display:block}
-  .hero{grid-template-columns:1fr;grid-template-rows:auto auto;min-height:0}
-  .hero-media{grid-column:1;grid-row:1;height:min(58vh,440px);margin-top:70px;clip-path:polygon(0 0,100% 0,100% 100%,0 86%)}
+  .hero{grid-template-columns:1fr;grid-template-rows:auto auto;min-height:0;padding-top:70px}
+  .hero-media{grid-column:1;grid-row:1;height:min(58vh,440px);clip-path:polygon(0 0,100% 0,100% 100%,0 86%)}
   @keyframes heroMedia{from{clip-path:polygon(0 0,100% 0,100% 0,0 0);opacity:0}to{clip-path:polygon(0 0,100% 0,100% 100%,0 86%);opacity:1}}
   .hero-media img{-webkit-mask-image:none;mask-image:none;object-position:55% 50%}
-  .hero-copy{grid-column:1;grid-row:2;padding:34px clamp(18px,5vw,64px) 120px;max-width:none;margin:0}
+  .hero-copy{grid-column:1;grid-row:2;padding:34px clamp(18px,5vw,64px) 130px;max-width:none;margin:0}
   .hero-title{font-size:clamp(2.8rem,13vw,4.4rem)}
-  .scroll-cue{bottom:26px;inset-inline-end:auto;inset-inline-start:clamp(18px,5vw,64px);width:60px;height:60px}
+  .scroll-cue{bottom:26px;inset-inline-end:auto;inset-inline-start:clamp(18px,5vw,64px);width:66px;height:66px}
   .scroll-cue::before{display:none}
+  body[data-hero="b"] .hero{min-height:100svh}
+  body[data-hero="b"] .hero-media{height:auto}
+  body[data-hero="b"] .hero-media img{object-position:35% 80%}
+  body[data-hero="b"] .hero-bg{-webkit-mask-image:linear-gradient(to top,#000 45%,rgba(0,0,0,.85) 60%,transparent 90%);mask-image:linear-gradient(to top,#000 45%,rgba(0,0,0,.85) 60%,transparent 90%)}
+  body[data-hero="b"] .hero-copy{grid-row:1;align-self:end;max-width:none;padding-top:44vh}
+  body[data-hero="c"] .hero{grid-template-columns:1fr;padding-bottom:0}
+  body[data-hero="c"] .hero-media{height:auto;margin:24px clamp(18px,5vw,40px) 0;padding:10px}
+  body[data-hero="c"] .hero-media::before{inset:-10px}
+  body[data-hero="c"] .hero-copy{padding-bottom:110px}
+  body[data-hero="c"] .intro{padding-top:80px}
+  body[data-hero="d"] .hero-copy{grid-template-columns:1fr;gap:20px;padding-bottom:20px}
+  body[data-hero="d"] .hero-title{font-size:clamp(3rem,15vw,5.2rem)}
+  body[data-hero="d"] .hero-title .w{display:block}
+  body[data-hero="d"] .hero-media{height:min(50vh,420px);clip-path:polygon(0 8%,100% 0,100% 100%,0 100%)}
+  body[data-hero="d"] .scroll-cue{display:none}
   .why-grid{grid-template-columns:repeat(3,1fr)}
+  body[data-cards="b"] .card,body[data-cards="b"] .card:nth-child(even){grid-template-columns:70px 1fr;grid-template-rows:auto auto}
+  body[data-cards="b"] .card .ph{grid-column:2;order:0}
+  body[data-cards="b"] .card .body{grid-column:2;order:0}
+  body[data-cards="b"] .card .num{grid-row:1/3;align-self:start;font-size:2.6rem}
+  body[data-cards="d"] .why-grid{grid-template-columns:1fr}
+  body[data-cards="d"] .why-stage{min-height:420px}
   .board-grid{grid-template-columns:repeat(2,1fr)}
-  .bld:nth-child(2),.bld:nth-child(3){--offset:0}
+  .bld.low{--offset:0}
   .contact-grid{grid-template-columns:1fr}
   .contact-copy .rules{max-width:none}
   .f-cols{grid-template-columns:1fr;gap:34px}
+  .picker{top:auto;bottom:90px;left:14px}
 }
 @media (max-width:640px){
   .logos img{height:36px}
@@ -405,16 +598,26 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   .stats-top .stat,.stats-bottom .stat:not(:last-child){border-inline-end:none;border-bottom:1px solid var(--gold-soft)}
   .stats-rule{display:none}
   .stat{justify-content:flex-start;padding-inline:8px}
-  .stat .n{font-size:3.6rem}
+  .stat .n{font-size:3.8rem}
   .gal-frame{aspect-ratio:4/3}
   .gal-btn.prev{inset-inline-start:8px}.gal-btn.next{inset-inline-end:8px}
   .gal-line{display:none}
   .why-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:14px;margin-inline:calc(-1*clamp(18px,5vw,64px));padding-inline:clamp(18px,5vw,64px);scrollbar-width:none}
   .why-grid::-webkit-scrollbar{display:none}
   .card{flex:0 0 78%;scroll-snap-align:center}
+  body[data-cards="b"] .why-grid{display:block;margin-inline:0;padding-inline:0}
+  body[data-cards="c"] .card .body{transform:none}
+  body[data-cards="c"] .card p{opacity:1}
+  body[data-cards="c"] .card{aspect-ratio:3/4.6}
+  body[data-cards="d"] .why-grid{display:grid;margin-inline:0;padding-inline:0}
+  body[data-cards="d"] .why-item{grid-template-columns:52px 1fr auto;padding:16px 6px}
+  body[data-cards="d"] .why-item .n{font-size:1.7rem}
   .board-grid{grid-template-columns:1fr}
   .board-deco{display:none}
   .board{padding-bottom:60px}
+  .m-specs{grid-template-columns:1fr}
+  .m-specs div:nth-child(odd){border-inline-end:none;padding-inline-end:4px}
+  .m-specs div:nth-child(even){padding-inline-start:4px}
   form.lead{grid-template-columns:1fr}
   .map-pin .tag{font-size:.82rem}
 }
@@ -425,7 +628,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 }
 </style>
 </head>
-<body>
+<body data-hero="a" data-cards="a" data-num="1">
 
 <header id="hdr">
   <div class="logos">
@@ -473,11 +676,13 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
         <span class="w"><span>חלמתם</span></span>
         <span class="w"><span>עליהם</span></span>
       </h1>
-      <div class="hero-rule"><i></i><i></i></div>
-      <img class="hero-logo" src="/assets/v2/hasdera-logo-light.png" alt="השדרה - כל מה שטוב באלעד החדשה">
-      <p class="hero-sub">מתחם המגורים החדש של גלנור וידות באלעד</p>
-      <div class="hero-cta">
-        <a class="btn" href="#contact"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת פרטים ומחירים</a>
+      <div class="hero-side">
+        <div class="hero-rule"><i></i><i></i></div>
+        <img class="hero-logo" src="/assets/v2/hasdera-logo-light.png" alt="השדרה - כל מה שטוב באלעד החדשה">
+        <p class="hero-sub">מתחם המגורים החדש של גלנור וידות באלעד</p>
+        <div class="hero-cta">
+          <a class="btn" href="#contact"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת פרטים ומחירים</a>
+        </div>
       </div>
     </div>
     <a class="scroll-cue" href="#about" aria-label="גלילה למטה">
@@ -528,7 +733,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
         <button class="gal-btn next" id="galNext" aria-label="הקודם"><svg viewBox="0 0 24 24"><path d="M20 12H4M10 6l-6 6 6 6"/></svg></button>
       </div>
       <div class="gal-dots rv" id="galDots"></div>
-      <div class="gal-progress rv"><i id="galProg"></i></div>
     </div>
   </section>
 
@@ -536,8 +740,8 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   <section class="why" id="why">
     <div class="wrap">
       <h2 class="sec-title rv">למה לבחור בשדרה?</h2>
-      <div class="why-grid">
-        <article class="card rv">
+      <div class="why-grid" id="whyGrid">
+        <article class="card rv" data-i="0">
           <div class="num">01</div>
           <div class="ph"><img loading="lazy" src="/assets/yadot-elad12-c1.jpg" alt=""></div>
           <div class="body">
@@ -545,7 +749,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
             <p>הפרויקט ממוקם בשער הכניסה החדש לאלעד במיקום נגיש במיוחד, המאפשר הליכה קצרה למוסדות חינוך, בתי כנסת, מרכזים מסחריים ותחבורה ציבורית. במרחק של דקה אחת בלבד אתם כבר מחוץ לעיר, על הצירים המרכזיים של גוש דן.</p>
           </div>
         </article>
-        <article class="card alt rv d1">
+        <article class="card alt rv d1" data-i="1">
           <div class="num">02</div>
           <div class="ph"><img loading="lazy" src="/assets/yadot-elad12-c9.jpg" alt=""></div>
           <div class="body">
@@ -553,7 +757,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
             <p>השדרה מציעה מגוון רחב של דירות: דירות 4-6 חדרים, דירות גן מרווחות עם חצר פרטית, ופנטהאוזים מעוצבים עם נוף פתוח. כל דירה מתוכננת בקפידה עם דגש על מרחב, אוורור ואור טבעי.</p>
           </div>
         </article>
-        <article class="card rv d2">
+        <article class="card rv d2" data-i="2">
           <div class="num">03</div>
           <div class="ph"><img loading="lazy" src="/assets/v2/living.jpg" alt=""></div>
           <div class="body">
@@ -561,7 +765,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
             <p>רוב הדירות כוללות יחידת מגורים עצמאית בגודל כ־43 מ"ר עם כניסה נפרדת, מטבחון, שירותים ומקלחת. פתרון מושלם להשכרה, עסק עצמאי, או יחידות דיור לאירוח בני משפחה.</p>
           </div>
         </article>
-        <article class="card alt rv d3">
+        <article class="card alt rv d3" data-i="3">
           <div class="num">04</div>
           <div class="ph"><img loading="lazy" src="/assets/v2/elevator.jpg" alt=""></div>
           <div class="body">
@@ -569,7 +773,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
             <p>שתי כניסות נפרדות (מבואות) בכל בניין, לובי מפואר, שתי מעליות מרווחות כולל מעלית שבת בכשרות מהודרת, חניה מקורה ומחסן פרטי, מספר דיירים קטן בכל קומה המבטיח פרטיות, שקט ואיכות חיים גבוהה יותר.</p>
           </div>
         </article>
-        <article class="card rv d4">
+        <article class="card rv d4" data-i="4">
           <div class="num">05</div>
           <div class="ph"><img loading="lazy" src="/assets/v2/family.jpg" alt=""></div>
           <div class="body">
@@ -577,6 +781,9 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
             <p>השדרה נבנית כחלק מסביבה קהילתית ערכית, תוססת ומגובשת. בסביבה הקרובה תמצאו מוסדות חינוך מצוינים, בתי כנסת, פארקים רחבי ידיים ושפע שירותים קהילתיים בדיוק כמו שאתם מחפשים למשפחה שלכם.</p>
           </div>
         </article>
+        <!-- option D: list + stage (filled by JS from the cards above) -->
+        <div class="why-list rv" id="whyList"></div>
+        <div class="why-stage rv d1" id="whyStage"><div class="why-bar"><i id="whyBar"></i></div></div>
       </div>
     </div>
   </section>
@@ -597,6 +804,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   <section class="inventory" id="inventory">
     <div class="wrap">
       <h2 class="sec-title rv">מלאי דירות</h2>
+      <p class="inv-lead rv d1">לחצו על דירה לצפייה בפרטים המלאים ובתוכנית הדירה</p>
       <div class="board rv">
         <div class="board-deco" aria-hidden="true">
           <svg class="r" viewBox="0 0 360 200">
@@ -611,7 +819,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
             <path d="M0 200c0-14 12-24 26-20 4-16 30-18 36-4 12-4 24 6 20 18 8 0 12 6 12 12H0z"/>
           </svg>
         </div>
-        <div class="board-grid" id="board"></div>
+        <div class="board-grid" id="board"><div class="board-status" style="grid-column:1/-1">טוען מלאי דירות עדכני...</div></div>
       </div>
       <div class="board-cta rv">
         <a class="btn" href="/apartments.html"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לצפייה במפרט הטכני המלא</a>
@@ -628,6 +836,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
         <p>השאירו פרטים<br>ונחזור אליכם<br>בהקדם</p>
       </div>
       <form class="lead rv d1" id="leadForm" novalidate>
+        <div class="form-apt" id="formApt"><span id="formAptText"></span><button type="button" id="formAptClear">הסרה</button></div>
         <div class="field"><input type="text" name="name" id="fName" placeholder="שם מלא" autocomplete="name" required><label for="fName">שם מלא</label></div>
         <div class="field"><input type="tel" name="phone" id="fPhone" placeholder="טלפון" autocomplete="tel" inputmode="tel" pattern="[0-9+\-\s()]{8,}" required><label for="fPhone">טלפון</label></div>
         <div class="field full"><input type="email" name="email" id="fEmail" placeholder="מייל" autocomplete="email"><label for="fEmail">מייל</label></div>
@@ -681,14 +890,75 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   </div>
 </footer>
 
+<!-- apartment modal -->
+<div class="modal" id="aptModal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal-bg" id="modalBg"></div>
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="סגירה"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="m-head">
+      <small id="mBld"></small>
+      <h3 id="mTitle"></h3>
+      <div class="m-tags" id="mTags"></div>
+    </div>
+    <div class="m-specs" id="mSpecs"></div>
+    <div class="m-actions">
+      <a class="btn" id="mLead" href="#contact"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת מחיר ופרטים</a>
+      <a class="btn ghost" id="mPlan" href="#" target="_blank" rel="noopener"><span class="arr"><svg viewBox="0 0 24 24"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></svg></span>תוכנית הדירה</a>
+      <a class="link" id="mMore" href="/apartments.html">לכל הדירות בבניין</a>
+    </div>
+  </div>
+</div>
+
 <a class="wa" href="https://wa.me/972528939050?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%D7%94%D7%A9%D7%93%D7%A8%D7%94%20%D7%91%D7%90%D7%9C%D7%A2%D7%93" target="_blank" rel="noopener" aria-label="וואטסאפ">
   <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.5L3 29l6.7-1.7c1.9 1 4.1 1.6 6.3 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 0 1 5.4 16C5.4 10.2 10.2 5.4 16 5.4S26.6 10.2 26.6 16 21.8 26.6 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.9 1.1 3.4.9 4.1.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
 </a>
+
+<!-- design picker (temporary review tool) -->
+<div class="picker" id="picker">
+  <div class="picker-head"><span>אפשרויות עיצוב</span><button id="pickerMin" aria-label="מזעור">−</button></div>
+  <div class="picker-row"><b>עמוד פתיחה (Hero)</b><div class="picker-opts" data-key="hero">
+    <button data-v="a">A אלכסון</button><button data-v="b">B פנורמה</button><button data-v="c">C מסגרת</button><button data-v="d">D כותרת רחבה</button>
+  </div></div>
+  <div class="picker-row"><b>למה לבחור (כרטיסים)</b><div class="picker-opts" data-key="cards">
+    <button data-v="a">A עמודות</button><button data-v="b">B שורות</button><button data-v="c">C תמונות</button><button data-v="d">D אינטראקטיבי</button>
+  </div></div>
+  <div class="picker-row"><b>פונט מספרים</b><div class="picker-opts" data-key="num">
+    <button data-v="1">Poiret</button><button data-v="2">Josefin</button><button data-v="3">Cormorant</button><button data-v="4">Marcellus</button>
+  </div></div>
+  <div class="picker-foot">הבחירה נשמרת בדפדפן. אפשר גם ?hero=b&cards=c&num=2</div>
+</div>
 
 <script src="/assets/a11y.js" defer></script>
 <script>
 (function(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- design picker ---------- */
+  var KEYS={hero:'abcd',cards:'abcd',num:'1234'};
+  var qs=new URLSearchParams(location.search);
+  Object.keys(KEYS).forEach(function(k){
+    var v=qs.get(k);
+    try{ if(!v) v=localStorage.getItem('v2-'+k); }catch(e){}
+    if(v&&KEYS[k].indexOf(v)>-1) document.body.dataset[k]=v;
+  });
+  function syncPicker(){
+    document.querySelectorAll('.picker-opts').forEach(function(g){
+      var k=g.dataset.key;[].forEach.call(g.children,function(b){b.classList.toggle('on',b.dataset.v===document.body.dataset[k])});
+    });
+  }
+  document.querySelectorAll('.picker-opts button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var k=b.parentNode.dataset.key;document.body.dataset[k]=b.dataset.v;
+      try{localStorage.setItem('v2-'+k,b.dataset.v)}catch(e){}
+      syncPicker();
+      if(k==='cards')initWhyD();
+    });
+  });
+  syncPicker();
+  var picker=document.getElementById('picker'),pickerMin=document.getElementById('pickerMin');
+  function setPickerMin(m){picker.classList.toggle('min',m);pickerMin.textContent=m?'+':'−'}
+  pickerMin.addEventListener('click',function(){setPickerMin(!picker.classList.contains('min'))});
+  if(innerWidth<960)setPickerMin(true);
 
   /* header */
   var hdr=document.getElementById('hdr');
@@ -699,6 +969,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   var bg=document.getElementById('heroBg');
   if(!reduce){
     addEventListener('scroll',function(){
+      if(document.body.dataset.hero==='b')return;
       var y=scrollY;if(y<innerHeight*1.2)bg.style.transform='translateY('+(y*.25)+'px)';
     },{passive:true});
   }
@@ -712,7 +983,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   }
   burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
   menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
-  addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
 
   /* reveal */
   var io=new IntersectionObserver(function(es){
@@ -737,7 +1007,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 
   /* gallery */
   var track=document.getElementById('galTrack'),figs=[].slice.call(track.children),n=figs.length,i=0,timer,
-      dots=document.getElementById('galDots'),prog=document.getElementById('galProg'),frame=document.getElementById('galFrame');
+      dots=document.getElementById('galDots'),frame=document.getElementById('galFrame');
   figs.forEach(function(_,k){
     var b=document.createElement('button');b.setAttribute('aria-label','תמונה '+(k+1));
     b.addEventListener('click',function(){go(k)});dots.appendChild(b);
@@ -746,7 +1016,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
     i=(k+n)%n;track.style.transform='translateX('+(-i*100)+'%)';
     figs.forEach(function(f,j){f.classList.toggle('on',j===i)});
     [].forEach.call(dots.children,function(d,j){d.classList.toggle('on',j===i)});
-    prog.classList.remove('run');void prog.offsetWidth;if(!reduce)prog.classList.add('run');
     restart();
   }
   function restart(){clearInterval(timer);if(!reduce)timer=setInterval(function(){go(i+1)},5500)}
@@ -762,25 +1031,163 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   frame.addEventListener('mouseleave',restart);
   go(0);
 
-  /* inventory board */
-  var buildings=[
-    {name:'בניין 22',wing:'אגף ימין',apts:[[1,6],[4,4],[5,6],[30,5,1],[31,5,1],[32,6]]},
-    {name:'בניין 22',wing:'אגף שמאל',apts:[[1,6],[4,4],[5,6],[10,6],[30,5,1],[31,5,1],[32,6]]},
-    {name:'בניין 21',wing:'אגף ימין',apts:[[1,6],[6,6],[10,6],[30,5,1],[31,5,1],[32,6]]},
-    {name:'בניין 21',wing:'אגף שמאל',apts:[[1,6],[6,6],[10,6],[30,5,1],[31,5,1],[32,6]]}
-  ];
-  var board=document.getElementById('board'),delay=0;
-  buildings.forEach(function(b){
-    var col=document.createElement('div');col.className='bld';
-    var h=document.createElement('h3');h.innerHTML=b.name+'<small>'+b.wing+'</small>';col.appendChild(h);
-    b.apts.forEach(function(a){
-      var row=document.createElement('div');row.className='apt rv'+(a[2]?' pent':'');
-      row.style.transitionDelay=(delay+=.045)+'s';
-      row.innerHTML='<span>דירה '+a[0]+'</span><span class="dash"></span><span class="rooms">'+a[1]+' חד׳</span>';
-      col.appendChild(row);io.observe(row);
+  /* why option D: build list + stage from the cards */
+  var whyBuilt=false,whyTimer,whyIdx=0,whyItems,whySlides,whyBar=document.getElementById('whyBar');
+  function whyGo(k,user){
+    whyIdx=k%whyItems.length;
+    whyItems.forEach(function(el,j){el.classList.toggle('on',j===whyIdx)});
+    whySlides.forEach(function(el,j){el.classList.toggle('on',j===whyIdx)});
+    whyBar.classList.remove('run');void whyBar.offsetWidth;if(!reduce&&!user)whyBar.classList.add('run');
+    clearInterval(whyTimer);if(!reduce&&!user)whyTimer=setInterval(function(){whyGo(whyIdx+1)},5000);
+  }
+  function initWhyD(){
+    if(document.body.dataset.cards!=='d'){clearInterval(whyTimer);return}
+    if(!whyBuilt){
+      whyBuilt=true;
+      var list=document.getElementById('whyList'),stage=document.getElementById('whyStage');
+      var cards=[].slice.call(document.querySelectorAll('#whyGrid > .card'));
+      whyItems=[];whySlides=[];
+      cards.forEach(function(c,k){
+        var it=document.createElement('div');it.className='why-item';it.setAttribute('role','button');it.tabIndex=0;
+        it.innerHTML='<span class="n">'+c.querySelector('.num').textContent+'</span><h3>'+c.querySelector('h3').textContent+'</h3><span class="ar"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>';
+        it.addEventListener('mouseenter',function(){whyGo(k,true)});
+        it.addEventListener('click',function(){whyGo(k,true)});
+        it.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();whyGo(k,true)}});
+        list.appendChild(it);whyItems.push(it);
+        var sl=document.createElement('div');sl.className='why-slide';
+        sl.innerHTML='<img src="'+c.querySelector('img').getAttribute('src')+'" alt=""><div class="txt"><small>'+c.querySelector('.num').textContent+'</small><h3>'+c.querySelector('h3').textContent+'</h3><p>'+c.querySelector('p').textContent+'</p></div>';
+        stage.appendChild(sl);whySlides.push(sl);
+      });
+      list.classList.add('in');stage.classList.add('in');
+    }
+    whyGo(0);
+  }
+  initWhyD();
+
+  /* ---------- inventory board (live from JetVaults CMS) ---------- */
+  var CONTAINER='https://jetvaults.blob.core.windows.net/hasdera-elad',PROJECT='hasdera-elad';
+  var ROOT=CONTAINER+'/real-estate-projects/'+PROJECT;
+  var BLD={ '2':{name:'בניין 22',wing:'אגף ימין'}, '1':{name:'בניין 22',wing:'אגף שמאל',low:true}, '3':{name:'בניין 21',wing:'אגף ימין',low:true}, '4':{name:'בניין 21',wing:'אגף שמאל'} };
+  var ORDER=['2','1','3','4'];
+  var FALLBACK=[
+    {b:'2',apts:[[1,6,'0'],[4,4,'0'],[5,6,'1'],[30,5,'6,7'],[31,5,'6,7'],[32,6,'6']]},
+    {b:'1',apts:[[1,6,'0'],[4,4,'0'],[5,6,'1'],[10,6,'2'],[30,5,'6,7'],[31,5,'6,7'],[32,6,'6']]},
+    {b:'3',apts:[[1,6,'0'],[6,6,'1'],[10,6,'2'],[30,5,'6,7'],[31,5,'6,7'],[32,6,'6']]},
+    {b:'4',apts:[[1,6,'0'],[6,6,'1'],[10,6,'2'],[30,5,'6,7'],[31,5,'6,7'],[32,6,'6']]}
+  ].map(function(g){return {b:g.b,apts:g.apts.map(function(a){return {bld:g.b,num:String(a[0]),rooms:String(a[1]),floor:a[2]}})}});
+
+  function parseCSV(text){
+    var rows=[],row=[],cur='',q=false;
+    text=text.replace(/^﻿/,'');
+    for(var k=0;k<text.length;k++){
+      var ch=text[k];
+      if(q){ if(ch==='"'){ if(text[k+1]==='"'){cur+='"';k++} else q=false } else cur+=ch }
+      else if(ch==='"')q=true;
+      else if(ch===','){row.push(cur);cur=''}
+      else if(ch==='\n'||ch==='\r'){ if(ch==='\r'&&text[k+1]==='\n')k++; row.push(cur);rows.push(row);row=[];cur='' }
+      else cur+=ch;
+    }
+    if(cur.length||row.length){row.push(cur);rows.push(row)}
+    rows=rows.filter(function(r){return r.join('').trim()&&!/^[?",\s]+$/.test(r.join(','))});
+    var head=rows.shift().map(function(h){return h.trim()});
+    return rows.map(function(r){var o={};head.forEach(function(h,j){o[h]=(r[j]||'').trim()});return o});
+  }
+  function isTrue(v){return String(v).trim().toUpperCase()==='TRUE'}
+  function floorLabel(f){
+    f=String(f||'').trim();
+    if(f==='0')return 'קרקע';
+    if(f.indexOf(',')>-1)return f.replace(',','-')+' (דופלקס)';
+    return f;
+  }
+  function isPent(a){return String(a.floor).indexOf(',')>-1}
+  function num(v){var x=parseFloat(String(v).replace(/[^\d.]/g,''));return isNaN(x)?0:x}
+  function fmt(x){return (Math.round(x*10)/10).toLocaleString('he-IL')}
+
+  var board=document.getElementById('board'),APTS={};
+  function renderBoard(groups){
+    board.innerHTML='';var delay=0;
+    groups.forEach(function(g){
+      var meta=BLD[g.b]||{name:'בניין '+g.b,wing:''};
+      var col=document.createElement('div');col.className='bld'+(meta.low?' low':'');
+      var h=document.createElement('h3');h.innerHTML=meta.name+'<small>'+meta.wing+'</small>';col.appendChild(h);
+      if(!g.apts.length){var e=document.createElement('div');e.className='board-status';e.textContent='אין דירות פנויות כרגע';col.appendChild(e)}
+      g.apts.forEach(function(a){
+        var key=a.bld+'-'+a.num;APTS[key]=a;
+        var row=document.createElement('button');row.type='button';row.className='apt rv'+(isPent(a)?' pent':'');
+        row.style.transitionDelay=(delay+=.045)+'s';
+        row.innerHTML='<span>דירה '+a.num+'</span><span class="dash"></span><span class="rooms">'+a.rooms+' חד׳</span>';
+        row.setAttribute('aria-label','דירה '+a.num+', '+a.rooms+' חדרים, '+meta.name+' '+meta.wing+' - לפרטים');
+        row.addEventListener('click',function(){openApt(key)});
+        col.appendChild(row);io.observe(row);
+      });
+      board.appendChild(col);
     });
-    board.appendChild(col);
+  }
+  function loadInventory(){
+    var ctrl=('AbortController' in window)?new AbortController():null;
+    var to=setTimeout(function(){if(ctrl)ctrl.abort()},12000);
+    fetch(ROOT+'/project.json',{signal:ctrl&&ctrl.signal}).then(function(r){return r.json()}).then(function(p){
+      var g4s=(p.g4s||[]).map(function(g){return String(g.id)});
+      return Promise.all(g4s.map(function(id){return fetch(ROOT+'/'+encodeURIComponent(id)+'.csv',{signal:ctrl&&ctrl.signal}).then(function(r){return r.text()}).then(function(t){return parseCSV(t).map(function(r){r.__g4=id;return r})})}));
+    }).then(function(lists){
+      clearTimeout(to);
+      var all=[].concat.apply([],lists).filter(function(r){return r['דירה']&&!isTrue(r['נמכרה'])});
+      var by={};
+      all.forEach(function(r){
+        var a={bld:String(r['בניין']).trim(),num:String(r['דירה']).trim(),rooms:String(r['חדרים']).trim(),floor:String(r['קומה']).trim(),
+          area:num(r['שטח דירה']),balcony:num(r['שטח מרפסת']),garden:num(r['שטח גינה']),storage:num(r['שטח מחסן']),parking:String(r['כמות חניות']||'').trim(),
+          price:num(r['מחיר']),type:String(r['סוג דירה']||'').trim(),plan:String(r['תוכנית דירה']||'').trim(),g4:r.__g4};
+        (by[a.bld]=by[a.bld]||[]).push(a);
+      });
+      var ids=ORDER.filter(function(b){return by[b]}).concat(Object.keys(by).filter(function(b){return ORDER.indexOf(b)<0}).sort());
+      if(!ids.length)throw new Error('empty');
+      renderBoard(ids.map(function(b){return {b:b,apts:by[b].sort(function(x,y){return +x.num-+y.num})}}));
+    }).catch(function(){
+      clearTimeout(to);renderBoard(FALLBACK);
+    });
+  }
+  loadInventory();
+
+  /* apartment modal */
+  var modal=document.getElementById('aptModal'),lastFocus=null,selectedApt=null;
+  var formApt=document.getElementById('formApt'),formAptText=document.getElementById('formAptText');
+  function openApt(key){
+    var a=APTS[key];if(!a)return;
+    var meta=BLD[a.bld]||{name:'בניין '+a.bld,wing:''};
+    document.getElementById('mBld').textContent=meta.name+(meta.wing?' · '+meta.wing:'');
+    document.getElementById('mTitle').textContent='דירה '+a.num;
+    var tags='<span class="dark">'+a.rooms+' חדרים</span><span>קומה '+floorLabel(a.floor)+'</span>'+(isPent(a)?'<span>פנטהאוז</span>':'')+(a.floor==='0'?'<span>דירת גן</span>':'')+(a.type?'<span>'+a.type+'</span>':'');
+    document.getElementById('mTags').innerHTML=tags;
+    var specs='';
+    function spec(l,v,u){specs+='<div><small>'+l+'</small><b>'+v+(u?'<i>'+u+'</i>':'')+'</b></div>'}
+    if(a.area)spec('שטח דירה',fmt(a.area),'מ״ר');
+    if(a.balcony)spec(a.floor==='0'?'מרפסת / חצר':'מרפסת',fmt(a.balcony),'מ״ר');
+    if(a.garden)spec('גינה',fmt(a.garden),'מ״ר');
+    if(a.storage)spec('מחסן',fmt(a.storage),'מ״ר');
+    if(a.parking)spec('חניות',a.parking,'');
+    spec('מחיר',a.price>0?'₪'+Math.round(a.price).toLocaleString('he-IL'):'לפי פנייה','');
+    document.getElementById('mSpecs').innerHTML=specs;
+    var plan=document.getElementById('mPlan');
+    if(a.plan){
+      var url=/^https?:/i.test(a.plan)?a.plan:(a.plan.indexOf('/')>-1?ROOT+'/plans/'+a.plan:ROOT+'/plans/'+encodeURIComponent(a.g4||'galnor')+'/'+encodeURIComponent(a.plan));
+      plan.href=url;plan.style.display='';
+      fetch(url,{method:'HEAD'}).then(function(r){if(!r.ok)plan.style.display='none'}).catch(function(){});
+    }else plan.style.display='none';
+    document.getElementById('mMore').href='/apartments.html?view=building&bview_building='+encodeURIComponent(a.bld);
+    selectedApt={label:'דירה '+a.num+' ('+a.rooms+' חד׳), '+meta.name+' '+meta.wing};
+    lastFocus=document.activeElement;
+    modal.classList.add('open');document.body.style.overflow='hidden';
+    setTimeout(function(){document.getElementById('modalClose').focus()},50);
+  }
+  function closeApt(){modal.classList.remove('open');document.body.style.overflow='';if(lastFocus)lastFocus.focus()}
+  document.getElementById('modalClose').addEventListener('click',closeApt);
+  document.getElementById('modalBg').addEventListener('click',closeApt);
+  document.getElementById('mLead').addEventListener('click',function(){
+    closeApt();
+    if(selectedApt){formAptText.textContent='מתעניין/ת ב: '+selectedApt.label;formApt.classList.add('on')}
   });
+  document.getElementById('formAptClear').addEventListener('click',function(){selectedApt=null;formApt.classList.remove('on')});
+  addEventListener('keydown',function(e){if(e.key==='Escape'){closeApt();setMenu(false)}});
 
   /* lead form */
   var FORM_KEY='';  /* Web3Forms access key; leave empty to fall back to WhatsApp */
@@ -788,15 +1195,15 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   form.addEventListener('submit',function(e){
     e.preventDefault();
     if(!form.checkValidity()){form.querySelector(':invalid').focus();return}
-    var d={name:form.name.value.trim(),phone:form.phone.value.trim(),email:form.email.value.trim()};
+    var d={name:form.name.value.trim(),phone:form.phone.value.trim(),email:form.email.value.trim(),apt:selectedApt&&formApt.classList.contains('on')?selectedApt.label:''};
     if(FORM_KEY){
       btn.classList.add('sending');
       fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-        body:JSON.stringify({access_key:FORM_KEY,subject:'ליד חדש - השדרה אלעד',from_name:'hasdera-elad.com',name:d.name,phone:d.phone,email:d.email})})
+        body:JSON.stringify({access_key:FORM_KEY,subject:'ליד חדש - השדרה אלעד',from_name:'hasdera-elad.com',name:d.name,phone:d.phone,email:d.email,apartment:d.apt})})
       .then(function(r){return r.json()}).then(function(){form.classList.add('done')})
       .catch(function(){btn.classList.remove('sending');alert('אירעה שגיאה בשליחה, נסו שוב או התקשרו 052-893-9050')});
     }else{
-      var msg='שלום, אשמח לקבל פרטים על פרויקט השדרה באלעד.\nשם: '+d.name+'\nטלפון: '+d.phone+(d.email?'\nמייל: '+d.email:'');
+      var msg='שלום, אשמח לקבל פרטים על פרויקט השדרה באלעד.\nשם: '+d.name+'\nטלפון: '+d.phone+(d.email?'\nמייל: '+d.email:'')+(d.apt?'\n'+d.apt:'');
       window.open('https://wa.me/972528939050?text='+encodeURIComponent(msg),'_blank','noopener');
       form.classList.add('done');
     }
