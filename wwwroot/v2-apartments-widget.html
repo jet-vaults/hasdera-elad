@@ -1,0 +1,458 @@
+<!doctype html>
+<html dir="rtl" lang="he-IL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>מלאי דירות - השדרה אלעד</title>
+<meta name="description" content="מלאי הדירות הפנויות בפרויקט השדרה באלעד: תוכניות, שטחים ומחירים לפי בניין.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Heebo:wght@500;700;800;900&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#EEE8DB;
+  --cream-2:#F5F1E8;
+  --offwhite:#F8F6F1;
+  --gold:#D1A45B;
+  --gold-2:#B8893F;
+  --gold-soft:rgba(209,164,91,.35);
+  --char:#2B2B2B;
+  --ink:#1E1D1B;
+  --paper-ink:#3A3733;
+  --line:rgba(43,43,43,.18);
+  --sans:"Assistant",sans-serif;
+  --head:"Heebo","Assistant",sans-serif;
+  --num:"Marcellus","Assistant",serif;
+  --num-weight:400;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+::selection{background:var(--gold);color:#fff}
+
+.wrap{width:min(1180px,calc(100% - 2*clamp(18px,5vw,64px)));margin-inline:auto}
+.wide{width:calc(100% - 2*clamp(18px,4vw,56px));margin-inline:auto}
+
+/* grain overlay */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+
+
+/* the widget injects Bootstrap after these styles; !important keeps the page on brand */
+body{font-family:var(--sans) !important;background:var(--cream) !important;color:var(--ink) !important;line-height:1.7 !important}
+a{text-decoration:none !important}
+header a,header button,.menu a,footer a,.page-head *,.cta-strip *{font-family:var(--sans) !important}
+.page-head h1,.cta-strip h2{font-family:var(--head) !important}
+header#hdr{line-height:1.7 !important;font-size:16px !important}
+nav.main-nav a{font:600 .95rem/1.7 var(--sans) !important;color:var(--ink) !important;padding:4px 0 !important;margin:0 !important}
+.hdr-cta{font:700 .9rem/1.7 var(--sans) !important;padding:8px 20px !important}
+.logos img{height:44px !important}header.scrolled .logos img{height:36px !important}
+/* ---------- header ---------- */
+header{
+  position:fixed;inset-inline:0;top:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px clamp(18px,4vw,56px);
+  background:var(--offwhite);
+  transition:background .5s,padding .4s;
+}
+header::after{
+  content:"";position:absolute;inset-inline:0;bottom:0;height:1px;
+  background:linear-gradient(to left,transparent,var(--gold-soft) 20%,var(--gold-soft) 80%,transparent);
+  opacity:0;transition:opacity .5s;
+}
+header.scrolled{background:rgba(248,246,241,.96);backdrop-filter:blur(12px);padding-block:10px}
+header.scrolled::after{opacity:1}
+.logos{display:flex;align-items:center;gap:22px}
+.logos img{height:44px;width:auto;transition:height .4s}
+header.scrolled .logos img{height:36px}
+.logos .sep{width:1px;height:32px;background:var(--line)}
+nav.main-nav{display:flex;gap:clamp(16px,2.4vw,34px);font-weight:600;font-size:.95rem}
+nav.main-nav a{position:relative;padding-block:4px}
+nav.main-nav a::after{content:"";position:absolute;bottom:0;right:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
+nav.main-nav a:hover::after{width:100%}
+.hdr-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--gold);color:var(--gold-2);padding:8px 20px;border-radius:999px;
+  font-weight:700;font-size:.9rem;transition:background .3s,color .3s,transform .3s;
+}
+.hdr-cta:hover{background:var(--gold);color:var(--char)}
+.burger{display:none;background:none;border:none;width:40px;height:40px;position:relative;z-index:70}
+.burger span{position:absolute;left:8px;width:24px;height:2px;background:currentColor;transition:transform .4s var(--ease),opacity .3s,top .4s var(--ease)}
+.burger span:nth-child(1){top:12px}.burger span:nth-child(2){top:19px}.burger span:nth-child(3){top:26px}
+.burger.open span:nth-child(1){top:19px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:19px;transform:rotate(-45deg)}
+
+.menu{
+  position:fixed;inset:0;z-index:65;background:var(--char);color:var(--cream);
+  display:grid;place-items:center;text-align:center;
+  clip-path:circle(0 at calc(100% - 38px) 38px);transition:clip-path .8s var(--ease-out);
+  visibility:hidden;
+}
+.menu.open{clip-path:circle(150% at calc(100% - 38px) 38px);visibility:visible}
+.menu a{display:block;font-family:var(--head);font-weight:800;font-size:clamp(1.8rem,7vw,3rem);line-height:1.5;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .6s var(--ease)}
+.menu.open a{opacity:1;transform:none}
+.menu a:nth-child(1){transition-delay:.25s}.menu a:nth-child(2){transition-delay:.32s}.menu a:nth-child(3){transition-delay:.39s}.menu a:nth-child(4){transition-delay:.46s}.menu a:nth-child(5){transition-delay:.53s}.menu a:nth-child(6){transition-delay:.6s}
+.menu a.gold{color:var(--gold)}
+.menu .menu-tel{font-family:var(--sans);font-weight:400;font-size:1.1rem;margin-top:24px;color:var(--gold)}
+
+
+.btn{
+  display:inline-flex;align-items:center;gap:14px;
+  background:var(--gold);color:var(--char);font-weight:700;font-size:1.05rem;
+  padding:14px 26px 14px 18px;border-radius:999px;border:1px solid var(--gold);
+  transition:background .3s,color .3s,border-color .3s;
+  position:relative;overflow:hidden;
+}
+.btn .arr{order:2;width:34px;height:34px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;flex:none;transition:transform .4s var(--ease)}
+.btn .arr svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.btn:hover{background:var(--char);color:var(--gold);border-color:var(--char)}
+.contact .btn:hover,.modal .btn:hover,footer .btn:hover{background:var(--cream);color:var(--char);border-color:var(--cream)}
+.modal .btn.ghost:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
+.btn:hover .arr{transform:translateX(-5px)}
+.btn.ghost{background:transparent;color:var(--gold-2);border-color:var(--gold)}
+.btn.ghost:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
+
+
+/* ---------- page head ---------- */
+.page-head{background:var(--char);color:var(--cream);padding:calc(76px + clamp(48px,8vh,84px)) 0 clamp(44px,7vh,72px);text-align:center;position:relative}
+.page-head::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:linear-gradient(to left,transparent,var(--gold) 20%,var(--gold) 80%,transparent)}
+.page-head small{display:block;color:var(--gold);font-weight:700;letter-spacing:.16em;font-size:.85rem;margin-bottom:10px}
+.page-head h1{font-family:var(--head);font-weight:900;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;color:var(--cream)}
+.page-head .rule{width:64px;height:2px;background:var(--gold);margin:20px auto 16px}
+.page-head p{max-width:640px;margin:0 auto;font-size:1.1rem;color:rgba(238,232,219,.85)}
+.page-head nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.page-head nav a{border:1px solid rgba(209,164,91,.6);color:var(--cream);padding:7px 18px;border-radius:999px;font-weight:700;font-size:.95rem;transition:background .25s,color .25s}
+.page-head nav a:hover{background:var(--gold);color:var(--char)}
+
+/* ---------- widget ---------- */
+:root{--jv-page:#F5F4EF;--jv-band:#2B2B2B;--jv-band-text:#EEE8DB;--jv-frame:#2B2B2B;--jv-frame-w:1px;--jv-card:#F8F6F1;--jv-card-border:#E4DED2;--jv-card-hover:#D0A35A;--jv-card-border-w:1px;--jv-title:#2B2B2B;--jv-chip-bg:#F0EBE0;--jv-chip-text:#2B2B2B;--jv-icon:#D0A35A;--jv-avail:#398212;--jv-sold:#C81414;--jv-btn-bg:#2B2B2B;--jv-btn-text:#EEE8DB;--jv-btn-border:#2B2B2B;--jv-plan-bg:#2B2B2B;--jv-plan-text:#EEE8DB;--jv-select-border:#D0A35A;--jv-select-bg:#F8F6F1;--jv-card-radius:7px;--jv-btn-radius:4px;--jv-chip-radius:5px;--jv-band-radius:0px;--jv-frame-radius:0px}
+.widget-wrap{padding:clamp(40px,7vh,72px) 0 clamp(60px,9vh,100px);background:var(--jv-page)}
+.jv-realestate-root{--main-color:var(--jv-btn-bg) !important;--secondary-color:var(--jv-icon) !important;--light-color:var(--jv-page) !important;--dark-color:var(--jv-chip-text) !important;font-family:var(--sans) !important}
+.jv-realestate-root *{box-shadow:none !important}
+.jv-realestate-root .lamishtaken,.jv-realestate-root .free-market{display:none !important}
+.jv-realestate-root .floor-title{background:var(--jv-band) !important;color:var(--jv-band-text) !important;border-radius:var(--jv-band-radius) var(--jv-band-radius) 0 0 !important;font-family:var(--head) !important}
+.jv-realestate-root .apartments-row{border:var(--jv-frame-w) solid var(--jv-frame) !important;border-radius:0 0 var(--jv-frame-radius) var(--jv-frame-radius) !important}
+.jv-realestate-root .apartment-card{border-radius:var(--jv-card-radius) !important;border:var(--jv-card-border-w) solid var(--jv-card-border) !important;background:var(--jv-card) !important;transition:border-color .25s !important}
+.jv-realestate-root .apartment-card:hover{border-color:var(--jv-card-hover) !important;transform:none !important}
+.jv-realestate-root .apartment-title{color:var(--jv-title) !important;font-family:var(--head) !important}
+.jv-realestate-root .apartment-price{color:var(--jv-title) !important}
+.jv-realestate-root .apartment-type{color:var(--jv-title) !important}
+.jv-realestate-root .apartment-info li{background:var(--jv-chip-bg) !important;color:var(--jv-chip-text) !important;border-radius:var(--jv-chip-radius) !important}
+.jv-realestate-root .apartment-info li i{color:var(--jv-icon) !important}
+.jv-realestate-root .apartment-card:not(.sold) .apartment-title::after{content:'פנויה';display:table;font-size:.82rem;font-weight:700;color:var(--jv-avail);border:1px solid var(--jv-avail);padding:0 14px;border-radius:999px;margin:6px auto 0;font-family:var(--sans)}
+.jv-realestate-root .apartment-card.sold::before{content:'נמכר' !important;background:var(--jv-sold) !important;color:#fff !important}
+.jv-realestate-root .apartment-plan{background:var(--jv-plan-bg) !important;color:var(--jv-plan-text) !important;border-radius:var(--jv-btn-radius) !important}
+.jv-realestate-root .apartment-plan a,.jv-realestate-root .apartment-details a{color:inherit !important}
+.jv-realestate-root .display-btn{background:var(--jv-page) !important;color:var(--jv-btn-border) !important;border:1px solid var(--jv-btn-border) !important;border-radius:var(--jv-btn-radius) !important;font-weight:700 !important;font-family:var(--sans) !important}
+.jv-realestate-root .display-btn.active{background:var(--jv-btn-bg) !important;color:var(--jv-btn-text) !important;border-color:var(--jv-btn-bg) !important}
+.jv-realestate-root label,.jv-realestate-root .form-label{font-family:var(--head) !important;font-weight:700 !important;color:var(--jv-title) !important;font-size:1.05rem !important}
+.jv-realestate-root .form-select,.jv-realestate-root .form-control{border-radius:var(--jv-btn-radius) !important;border:1px solid var(--jv-select-border) !important;background-color:var(--jv-select-bg) !important;color:var(--jv-title) !important;font:600 1rem/1.5 var(--sans) !important;padding:10px 18px 10px 44px !important;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8893F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;background-repeat:no-repeat !important;background-position:left 16px center !important;background-size:16px !important;-webkit-appearance:none;appearance:none}
+.jv-realestate-root .form-select:focus,.jv-realestate-root .form-control:focus{border-color:var(--jv-card-hover) !important;outline:none !important}
+
+/* ---------- style tools (review tool) ---------- */
+.tools{position:fixed;top:92px;left:14px;z-index:58;background:rgba(43,43,43,.97);color:var(--cream);border:1px solid rgba(209,164,91,.5);font-size:.78rem;width:262px;max-height:calc(100vh - 130px);overflow:auto;backdrop-filter:blur(8px);transition:transform .4s var(--ease);font-family:var(--sans) !important;scrollbar-width:thin}
+.tools.min{transform:translateX(calc(-100% + 34px))}
+.tools-head{position:sticky;top:0;background:rgba(43,43,43,1);display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid rgba(209,164,91,.35);font-weight:700;color:var(--gold);z-index:1}
+.tools-head button{background:none;border:none;color:var(--gold);font-size:1rem;line-height:1;width:22px;cursor:pointer}
+.tools-group{padding:7px 10px 2px;color:var(--gold);font-weight:700;font-size:.72rem;letter-spacing:.08em;border-top:1px solid rgba(209,164,91,.25)}
+.tools-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:5px 10px}
+.tools-row label{color:rgba(238,232,219,.85)}
+.tools-row input[type=color]{width:34px;height:22px;border:1px solid rgba(238,232,219,.4);background:transparent;padding:0;cursor:pointer}
+.tools-row input[type=range]{width:86px;accent-color:var(--gold);vertical-align:middle}
+.tools-row output{font-size:.7rem;color:var(--gold);display:inline-block;min-width:30px;text-align:left;direction:ltr}
+.tools-presets{display:flex;flex-wrap:wrap;gap:5px;padding:8px 10px}
+.tools-presets button,.tools-acts button{background:transparent;border:1px solid rgba(238,232,219,.35);color:var(--cream);padding:4px 9px;border-radius:999px;font-size:.72rem;cursor:pointer;transition:.2s}
+.tools-presets button:hover,.tools-acts button:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
+.tools-acts{display:flex;gap:6px;padding:8px 10px;border-top:1px solid rgba(209,164,91,.25)}
+.tools-acts button{flex:1}
+.tools-foot{padding:0 10px 8px;font-size:.68rem;color:rgba(238,232,219,.55);line-height:1.4}
+@media (max-width:960px){.tools{top:auto;bottom:90px;max-height:60vh}}
+
+/* ---------- cta strip ---------- */
+.cta-strip{background:var(--char);color:var(--cream);padding:clamp(50px,8vh,80px) 0}
+.cta-strip .box{border:1px solid rgba(209,164,91,.55);padding:clamp(28px,5vw,56px);position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.cta-strip .box::before{content:"";position:absolute;inset:8px;border:1px solid rgba(209,164,91,.22);pointer-events:none}
+.cta-strip h2{font-family:var(--head);font-weight:900;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2}
+.cta-strip p{margin-top:6px;color:rgba(238,232,219,.8)}
+.cta-strip .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.cta-strip .tel{color:var(--gold);font-weight:700;direction:ltr;unicode-bidi:embed}
+.cta-strip .btn:hover{background:var(--cream);color:var(--char);border-color:var(--cream)}
+
+/* ---------- footer ---------- */
+footer{background:#0B0B0B url(/assets/v2/silk-footer.jpg) center/cover;color:var(--cream);text-align:center;padding:clamp(70px,11vh,120px) 0 40px;position:relative}
+footer::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25)}
+footer .wrap{position:relative}
+footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.5rem);color:var(--gold);line-height:1.3}
+.f-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,50px);margin-top:clamp(36px,5vh,56px)}
+.f-col svg{width:40px;height:40px;margin:0 auto 14px;fill:none;stroke:var(--gold);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.f-col h3{font-family:var(--head);font-weight:800;font-size:1.25rem;margin-bottom:6px}
+.f-col p{font-size:1.05rem;line-height:1.6}
+.f-col a{transition:color .3s}.f-col a:hover{color:var(--gold)}
+.f-col .num{direction:ltr;unicode-bidi:embed}
+.f-logos{display:flex;justify-content:center;align-items:center;gap:40px;margin-top:clamp(46px,7vh,70px)}
+.f-logos img{height:64px;width:auto;filter:brightness(0) invert(.95)}
+.f-legal{margin-top:40px;font-size:.85rem;opacity:.7;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.f-legal a:hover{color:var(--gold)}
+
+
+/* floating whatsapp */
+.wa{
+  position:fixed;bottom:22px;left:22px;z-index:55;width:56px;height:56px;border-radius:50%;background:var(--char);color:var(--gold);border:1px solid rgba(209,164,91,.5);
+  display:grid;place-items:center;transition:background .3s,color .3s;
+}
+.wa:hover{background:var(--gold);color:var(--char)}
+.wa svg{width:30px;height:30px;fill:currentColor}
+
+
+@media (max-width:1100px){nav.main-nav{display:none}}
+@media (max-width:960px){.hdr-cta{display:none}.burger{display:block}.f-cols{grid-template-columns:1fr;gap:34px}.page-head{padding-top:calc(70px + 40px)}}
+@media (max-width:640px){.logos img{height:36px}.cta-strip .box{justify-content:center;text-align:center}.cta-strip .acts{justify-content:center}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="logos">
+    <a href="/v2" aria-label="דף הבית"><img src="/assets/galnor-logo.png" alt="קבוצת גלנור"></a>
+    <span class="sep"></span>
+    <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
+  </div>
+  <nav class="main-nav" aria-label="ניווט ראשי">
+    <a href="/v2#about">על הפרויקט</a>
+    <a href="/v2#gallery">גלריה</a>
+    <a href="/v2#why">למה לבחור בשדרה</a>
+    <a href="/v2#developers">היזמים</a>
+    <a href="/v2-apartments.html" aria-current="page">מלאי דירות</a>
+  </nav>
+  <a class="hdr-cta" href="/v2#contact">צרו קשר</a>
+  <button class="burger" id="burger" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div>
+    <a href="/v2#about">על הפרויקט</a>
+    <a href="/v2#gallery">גלריה</a>
+    <a href="/v2#why">למה לבחור בשדרה</a>
+    <a href="/v2#developers">היזמים</a>
+    <a href="/v2-apartments.html" class="gold">מלאי דירות</a>
+    <a href="/v2#contact" class="gold">צרו קשר</a>
+    <div class="menu-tel"><a href="tel:+972528939050">052-893-9050</a></div>
+  </div>
+</div>
+
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <small>השדרה אלעד</small>
+      <h1>מלאי דירות</h1>
+      <div class="rule"></div>
+      <p>בחרו בניין וצפו בדירות הפנויות, בתוכניות הדירה, בשטחים ובמחירים המעודכנים.</p>
+      <nav aria-label="בחירת בניין">
+        <a href="/v2-apartments-widget.html?view=building&bview_building=2">בניין 22 · אגף ימין</a>
+        <a href="/v2-apartments-widget.html?view=building&bview_building=1">בניין 22 · אגף שמאל</a>
+        <a href="/v2-apartments-widget.html?view=building&bview_building=3">בניין 21 · אגף ימין</a>
+        <a href="/v2-apartments-widget.html?view=building&bview_building=4">בניין 21 · אגף שמאל</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="widget-wrap">
+    <div class="wrap">
+    <script>
+    // Drop garbled duplicate-header rows (all "?" - an Excel encoding artifact)
+    // from apartment CSVs before the widget parses them.
+    (function () {
+      var desc = Object.getOwnPropertyDescriptor(XMLHttpRequest.prototype, "responseText");
+      var origOpen = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function (method, url) {
+        this.__jvUrl = url;
+        return origOpen.apply(this, arguments);
+      };
+      Object.defineProperty(XMLHttpRequest.prototype, "responseText", {
+        configurable: true,
+        get: function () {
+          var text = desc.get.call(this);
+          if (this.__jvUrl && /\.csv(\?|$)/i.test(this.__jvUrl) && typeof text === "string") {
+            return text.split(/\r?\n/).filter(function (line) {
+              return !(/\?/.test(line) && /^[?",\s]+$/.test(line));
+            }).join("\n");
+          }
+          return text;
+        }
+      });
+    })();
+    </script>
+    <script src="/assets/jetvaults-real-estate.js" data-container="hasdera-elad" data-project="hasdera-elad"></script>
+    </div>
+  </section>
+
+  <section class="cta-strip">
+    <div class="wrap">
+      <div class="box">
+        <div>
+          <h2>מצאתם דירה שמעניינת אתכם?</h2>
+          <p>השאירו פרטים ונציג מטעמנו יחזור אליכם עם כל המידע והמחירים.</p>
+        </div>
+        <div class="acts">
+          <a class="btn" href="/v2#contact"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת פרטים ומחירים</a>
+          <a class="tel" href="tel:+972528939050">052-893-9050</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2 class="rv">למידע נוסף ולהתרשמות מהדירות:</h2>
+    <div class="f-cols">
+      <div class="f-col rv">
+        <svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <h3>מיקום הפרוייקט:</h3>
+        <p>בכניסה החדשה<br>לעיר אלעד</p>
+      </div>
+      <div class="f-col rv d1">
+        <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+        <h3>לפרטים נוספים:</h3>
+        <p>רפאל: <a class="num" href="tel:+972528939050">052.893.9050</a><br>משרד: <a class="num" href="tel:+97239088872">03.908.8872</a></p>
+      </div>
+      <div class="f-col rv d2">
+        <svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9h8M8 12h5"/></svg>
+        <h3>משרד מכירות:</h3>
+        <p>רח' רבי יהודה הנשיא 29<br>(על הככר) אלעד</p>
+      </div>
+    </div>
+    <div class="f-logos rv">
+      <img src="/assets/galnor-logo.png" alt="קבוצת גלנור">
+      <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
+    </div>
+    <div class="f-legal">
+      <a href="/accessibility/">הצהרת נגישות</a><span>·</span><a href="/privacy/">מדיניות פרטיות</a><span>·</span><span>Powered by <a href="http://einstein-web.co.il">Einstein-web</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/972528939050?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%D7%94%D7%A9%D7%93%D7%A8%D7%94%20%D7%91%D7%90%D7%9C%D7%A2%D7%93" target="_blank" rel="noopener" aria-label="וואטסאפ">
+  <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.5L3 29l6.7-1.7c1.9 1 4.1 1.6 6.3 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 0 1 5.4 16C5.4 10.2 10.2 5.4 16 5.4S26.6 10.2 26.6 16 21.8 26.6 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.9 1.1 3.4.9 4.1.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<!-- style tools (temporary review tool) -->
+<div class="tools" id="tools">
+  <div class="tools-head"><span>כלי עיצוב</span><button id="toolsMin" aria-label="מזעור">−</button></div>
+  <div class="tools-group">התחלה מהירה</div>
+  <div class="tools-presets"><button type="button" data-preset="קלאסי כהה">קלאסי כהה</button><button type="button" data-preset="זהב בהיר">זהב בהיר</button><button type="button" data-preset="מינימלי">מינימלי</button><button type="button" data-preset="מעוגל רך">מעוגל רך</button></div>
+  <div class="tools-group">רקעים</div>
+  <div class="tools-row"><label for="tpage">רקע האזור</label><input type="color" id="tpage" data-var="--jv-page"></div>
+  <div class="tools-row"><label for="tband">פס קומה - רקע</label><input type="color" id="tband" data-var="--jv-band"></div>
+  <div class="tools-row"><label for="tband_text">פס קומה - טקסט</label><input type="color" id="tband_text" data-var="--jv-band-text"></div>
+  <div class="tools-row"><label for="tframe">מסגרת קומה - צבע</label><input type="color" id="tframe" data-var="--jv-frame"></div>
+  <div class="tools-row"><label for="tframe_w">מסגרת קומה - עובי</label><span><input type="range" id="tframe_w" data-var="--jv-frame-w" min="0" max="4" step="1"> <output for="tframe_w"></output></span></div>
+  <div class="tools-group">כרטיס</div>
+  <div class="tools-row"><label for="tcard">רקע כרטיס</label><input type="color" id="tcard" data-var="--jv-card"></div>
+  <div class="tools-row"><label for="tcard_border">גבול כרטיס</label><input type="color" id="tcard_border" data-var="--jv-card-border"></div>
+  <div class="tools-row"><label for="tcard_hover">גבול כרטיס במעבר</label><input type="color" id="tcard_hover" data-var="--jv-card-hover"></div>
+  <div class="tools-row"><label for="tcard_border_w">עובי גבול כרטיס</label><span><input type="range" id="tcard_border_w" data-var="--jv-card-border-w" min="0" max="4" step="1"> <output for="tcard_border_w"></output></span></div>
+  <div class="tools-group">טקסט וסמלים</div>
+  <div class="tools-row"><label for="ttitle">כותרת דירה</label><input type="color" id="ttitle" data-var="--jv-title"></div>
+  <div class="tools-row"><label for="tchip_bg">תגית נתון - רקע</label><input type="color" id="tchip_bg" data-var="--jv-chip-bg"></div>
+  <div class="tools-row"><label for="tchip_text">תגית נתון - טקסט</label><input type="color" id="tchip_text" data-var="--jv-chip-text"></div>
+  <div class="tools-row"><label for="ticon">אייקונים</label><input type="color" id="ticon" data-var="--jv-icon"></div>
+  <div class="tools-row"><label for="tavail">תגית "פנויה"</label><input type="color" id="tavail" data-var="--jv-avail"></div>
+  <div class="tools-row"><label for="tsold">סרט "נמכר"</label><input type="color" id="tsold" data-var="--jv-sold"></div>
+  <div class="tools-group">כפתורים</div>
+  <div class="tools-row"><label for="tbtn_bg">כפתור פעיל - רקע</label><input type="color" id="tbtn_bg" data-var="--jv-btn-bg"></div>
+  <div class="tools-row"><label for="tbtn_text">כפתור פעיל - טקסט</label><input type="color" id="tbtn_text" data-var="--jv-btn-text"></div>
+  <div class="tools-row"><label for="tbtn_border">כפתור רגיל - קו/טקסט</label><input type="color" id="tbtn_border" data-var="--jv-btn-border"></div>
+  <div class="tools-row"><label for="tplan_bg">תוכנית דירה - רקע</label><input type="color" id="tplan_bg" data-var="--jv-plan-bg"></div>
+  <div class="tools-row"><label for="tplan_text">תוכנית דירה - טקסט</label><input type="color" id="tplan_text" data-var="--jv-plan-text"></div>
+  <div class="tools-row"><label for="tselect_border">בורר בניין - קו</label><input type="color" id="tselect_border" data-var="--jv-select-border"></div>
+  <div class="tools-row"><label for="tselect_bg">בורר בניין - רקע</label><input type="color" id="tselect_bg" data-var="--jv-select-bg"></div>
+  <div class="tools-group">פינות</div>
+  <div class="tools-row"><label for="tcard_radius">פינות כרטיס</label><span><input type="range" id="tcard_radius" data-var="--jv-card-radius" min="0" max="32" step="1"> <output for="tcard_radius"></output></span></div>
+  <div class="tools-row"><label for="tbtn_radius">פינות כפתורים</label><span><input type="range" id="tbtn_radius" data-var="--jv-btn-radius" min="0" max="40" step="1"> <output for="tbtn_radius"></output></span></div>
+  <div class="tools-row"><label for="tchip_radius">פינות תגיות</label><span><input type="range" id="tchip_radius" data-var="--jv-chip-radius" min="0" max="40" step="1"> <output for="tchip_radius"></output></span></div>
+  <div class="tools-row"><label for="tband_radius">פינות פס קומה</label><span><input type="range" id="tband_radius" data-var="--jv-band-radius" min="0" max="24" step="1"> <output for="tband_radius"></output></span></div>
+  <div class="tools-row"><label for="tframe_radius">פינות מסגרת קומה</label><span><input type="range" id="tframe_radius" data-var="--jv-frame-radius" min="0" max="24" step="1"> <output for="tframe_radius"></output></span></div>
+  <div class="tools-acts"><button id="toolsCopy">העתקת ההגדרות</button><button id="toolsReset">איפוס</button></div>
+  <div class="tools-foot">השינויים נשמרים בדפדפן שלך בלבד. "העתקת ההגדרות" מעתיקה טקסט לשליחה אליי.</div>
+</div>
+
+<script src="/assets/a11y.js" defer></script>
+<script>
+(function(){
+  var hdr=document.getElementById('hdr');
+  function onScroll(){hdr.classList.toggle('scrolled',scrollY>40)}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  function setMenu(open){
+    menu.classList.toggle('open',open);burger.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open);menu.setAttribute('aria-hidden',!open);
+    document.body.style.overflow=open?'hidden':'';
+  }
+  burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+  /* style tools */
+  var DEF={"--jv-page": "#F5F4EF", "--jv-band": "#2B2B2B", "--jv-band-text": "#EEE8DB", "--jv-frame": "#2B2B2B", "--jv-frame-w": "1px", "--jv-card": "#F8F6F1", "--jv-card-border": "#E4DED2", "--jv-card-hover": "#D0A35A", "--jv-card-border-w": "1px", "--jv-title": "#2B2B2B", "--jv-chip-bg": "#F0EBE0", "--jv-chip-text": "#2B2B2B", "--jv-icon": "#D0A35A", "--jv-avail": "#398212", "--jv-sold": "#C81414", "--jv-btn-bg": "#2B2B2B", "--jv-btn-text": "#EEE8DB", "--jv-btn-border": "#2B2B2B", "--jv-plan-bg": "#2B2B2B", "--jv-plan-text": "#EEE8DB", "--jv-select-border": "#D0A35A", "--jv-select-bg": "#F8F6F1", "--jv-card-radius": "7px", "--jv-btn-radius": "4px", "--jv-chip-radius": "5px", "--jv-band-radius": "0px", "--jv-frame-radius": "0px"};
+  var PRESETS={"קלאסי כהה": {}, "זהב בהיר": {"--jv-band": "#D0A35A", "--jv-band-text": "#2B2B2B", "--jv-frame": "#D0A35A", "--jv-btn-bg": "#D0A35A", "--jv-btn-text": "#2B2B2B", "--jv-btn-border": "#B8893F", "--jv-plan-bg": "#D0A35A", "--jv-plan-text": "#2B2B2B", "--jv-title": "#B8893F", "--jv-card-hover": "#2B2B2B"}, "מינימלי": {"--jv-frame-w": "0px", "--jv-band": "#F5F4EF", "--jv-band-text": "#2B2B2B", "--jv-card": "#FFFFFF", "--jv-card-border": "#E9E4D8", "--jv-card-hover": "#2B2B2B", "--jv-chip-bg": "#F5F4EF", "--jv-plan-bg": "#F5F4EF", "--jv-plan-text": "#2B2B2B", "--jv-card-radius": "0px", "--jv-chip-radius": "0px", "--jv-btn-radius": "0px"}, "מעוגל רך": {"--jv-card-radius": "18px", "--jv-btn-radius": "40px", "--jv-band-radius": "18px", "--jv-frame-radius": "18px", "--jv-chip-radius": "40px", "--jv-frame": "#E4DED2", "--jv-band": "#2B2B2B"}};
+  var cur={};try{cur=JSON.parse(localStorage.getItem('jv-tools2')||'{}')}catch(e){}
+  var root=document.documentElement,tools=document.getElementById('tools');
+  function save(){try{localStorage.setItem('jv-tools2',JSON.stringify(cur))}catch(e){}}
+  function applyVars(){Object.keys(DEF).forEach(function(k){root.style.setProperty(k,cur[k]||DEF[k])})}
+  function fill(){
+    tools.querySelectorAll('input[data-var]').forEach(function(inp){
+      var v=cur[inp.dataset.var]||DEF[inp.dataset.var];
+      if(inp.type==='range'){var n=parseInt(v,10);inp.value=n;inp.nextElementSibling.textContent=n+'px'}
+      else inp.value=v;
+    });
+  }
+  tools.querySelectorAll('input[data-var]').forEach(function(inp){
+    inp.addEventListener('input',function(){
+      var v=inp.type==='range'?inp.value+'px':inp.value;
+      if(inp.type==='range')inp.nextElementSibling.textContent=v;
+      cur[inp.dataset.var]=v;applyVars();save();
+    });
+  });
+  tools.querySelectorAll('[data-preset]').forEach(function(b){
+    b.addEventListener('click',function(){cur=Object.assign({},PRESETS[b.dataset.preset]||{});applyVars();fill();save()});
+  });
+  document.getElementById('toolsReset').addEventListener('click',function(){cur={};try{localStorage.removeItem('jv-tools2')}catch(e){};applyVars();fill()});
+  document.getElementById('toolsCopy').addEventListener('click',function(){
+    var out={};Object.keys(DEF).forEach(function(k){out[k]=cur[k]||DEF[k]});
+    var txt=JSON.stringify(out);
+    (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){alert('הועתק! הדביקו את הטקסט בהודעה.')},function(){prompt('העתיקו את הטקסט:',txt)});
+  });
+  var toolsMin=document.getElementById('toolsMin');
+  function setToolsMin(m){tools.classList.toggle('min',m);toolsMin.textContent=m?'+':'−'}
+  toolsMin.addEventListener('click',function(){setToolsMin(!tools.classList.contains('min'))});
+  if(innerWidth<960)setToolsMin(true);
+  applyVars();fill();
+
+  // mark the active building chip
+  var b=new URLSearchParams(location.search).get('bview_building');
+  if(b){document.querySelectorAll('.page-head nav a').forEach(function(a){if(a.href.indexOf('bview_building='+b)>-1){a.style.background='var(--gold)';a.style.color='var(--char)'}})}
+})();
+</script>
+</body>
+</html>

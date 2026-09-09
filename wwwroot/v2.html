@@ -1156,6 +1156,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
     if(selectedApt){formAptText.textContent='מתעניין/ת ב: '+selectedApt.label;formApt.classList.add('on')}
   });
   document.getElementById('formAptClear').addEventListener('click',function(){selectedApt=null;formApt.classList.remove('on')});
+  (function(){var q=new URLSearchParams(location.search).get('apt');if(q){selectedApt={label:q};formAptText.textContent='מתעניין/ת ב: '+q;formApt.classList.add('on')}})();
   addEventListener('keydown',function(e){if(e.key==='Escape'){closeApt();setMenu(false)}});
 
   /* lead form */
