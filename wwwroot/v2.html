@@ -344,7 +344,7 @@ body[data-cards="c"] .card:hover p{opacity:1}
 body[data-cards="c"] .card:hover{transform:translateY(-6px)}
 
 /* why D: interactive showcase */
-body[data-cards="d"] .why-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(24px,4vw,64px);align-items:stretch}
+body[data-cards="d"] .why-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(24px,4vw,64px);align-items:start}
 body[data-cards="d"] .why-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
 body[data-cards="d"] .why-item{
   display:grid;grid-template-columns:70px 1fr auto;align-items:center;gap:16px;padding:22px 8px;border-bottom:1px solid var(--line);
@@ -358,7 +358,7 @@ body[data-cards="d"] .why-item.on{padding-inline-start:18px;background:linear-gr
 body[data-cards="d"] .why-item.on .ar{opacity:1;transform:none}
 body[data-cards="d"] .why-item::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform .4s var(--ease)}
 body[data-cards="d"] .why-item.on::before{transform:scaleY(1)}
-body[data-cards="d"] .why-stage{position:relative;background:var(--char);color:var(--cream);overflow:hidden;min-height:520px;box-shadow:0 40px 80px -30px rgba(30,29,27,.5)}
+body[data-cards="d"] .why-stage{position:relative;background:var(--char);color:var(--cream);overflow:hidden;min-height:420px;height:var(--stage-h,auto);box-shadow:0 40px 80px -30px rgba(30,29,27,.5)}
 body[data-cards="d"] .why-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s var(--ease);display:flex;flex-direction:column;justify-content:flex-end}
 body[data-cards="d"] .why-slide.on{opacity:1}
 body[data-cards="d"] .why-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 9s ease-out}
@@ -509,8 +509,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 .f-col .num{direction:ltr;unicode-bidi:embed}
 .f-logos{display:flex;justify-content:center;align-items:center;gap:40px;margin-top:clamp(46px,7vh,70px)}
 .f-logos img{height:64px;width:auto;filter:brightness(0) invert(.95)}
-.f-rule{width:min(320px,80%);height:1px;background:rgba(238,232,219,.7);margin:22px auto}
-.f-rafael img{height:44px;width:auto;margin:0 auto}
 .f-legal{margin-top:40px;font-size:.85rem;opacity:.7;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 .f-legal a:hover{color:var(--gold)}
 
@@ -871,8 +869,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
       <img src="/assets/galnor-logo.png" alt="קבוצת גלנור">
       <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
     </div>
-    <div class="f-rule"></div>
-    <div class="f-rafael rv"><img src="/assets/v2/rafael-logo.png" alt="רפאל - להוביל בעולם הנדל״ן"></div>
     <div class="f-legal">
       <a href="/accessibility/">הצהרת נגישות</a><span>·</span><a href="/privacy/">מדיניות פרטיות</a><span>·</span><span>Powered by <a href="http://einstein-web.co.il">Einstein-web</a></span>
     </div>
@@ -1046,8 +1042,13 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
       });
       list.classList.add('in');stage.classList.add('in');
     }
-    whyGo(0);
+    syncStageHeight();whyGo(0);
   }
+  function syncStageHeight(){
+    var list=document.getElementById('whyList'),stage=document.getElementById('whyStage');
+    if(document.body.dataset.cards==='d'&&innerWidth>960)stage.style.setProperty('--stage-h',list.offsetHeight+'px');else stage.style.removeProperty('--stage-h');
+  }
+  addEventListener('resize',syncStageHeight);
   initWhyD();
 
   /* ---------- inventory board (live from JetVaults CMS) ---------- */
