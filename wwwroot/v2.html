@@ -449,6 +449,7 @@ form.lead .full{grid-column:1/-1}
   width:100%;background:transparent;border:0;border-bottom:1px solid rgba(238,232,219,.45);border-radius:0;color:var(--cream);
   padding:10px 2px;font:inherit;font-size:1.08rem;outline:none;transition:border-color .3s;
 }
+.field input[type=tel],.field input[type=email]{direction:rtl;text-align:right}
 .field input::placeholder{color:rgba(238,232,219,.6)}
 .field input:focus{border-bottom-color:var(--gold)}
 .field input:not(:placeholder-shown):invalid{border-bottom-color:#e08a7a}
@@ -772,8 +773,8 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
           </div>
           <form class="lead" id="leadForm" novalidate>
             <div class="form-apt" id="formApt"><span id="formAptText"></span><button type="button" id="formAptClear">הסרה</button></div>
-            <div class="field"><input type="tel" name="phone" id="fPhone" placeholder="טלפון" autocomplete="tel" inputmode="tel" pattern="[0-9+\-\s()]{8,}" required><label for="fPhone">טלפון</label></div>
             <div class="field"><input type="text" name="name" id="fName" placeholder="שם מלא" autocomplete="name" required><label for="fName">שם מלא</label></div>
+            <div class="field"><input type="tel" name="phone" id="fPhone" placeholder="טלפון" autocomplete="tel" inputmode="tel" pattern="[0-9+\-\s()]{8,}" required><label for="fPhone">טלפון</label></div>
             <div class="field full"><input type="email" name="email" id="fEmail" placeholder="מייל" autocomplete="email"><label for="fEmail">מייל</label></div>
             <div class="full"><button class="btn" type="submit" id="leadBtn"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת פרטים על דירת החלומות שלכם</button></div>
             <div class="form-note">הפרטים ישמשו ליצירת קשר בנוגע לפרויקט בלבד.</div>
