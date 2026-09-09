@@ -143,7 +143,7 @@ nav.main-nav a:hover::after{width:100%}
 
 /* ---------- widget ---------- */
 .widget-wrap{padding:clamp(40px,7vh,72px) 0 clamp(60px,9vh,100px)}
-:root{--jv-main:#D1A45B;--jv-secondary:#2B2B2B;--jv-light:#F8F6F1;--jv-card:#F8F6F1;--jv-card-radius:0px;--jv-btn-radius:999px}
+:root{--jv-main:#2B2B2B;--jv-secondary:#D0A35A;--jv-light:#F5F4EF;--jv-card:#F8F6F1;--jv-card-radius:7px;--jv-btn-radius:2px}
 .jv-realestate-root{--main-color:var(--jv-main) !important;--secondary-color:var(--jv-secondary) !important;--light-color:var(--jv-light) !important;--dark-color:var(--jv-secondary) !important;font-family:var(--sans) !important}
 nav.main-nav a,.burger{color:var(--ink) !important}
 .hdr-cta{color:var(--gold-2) !important}.hdr-cta:hover{color:var(--char) !important}
@@ -385,7 +385,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
   addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
   /* style tools */
-  var DEF={'--jv-main':'#D1A45B','--jv-secondary':'#2B2B2B','--jv-light':'#F8F6F1','--jv-card':'#F8F6F1','--jv-card-radius':'0px','--jv-btn-radius':'999px'};
+  var DEF={'--jv-main':'#2B2B2B','--jv-secondary':'#D0A35A','--jv-light':'#F5F4EF','--jv-card':'#F8F6F1','--jv-card-radius':'7px','--jv-btn-radius':'2px'};
   var cur={};try{cur=JSON.parse(localStorage.getItem('jv-tools')||'{}')}catch(e){}
   var root=document.documentElement,tools=document.getElementById('tools');
   function applyVars(){Object.keys(DEF).forEach(function(k){root.style.setProperty(k,cur[k]||DEF[k])})}
