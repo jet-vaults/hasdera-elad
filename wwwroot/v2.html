@@ -21,7 +21,6 @@
   --gold-soft:rgba(209,164,91,.35);
   --char:#2B2B2B;
   --ink:#1E1D1B;
-  --slate:#54565A;
   --paper-ink:#3A3733;
   --line:rgba(43,43,43,.18);
   --sans:"Assistant",sans-serif;
@@ -59,8 +58,6 @@ body::before{
 .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .rv.in{opacity:1;transform:none}
 .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}.rv.d5{transition-delay:.5s}
-.line-x{position:relative;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform 1.4s var(--ease)}
-.line-x.in{transform:scaleX(1)}
 
 /* ---------- header ---------- */
 header{
@@ -68,14 +65,14 @@ header{
   display:flex;align-items:center;justify-content:space-between;
   padding:16px clamp(18px,4vw,56px);
   background:var(--offwhite);
-  transition:background .5s,box-shadow .5s,padding .4s;
+  transition:background .5s,padding .4s;
 }
 header::after{
   content:"";position:absolute;inset-inline:0;bottom:0;height:1px;
   background:linear-gradient(to left,transparent,var(--gold-soft) 20%,var(--gold-soft) 80%,transparent);
   opacity:0;transition:opacity .5s;
 }
-header.scrolled{background:rgba(248,246,241,.94);backdrop-filter:blur(12px);padding-block:10px;box-shadow:0 10px 40px rgba(30,29,27,.08)}
+header.scrolled{background:rgba(248,246,241,.96);backdrop-filter:blur(12px);padding-block:10px}
 header.scrolled::after{opacity:1}
 .logos{display:flex;align-items:center;gap:22px}
 .logos img{height:44px;width:auto;transition:height .4s}
@@ -90,7 +87,7 @@ nav.main-nav a:hover::after{width:100%}
   border:1px solid var(--gold);color:var(--gold-2);padding:8px 20px;border-radius:999px;
   font-weight:700;font-size:.9rem;transition:background .3s,color .3s,transform .3s;
 }
-.hdr-cta:hover{background:var(--gold);color:#fff;transform:translateY(-1px)}
+.hdr-cta:hover{background:var(--gold);color:var(--char)}
 .burger{display:none;background:none;border:none;width:40px;height:40px;position:relative;z-index:70}
 .burger span{position:absolute;left:8px;width:24px;height:2px;background:currentColor;transition:transform .4s var(--ease),opacity .3s,top .4s var(--ease)}
 .burger span:nth-child(1){top:12px}.burger span:nth-child(2){top:19px}.burger span:nth-child(3){top:26px}
@@ -143,15 +140,15 @@ nav.main-nav a:hover::after{width:100%}
   display:inline-flex;align-items:center;gap:14px;
   background:var(--gold);color:var(--char);font-weight:700;font-size:1.05rem;
   padding:14px 26px 14px 18px;border-radius:999px;border:1px solid var(--gold);
-  transition:transform .35s var(--ease),box-shadow .35s,background .3s,color .3s;
+  transition:background .3s,color .3s,border-color .3s;
   position:relative;overflow:hidden;
 }
 .btn .arr{width:34px;height:34px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;flex:none;transition:transform .4s var(--ease)}
 .btn .arr svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(209,164,91,.35)}
+.btn:hover{background:var(--char);color:var(--gold);border-color:var(--char)}
 .btn:hover .arr{transform:translateX(-5px)}
 .btn.ghost{background:transparent;color:var(--gold-2);border-color:var(--gold)}
-.btn.ghost:hover{background:var(--gold);color:var(--char)}
+.btn.ghost:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
 
 .scroll-cue{
   position:absolute;bottom:32px;left:clamp(20px,5vw,72px);z-index:3;
@@ -172,16 +169,18 @@ body[data-hero="b"] .hero-media{position:absolute;inset:0;min-height:0;animation
 body[data-hero="b"] .hero-media img{object-position:45% 55%;animation:kenburns 24s ease-in-out infinite alternate}
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.08)}}
 body[data-hero="b"] .hero-media::after{background:linear-gradient(to top,rgba(11,11,11,.88) 0%,rgba(11,11,11,.45) 40%,rgba(11,11,11,.05) 70%),linear-gradient(to left,rgba(11,11,11,.45),transparent 55%)}
-body[data-hero="b"] .hero-copy{align-self:end;text-align:start;width:auto;max-width:760px;margin:0;padding:0 clamp(18px,5vw,72px) clamp(80px,12vh,130px)}
-body[data-hero="b"] .hero-mark{margin-inline:0}
+body[data-hero="b"] .hero-copy{align-self:end;text-align:start;width:auto;max-width:860px;margin:0;padding:0 clamp(18px,5vw,72px) clamp(80px,12vh,130px)}
+body[data-hero="b"] .hero-title{font-size:clamp(2.8rem,6.8vw,6.2rem)}
+body[data-hero="b"] .hero-sub{font-size:1.25rem;max-width:720px}
+body[data-hero="b"] .hero-mark{margin-inline:0;height:clamp(72px,10vh,104px)}
 body[data-hero="b"] .hero-mark.dark{display:none}
 body[data-hero="b"] .hero-mark.light{display:block}
 body[data-hero="b"] .hero-eyebrow{color:var(--gold)}
-body[data-hero="b"] .hero-title{color:#F3EEE3;text-shadow:0 4px 30px rgba(0,0,0,.4)}
+body[data-hero="b"] .hero-title{color:#F3EEE3}
 body[data-hero="b"] .hero-sub{color:rgba(243,238,227,.85);margin-inline:0}
 body[data-hero="b"] .hero-cta{justify-content:flex-start}
 body[data-hero="b"] .btn.ghost{color:var(--cream);border-color:rgba(238,232,219,.7)}
-body[data-hero="b"] .btn.ghost:hover{color:var(--char)}
+body[data-hero="b"] .btn.ghost:hover{color:var(--char);border-color:var(--gold)}
 
 /* hero C: light split, text right, image left */
 body[data-hero="c"] .hero-inner{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);grid-template-rows:minmax(0,1fr)}
@@ -222,7 +221,7 @@ body[data-hero="c"] .hero-media::after{background:linear-gradient(to top,rgba(11
 /* ---------- gallery ---------- */
 .gallery{padding:clamp(20px,4vh,40px) 0 clamp(80px,12vh,130px);position:relative}
 .gal{position:relative}
-.gal-frame{position:relative;overflow:hidden;aspect-ratio:16/9.2;background:#dcd6c8;direction:ltr;box-shadow:0 40px 90px -30px rgba(30,29,27,.35)}
+.gal-frame{position:relative;overflow:hidden;aspect-ratio:16/9.2;background:#dcd6c8;direction:ltr}
 .gal-track{display:flex;height:100%;transition:transform .9s var(--ease-out)}
 .gal-track figure{flex:0 0 100%;height:100%;position:relative}
 .gal-track img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 6s ease-out}
@@ -234,7 +233,7 @@ body[data-hero="c"] .hero-media::after{background:linear-gradient(to top,rgba(11
   width:clamp(56px,7vw,92px);height:clamp(56px,7vw,92px);border-radius:50%;border:1px solid var(--gold);background:rgba(238,232,219,.55);
   backdrop-filter:blur(4px);color:var(--gold-2);display:grid;place-items:center;transition:background .3s,transform .3s,color .3s;
 }
-.gal-btn:hover{background:var(--gold);color:var(--char);transform:translateY(-50%) scale(1.06)}
+.gal-btn:hover{background:var(--gold);color:var(--char)}
 .gal-btn svg{width:60%;height:60%;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
 .gal-btn.prev{inset-inline-start:calc(-1 * clamp(28px,3.5vw,46px))}
 .gal-btn.next{inset-inline-end:calc(-1 * clamp(28px,3.5vw,46px))}
@@ -256,10 +255,10 @@ body[data-hero="c"] .hero-media::after{background:linear-gradient(to top,rgba(11
 .card{
   --bg:var(--char);--fg:var(--cream);--num:var(--gold);--title:var(--gold);
   background:var(--bg);color:var(--fg);display:flex;flex-direction:column;position:relative;overflow:hidden;
-  transition:transform .5s var(--ease),box-shadow .5s;
+  transition:transform .5s var(--ease);
 }
 .card.alt{--bg:var(--gold);--fg:var(--char);--num:var(--char);--title:var(--char)}
-.card:hover{transform:translateY(-10px);box-shadow:0 30px 60px -20px rgba(30,29,27,.45)}
+.card:hover{transform:translateY(-6px)}
 .card .num{font-family:var(--head);font-weight:800;font-size:clamp(1.8rem,2.6vw,2.4rem);color:var(--num);text-align:center;padding:26px 0 18px;letter-spacing:.04em;line-height:1}
 .card .ph{aspect-ratio:375/218;overflow:hidden;position:relative}
 .card .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
@@ -285,10 +284,10 @@ body[data-cards="b"] .card.alt{--bg:transparent;--fg:var(--ink);--num:var(--gold
 body[data-cards="b"] .card:nth-child(even){grid-template-columns:120px minmax(0,1fr) minmax(0,1.1fr)}
 body[data-cards="b"] .card:nth-child(even) .ph{order:3}
 body[data-cards="b"] .card:nth-child(even) .body{order:2}
-body[data-cards="b"] .card:hover{transform:none;box-shadow:none}
+body[data-cards="b"] .card:hover{transform:none}
 body[data-cards="b"] .card::before{content:none}
 body[data-cards="b"] .card .num{font-family:var(--num);font-weight:var(--num-weight);font-size:clamp(3.4rem,6vw,5.6rem);padding:0;text-align:center;color:var(--gold);line-height:1;direction:ltr}
-body[data-cards="b"] .card .ph{aspect-ratio:16/10;box-shadow:0 30px 60px -30px rgba(30,29,27,.5)}
+body[data-cards="b"] .card .ph{aspect-ratio:16/10}
 body[data-cards="b"] .card .ph::after{content:none}
 body[data-cards="b"] .card .body{text-align:start;padding:0;gap:14px}
 body[data-cards="b"] .card h3{font-size:clamp(1.8rem,3vw,2.6rem);position:relative;padding-bottom:12px}
@@ -329,7 +328,7 @@ body[data-cards="d"] .why-item.on{padding-inline-start:18px;background:linear-gr
 body[data-cards="d"] .why-item.on .ar{opacity:1;transform:none}
 body[data-cards="d"] .why-item::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform .4s var(--ease)}
 body[data-cards="d"] .why-item.on::before{transform:scaleY(1)}
-body[data-cards="d"] .why-stage{position:relative;background:var(--char);color:var(--cream);overflow:hidden;min-height:420px;height:var(--stage-h,auto);box-shadow:0 40px 80px -30px rgba(30,29,27,.5)}
+body[data-cards="d"] .why-stage{position:relative;background:var(--char);color:var(--cream);overflow:hidden;min-height:420px;height:var(--stage-h,auto)}
 body[data-cards="d"] .why-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s var(--ease);display:flex;flex-direction:column;justify-content:flex-end}
 body[data-cards="d"] .why-slide.on{opacity:1}
 body[data-cards="d"] .why-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 9s ease-out}
@@ -353,9 +352,6 @@ body[data-cards="d"] .why-stage{display:block}
 .devs{padding:0 0 clamp(80px,12vh,130px);text-align:center}
 .devs p{max-width:960px;margin:28px auto 0;font-size:1.12rem;line-height:1.85;color:var(--paper-ink)}
 .devs p strong{color:var(--char)}
-.dev-logos{display:flex;justify-content:center;align-items:center;gap:clamp(30px,6vw,80px);margin-top:44px;flex-wrap:wrap}
-.dev-logos img{height:64px;width:auto;filter:grayscale(1);opacity:.75;transition:filter .5s,opacity .5s,transform .5s}
-.dev-logos img:hover{filter:none;opacity:1;transform:translateY(-3px)}
 
 /* ---------- inventory ---------- */
 .inventory{padding:0 0 clamp(90px,13vh,140px)}
@@ -372,10 +368,12 @@ body[data-cards="d"] .why-stage{display:block}
 .apt{
   display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;width:100%;
   background:var(--gold);color:var(--char);padding:6px 14px;font-weight:700;font-size:clamp(.95rem,1.35vw,1.15rem);
-  border:none;text-align:start;position:relative;transition:transform .15s ease-out,box-shadow .15s ease-out,background .15s;
+  border:none;text-align:start;position:relative;transition:background .15s,color .15s;
 }
-.apt:hover,.apt:focus-visible{transform:translateX(-4px);box-shadow:-6px 8px 22px -8px rgba(30,29,27,.5);background:#DAB06A;outline:none}
-.apt:active{transform:translateX(-2px) scale(.99)}
+.apt:hover,.apt:focus-visible{background:var(--char);color:var(--gold);outline:none}
+.apt:hover .dash,.apt:focus-visible .dash{background:var(--gold)}
+.apt:hover .dash::after,.apt:focus-visible .dash::after{border-color:var(--gold)}
+.apt:active{background:#111}
 .apt .dash{height:1px;background:var(--char);position:relative;opacity:.8}
 .apt .dash::after{content:"";position:absolute;left:0;top:-3px;width:6px;height:6px;border-left:1px solid var(--char);border-bottom:1px solid var(--char);transform:rotate(45deg)}
 .apt .rooms{font-weight:600;font-size:.9em;white-space:nowrap}
@@ -400,7 +398,7 @@ body[data-cards="d"] .why-stage{display:block}
 .modal-bg{position:absolute;inset:0;background:rgba(11,11,11,.72);backdrop-filter:blur(6px)}
 .modal-box{
   position:relative;width:min(560px,100%);max-height:calc(100svh - 36px);overflow:auto;background:var(--char);color:var(--cream);
-  border:1px solid rgba(209,164,91,.5);box-shadow:0 40px 100px rgba(0,0,0,.6);
+  border:1px solid rgba(209,164,91,.5);
   transform:translateY(14px) scale(.985);transition:transform .25s var(--ease);
 }
 .modal.open .modal-box{transform:none}
@@ -429,45 +427,45 @@ body[data-cards="d"] .why-stage{display:block}
 .m-actions .link:hover{color:var(--gold)}
 
 /* ---------- contact ---------- */
-.contact{background:var(--slate);color:var(--cream);padding:clamp(70px,11vh,120px) 0;position:relative;overflow:hidden}
-.contact::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 85% 50%,rgba(209,164,91,.12),transparent 60%);pointer-events:none}
-.contact-grid{display:grid;grid-template-columns:.9fr 1.4fr;gap:clamp(32px,6vw,90px);align-items:center;position:relative}
-.contact-copy h2{font-family:var(--head);font-weight:900;font-size:clamp(3rem,6vw,4.6rem);line-height:1;color:var(--gold)}
-.contact-copy .rules{margin:24px 0 20px;display:grid;gap:7px;max-width:340px}
-.contact-copy .rules i{display:block;height:1px;background:var(--cream);opacity:.8}
-.contact-copy p{font-size:1.35rem;line-height:1.45;font-weight:400}
-form.lead{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.contact{background:var(--char);color:var(--cream);padding:clamp(70px,11vh,120px) 0;position:relative}
+.contact-frame{position:relative;border:1px solid rgba(209,164,91,.55);padding:clamp(34px,6vw,72px) clamp(24px,5vw,72px)}
+.contact-frame::before{content:"";position:absolute;inset:8px;border:1px solid rgba(209,164,91,.22);pointer-events:none}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.4fr;gap:clamp(32px,6vw,90px);align-items:center;position:relative}
+.contact-copy small{display:block;color:var(--gold);font-weight:700;letter-spacing:.14em;font-size:.85rem;margin-bottom:10px}
+.contact-copy h2{font-family:var(--head);font-weight:900;font-size:clamp(2.6rem,5vw,4rem);line-height:1.05;color:var(--cream)}
+.contact-copy .rule{width:64px;height:2px;background:var(--gold);margin:22px 0 18px}
+.contact-copy p{font-size:1.15rem;line-height:1.6;color:rgba(238,232,219,.85)}
+.contact-copy .tel{margin-top:22px;font-size:1.05rem}
+.contact-copy .tel a{color:var(--gold);font-weight:700;direction:ltr;unicode-bidi:embed;border-bottom:1px solid transparent;transition:border-color .25s}
+.contact-copy .tel a:hover{border-bottom-color:var(--gold)}
+form.lead{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
 form.lead .full{grid-column:1/-1}
-.field{position:relative}
+.field{position:relative;padding-top:16px}
 .field input{
-  width:100%;background:transparent;border:1px solid rgba(238,232,219,.75);border-radius:999px;color:var(--cream);
-  padding:16px 24px;font:inherit;font-size:1.05rem;outline:none;transition:border-color .3s,box-shadow .3s;
+  width:100%;background:transparent;border:0;border-bottom:1px solid rgba(238,232,219,.45);border-radius:0;color:var(--cream);
+  padding:10px 2px;font:inherit;font-size:1.08rem;outline:none;transition:border-color .3s;
 }
-.field input::placeholder{color:rgba(238,232,219,.75)}
-.field input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(209,164,91,.2)}
-.field input:not(:placeholder-shown):invalid{border-color:#e08a7a}
-.field label{position:absolute;inset-inline-end:24px;top:-9px;background:var(--slate);padding:0 8px;font-size:.78rem;color:var(--gold);opacity:0;transform:translateY(6px);transition:.3s;pointer-events:none}
+.field input::placeholder{color:rgba(238,232,219,.6)}
+.field input:focus{border-bottom-color:var(--gold)}
+.field input:not(:placeholder-shown):invalid{border-bottom-color:#e08a7a}
+.field label{position:absolute;inset-inline-end:2px;top:0;font-size:.75rem;color:var(--gold);opacity:0;transform:translateY(6px);transition:.3s;pointer-events:none;letter-spacing:.06em}
 .field input:not(:placeholder-shown)+label{opacity:1;transform:none}
 .form-apt{grid-column:1/-1;display:none;align-items:center;gap:10px;font-size:.95rem;color:var(--gold)}
 .form-apt.on{display:flex}
 .form-apt button{background:none;border:none;color:rgba(238,232,219,.7);text-decoration:underline;font-size:.85rem}
-form.lead .btn{width:100%;justify-content:center;font-family:var(--head);font-weight:800;font-size:clamp(1.05rem,1.8vw,1.35rem);padding:13px 24px 13px 14px}
+form.lead .btn{width:100%;justify-content:center;font-family:var(--head);font-weight:800;font-size:clamp(1.05rem,1.8vw,1.3rem);padding:14px 24px 14px 14px;margin-top:6px}
 form.lead .btn.sending{pointer-events:none;opacity:.7}
-.form-note{grid-column:1/-1;font-size:.85rem;opacity:.7}
-.form-ok{grid-column:1/-1;display:none;background:rgba(209,164,91,.15);border:1px solid var(--gold);padding:18px 22px;border-radius:24px;font-size:1.05rem}
+.form-note{grid-column:1/-1;font-size:.85rem;opacity:.65}
+.form-ok{grid-column:1/-1;display:none;border:1px solid var(--gold);padding:18px 22px;font-size:1.05rem;color:var(--cream)}
 form.lead.done .form-ok{display:block}
 form.lead.done .field,form.lead.done .btn,form.lead.done .form-note,form.lead.done .form-apt{display:none}
 
 /* ---------- map ---------- */
-.map{position:relative;overflow:hidden;background:#e9e4d8}
-.map a{display:block;position:relative}
-.map img{width:100%;height:clamp(300px,52vw,640px);object-fit:cover;transition:transform 8s ease-out}
-.map:hover img{transform:scale(1.04)}
-.map-pin{position:absolute;inset-inline-start:50%;top:50%;transform:translate(50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px}
-.map-pin .tag{background:var(--char);color:var(--cream);padding:8px 16px;font-weight:700;font-size:.95rem;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25);border-bottom:2px solid var(--gold)}
-.map-pin .dot{width:14px;height:14px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 0 rgba(209,164,91,.6);animation:pulse 2.2s ease-out infinite}
-@keyframes pulse{to{box-shadow:0 0 0 22px rgba(209,164,91,0)}}
-.map-hint{position:absolute;bottom:14px;inset-inline-start:16px;background:rgba(238,232,219,.9);padding:6px 14px;font-size:.85rem;font-weight:600;color:var(--char)}
+.map{position:relative;background:#e9e4d8;line-height:0}
+.map iframe{width:100%;height:clamp(340px,52vw,600px);border:0;display:block;filter:saturate(.85)}
+.map-hint{position:absolute;bottom:16px;left:16px;background:var(--char);color:var(--cream);padding:8px 16px;font-size:.85rem;font-weight:600;line-height:1.4;border-bottom:2px solid var(--gold);transition:background .25s,color .25s}
+.map-hint:hover{background:var(--gold);color:var(--char)}
+.map-tag{position:absolute;top:16px;right:16px;background:var(--char);color:var(--cream);padding:8px 16px;font-size:.95rem;font-weight:700;line-height:1.4;border-bottom:2px solid var(--gold);pointer-events:none}
 
 /* ---------- footer ---------- */
 footer{background:#0B0B0B url(/assets/v2/silk-footer.jpg) center/cover;color:var(--cream);text-align:center;padding:clamp(70px,11vh,120px) 0 40px;position:relative}
@@ -488,15 +486,15 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 /* floating whatsapp */
 .wa{
   position:fixed;bottom:22px;left:22px;z-index:55;width:56px;height:56px;border-radius:50%;background:var(--char);color:var(--gold);border:1px solid rgba(209,164,91,.5);
-  display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .3s;
+  display:grid;place-items:center;transition:background .3s,color .3s;
 }
-.wa:hover{transform:scale(1.08)}
+.wa:hover{background:var(--gold);color:var(--char)}
 .wa svg{width:30px;height:30px;fill:currentColor}
 
 /* ---------- design picker (review tool) ---------- */
 .picker{
   position:fixed;top:92px;left:14px;z-index:58;background:rgba(43,43,43,.94);color:var(--cream);
-  border:1px solid rgba(209,164,91,.5);font-size:.8rem;width:230px;box-shadow:0 20px 50px rgba(0,0,0,.4);backdrop-filter:blur(8px);
+  border:1px solid rgba(209,164,91,.5);font-size:.8rem;width:230px;backdrop-filter:blur(8px);
   transition:transform .4s var(--ease);
 }
 .picker.min{transform:translateX(calc(-100% + 34px))}
@@ -539,7 +537,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   .board-grid{grid-template-columns:repeat(2,1fr)}
   .bld.low{--offset:0}
   .contact-grid{grid-template-columns:1fr}
-  .contact-copy .rules{max-width:none}
   .f-cols{grid-template-columns:1fr;gap:34px}
   .picker{top:auto;bottom:90px;left:14px}
 }
@@ -574,7 +571,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0s !important;transition-duration:.01ms !important}
-  .rv,.line-x,.stats-rule{opacity:1;transform:none}
+  .rv,.stats-rule{opacity:1;transform:none}
   .hero-title .w span{transform:none}
   .apt{opacity:1}
 }
@@ -693,7 +690,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
       <div class="why-grid" id="whyGrid">
         <article class="card rv" data-i="0">
           <div class="num">01</div>
-          <div class="ph"><img loading="lazy" src="/assets/yadot-elad12-c1.jpg" alt=""></div>
+          <div class="ph"><img loading="lazy" src="/assets/yadot-elad12-c8.jpg" alt=""></div>
           <div class="body">
             <h3>מיקום</h3>
             <p>הפרויקט ממוקם בשער הכניסה החדש לאלעד במיקום נגיש במיוחד, המאפשר הליכה קצרה למוסדות חינוך, בתי כנסת, מרכזים מסחריים ותחבורה ציבורית. במרחק של דקה אחת בלבד אתם כבר מחוץ לעיר, על הצירים המרכזיים של גוש דן.</p>
@@ -709,7 +706,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
         </article>
         <article class="card rv d2" data-i="2">
           <div class="num">03</div>
-          <div class="ph"><img loading="lazy" src="/assets/v2/living.jpg" alt=""></div>
+          <div class="ph"><img loading="lazy" src="/assets/yadot-elad12-web.jpg" alt=""></div>
           <div class="body">
             <h3>משתלם</h3>
             <p>רוב הדירות כוללות יחידת מגורים עצמאית בגודל כ־43 מ"ר עם כניסה נפרדת, מטבחון, שירותים ומקלחת. פתרון מושלם להשכרה, עסק עצמאי, או יחידות דיור לאירוח בני משפחה.</p>
@@ -717,7 +714,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
         </article>
         <article class="card alt rv d3" data-i="3">
           <div class="num">04</div>
-          <div class="ph"><img loading="lazy" src="/assets/v2/elevator.jpg" alt=""></div>
+          <div class="ph"><img loading="lazy" src="/assets/yadot-elad12-c6.jpg" alt=""></div>
           <div class="body">
             <h3>תכנון</h3>
             <p>שתי כניסות נפרדות (מבואות) בכל בניין, לובי מפואר, שתי מעליות מרווחות כולל מעלית שבת בכשרות מהודרת, חניה מקורה ומחסן פרטי, מספר דיירים קטן בכל קומה המבטיח פרטיות, שקט ואיכות חיים גבוהה יותר.</p>
@@ -725,7 +722,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
         </article>
         <article class="card rv d4" data-i="4">
           <div class="num">05</div>
-          <div class="ph"><img loading="lazy" src="/assets/v2/family.jpg" alt=""></div>
+          <div class="ph"><img loading="lazy" src="/assets/yadot-elad12-c1.jpg" alt=""></div>
           <div class="body">
             <h3>קהילה</h3>
             <p>השדרה נבנית כחלק מסביבה קהילתית ערכית, תוססת ומגובשת. בסביבה הקרובה תמצאו מוסדות חינוך מצוינים, בתי כנסת, פארקים רחבי ידיים ושפע שירותים קהילתיים בדיוק כמו שאתם מחפשים למשפחה שלכם.</p>
@@ -743,10 +740,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
     <div class="wrap">
       <h2 class="sec-title lined rv">היזמים</h2>
       <p class="rv d1">מאחורי פרויקט "השדרה" עומדות <strong>חברות גלנור וידות</strong> מהחברות המובילות והאמינות בענף הבנייה והיזמות בישראל. עם ותק של עשרות שנים, ניסיון מוכח בליווי משפחות בכל שלבי הרכישה והבנייה, ומאות יחידות דיור שבנו והשלימו בהצלחה אתם יכולים להיות בטוחים שהבית שלכם בידיים טובות, יציבות ומנוסות.</p>
-      <div class="dev-logos rv d2">
-        <img src="/assets/galnor-logo.png" alt="קבוצת גלנור">
-        <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
-      </div>
     </div>
   </section>
 
@@ -779,31 +772,36 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
-    <div class="wrap contact-grid">
-      <div class="contact-copy rv">
-        <h2>צרו<br>קשר</h2>
-        <div class="rules"><i class="line-x"></i><i class="line-x" style="transition-delay:.15s"></i></div>
-        <p>השאירו פרטים<br>ונחזור אליכם<br>בהקדם</p>
+    <div class="wrap">
+      <div class="contact-frame rv">
+        <div class="contact-grid">
+          <div class="contact-copy">
+            <small>נשמח לעמוד לרשותכם</small>
+            <h2>צרו קשר</h2>
+            <div class="rule"></div>
+            <p>השאירו פרטים ונציג מטעמנו יחזור אליכם בהקדם עם כל המידע על הדירות, התוכניות והמחירים.</p>
+            <div class="tel">רפאל: <a href="tel:+972528939050">052-893-9050</a></div>
+          </div>
+          <form class="lead" id="leadForm" novalidate>
+            <div class="form-apt" id="formApt"><span id="formAptText"></span><button type="button" id="formAptClear">הסרה</button></div>
+            <div class="field"><input type="text" name="name" id="fName" placeholder="שם מלא" autocomplete="name" required><label for="fName">שם מלא</label></div>
+            <div class="field"><input type="tel" name="phone" id="fPhone" placeholder="טלפון" autocomplete="tel" inputmode="tel" pattern="[0-9+\-\s()]{8,}" required><label for="fPhone">טלפון</label></div>
+            <div class="field full"><input type="email" name="email" id="fEmail" placeholder="מייל" autocomplete="email"><label for="fEmail">מייל</label></div>
+            <div class="full"><button class="btn" type="submit" id="leadBtn"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת פרטים על דירת החלומות שלכם</button></div>
+            <div class="form-note">הפרטים ישמשו ליצירת קשר בנוגע לפרויקט בלבד.</div>
+            <div class="form-ok" id="formOk">תודה! הפרטים התקבלו ונציג מטעמנו יחזור אליכם בהקדם.</div>
+          </form>
+        </div>
       </div>
-      <form class="lead rv d1" id="leadForm" novalidate>
-        <div class="form-apt" id="formApt"><span id="formAptText"></span><button type="button" id="formAptClear">הסרה</button></div>
-        <div class="field"><input type="text" name="name" id="fName" placeholder="שם מלא" autocomplete="name" required><label for="fName">שם מלא</label></div>
-        <div class="field"><input type="tel" name="phone" id="fPhone" placeholder="טלפון" autocomplete="tel" inputmode="tel" pattern="[0-9+\-\s()]{8,}" required><label for="fPhone">טלפון</label></div>
-        <div class="field full"><input type="email" name="email" id="fEmail" placeholder="מייל" autocomplete="email"><label for="fEmail">מייל</label></div>
-        <div class="full"><button class="btn" type="submit" id="leadBtn"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת פרטים על דירת החלומות שלכם</button></div>
-        <div class="form-note">הפרטים ישמשו ליצירת קשר בנוגע לפרויקט בלבד.</div>
-        <div class="form-ok" id="formOk">תודה! הפרטים התקבלו ונציג מטעמנו יחזור אליכם בהקדם.</div>
-      </form>
     </div>
   </section>
 
   <!-- MAP -->
   <section class="map">
-    <a href="https://www.google.com/maps/search/?api=1&query=%D7%A8%D7%91%D7%99+%D7%99%D7%94%D7%95%D7%93%D7%94+%D7%94%D7%A0%D7%A9%D7%99%D7%90+29+%D7%90%D7%9C%D7%A2%D7%93" target="_blank" rel="noopener" aria-label="פתיחת מפה בגוגל מפות">
-      <img loading="lazy" src="/assets/v2/map-elad.jpg" alt="מפת אלעד">
-      <div class="map-pin"><div class="tag">השדרה - בכניסה החדשה לאלעד</div><div class="dot"></div></div>
-      <div class="map-hint">לחצו לפתיחה בגוגל מפות</div>
-    </a>
+    <iframe loading="lazy" title="מפת אלעד - משרד המכירות של השדרה" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+      src="https://www.google.com/maps?q=%D7%A8%D7%91%D7%99+%D7%99%D7%94%D7%95%D7%93%D7%94+%D7%94%D7%A0%D7%A9%D7%99%D7%90+29+%D7%90%D7%9C%D7%A2%D7%93&z=15&hl=he&output=embed"></iframe>
+    <div class="map-tag">משרד המכירות - רבי יהודה הנשיא 29, אלעד</div>
+    <a class="map-hint" href="https://www.google.com/maps/search/?api=1&query=%D7%A8%D7%91%D7%99+%D7%99%D7%94%D7%95%D7%93%D7%94+%D7%94%D7%A0%D7%A9%D7%99%D7%90+29+%D7%90%D7%9C%D7%A2%D7%93" target="_blank" rel="noopener">פתיחה בגוגל מפות</a>
   </section>
 
 </main>
@@ -924,7 +922,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
   },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
-  document.querySelectorAll('.rv,.line-x,.stats-rule').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('.rv,.stats-rule').forEach(function(el){io.observe(el)});
 
   /* count up */
   var cio=new IntersectionObserver(function(es){
