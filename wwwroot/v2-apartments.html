@@ -142,47 +142,48 @@ nav.main-nav a:hover::after{width:100%}
 .page-head nav a:hover{background:var(--gold);color:var(--char)}
 
 /* ---------- widget ---------- */
-.widget-wrap{padding:clamp(40px,7vh,72px) 0 clamp(60px,9vh,100px)}
-:root{--jv-main:#2B2B2B;--jv-secondary:#D0A35A;--jv-light:#F5F4EF;--jv-card:#F8F6F1;--jv-card-radius:7px;--jv-btn-radius:2px}
-.jv-realestate-root{--main-color:var(--jv-main) !important;--secondary-color:var(--jv-secondary) !important;--light-color:var(--jv-light) !important;--dark-color:var(--jv-secondary) !important;font-family:var(--sans) !important}
-nav.main-nav a,.burger{color:var(--ink) !important}
-.hdr-cta{color:var(--gold-2) !important}.hdr-cta:hover{color:var(--char) !important}
-.menu a{color:var(--cream) !important}.menu a.gold,.menu .menu-tel a{color:var(--gold) !important}
-footer,footer a{color:var(--cream) !important}footer a:hover{color:var(--gold) !important}
-.cta-strip .btn{display:inline-flex !important;align-items:center !important;gap:14px !important;background:var(--gold) !important;border:1px solid var(--gold) !important;color:var(--char) !important;border-radius:999px !important;padding:14px 26px 14px 18px !important;font-weight:700 !important;font-size:1.05rem !important;line-height:1.5 !important}
-.cta-strip .btn:hover{background:var(--cream) !important;border-color:var(--cream) !important;color:var(--char) !important}
-.jv-realestate-root .badge,.jv-realestate-root .tag{border-radius:0 !important}
-.jv-realestate-root .lamishtaken,.jv-realestate-root .free-market{display:none !important}
-.jv-realestate-root .apartment-card{border-radius:var(--jv-card-radius) !important;border:1px solid rgba(43,43,43,.15) !important;box-shadow:none !important;background:var(--jv-card) !important;transition:border-color .25s !important}
-.jv-realestate-root .apartment-card:hover{border-color:var(--jv-main) !important;box-shadow:none !important;transform:none !important}
-.jv-realestate-root .apartment-card.sold::before{content:'נמכר' !important;background:var(--char) !important;color:var(--cream) !important}
-.jv-realestate-root .apartment-card:not(.sold) .apartment-title::after{
-  content:'פנויה';display:table;font-size:.82rem;font-weight:700;color:var(--gold-2);
-  border:1px solid var(--gold);padding:0 14px;border-radius:999px;margin:6px auto 0;
-}
-.jv-realestate-root .display-btn,.jv-realestate-root .btn{border-radius:var(--jv-btn-radius) !important;box-shadow:none !important;font-weight:700 !important;font-family:var(--sans) !important}
-.jv-realestate-root label{font-family:var(--head) !important;font-weight:700 !important;color:var(--char) !important;font-size:1.05rem !important}
-.jv-realestate-root .form-select,.jv-realestate-root .form-control{border-radius:var(--jv-btn-radius) !important;border:1px solid var(--jv-main) !important;box-shadow:none !important;background-color:var(--jv-card) !important;color:var(--char) !important;font:600 1rem/1.5 var(--sans) !important;padding:10px 18px 10px 44px !important;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8893F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;background-repeat:no-repeat !important;background-position:left 16px center !important;background-size:16px !important;-webkit-appearance:none;appearance:none}
-.jv-realestate-root .form-select:focus,.jv-realestate-root .form-control:focus{border-color:var(--jv-secondary) !important;box-shadow:none !important;outline:none !important}
-.jv-realestate-root .apartment-card:not(.sold) .apartment-title::after{color:var(--jv-main) !important;border-color:var(--jv-main) !important}
-.jv-realestate-root .apartment-card.sold::before{background:var(--jv-secondary) !important}
+:root{--jv-page:#F5F4EF;--jv-band:#2B2B2B;--jv-band-text:#EEE8DB;--jv-frame:#2B2B2B;--jv-frame-w:1px;--jv-card:#F8F6F1;--jv-card-border:#E4DED2;--jv-card-hover:#D0A35A;--jv-card-border-w:1px;--jv-title:#2B2B2B;--jv-chip-bg:#F0EBE0;--jv-chip-text:#2B2B2B;--jv-icon:#D0A35A;--jv-avail:#B8893F;--jv-sold:#2B2B2B;--jv-btn-bg:#2B2B2B;--jv-btn-text:#EEE8DB;--jv-btn-border:#2B2B2B;--jv-plan-bg:#2B2B2B;--jv-plan-text:#EEE8DB;--jv-select-border:#D0A35A;--jv-select-bg:#F8F6F1;--jv-card-radius:7px;--jv-btn-radius:2px;--jv-chip-radius:40px;--jv-band-radius:0px;--jv-frame-radius:0px}
+.widget-wrap{padding:clamp(40px,7vh,72px) 0 clamp(60px,9vh,100px);background:var(--jv-page)}
+.jv-realestate-root{--main-color:var(--jv-btn-bg) !important;--secondary-color:var(--jv-icon) !important;--light-color:var(--jv-page) !important;--dark-color:var(--jv-chip-text) !important;font-family:var(--sans) !important}
 .jv-realestate-root *{box-shadow:none !important}
+.jv-realestate-root .lamishtaken,.jv-realestate-root .free-market{display:none !important}
+.jv-realestate-root .floor-title{background:var(--jv-band) !important;color:var(--jv-band-text) !important;border-radius:var(--jv-band-radius) var(--jv-band-radius) 0 0 !important;font-family:var(--head) !important}
+.jv-realestate-root .apartments-row{border:var(--jv-frame-w) solid var(--jv-frame) !important;border-radius:0 0 var(--jv-frame-radius) var(--jv-frame-radius) !important}
+.jv-realestate-root .apartment-card{border-radius:var(--jv-card-radius) !important;border:var(--jv-card-border-w) solid var(--jv-card-border) !important;background:var(--jv-card) !important;transition:border-color .25s !important}
+.jv-realestate-root .apartment-card:hover{border-color:var(--jv-card-hover) !important;transform:none !important}
+.jv-realestate-root .apartment-title{color:var(--jv-title) !important;font-family:var(--head) !important}
+.jv-realestate-root .apartment-price{color:var(--jv-title) !important}
+.jv-realestate-root .apartment-type{color:var(--jv-title) !important}
+.jv-realestate-root .apartment-info li{background:var(--jv-chip-bg) !important;color:var(--jv-chip-text) !important;border-radius:var(--jv-chip-radius) !important}
+.jv-realestate-root .apartment-info li i{color:var(--jv-icon) !important}
+.jv-realestate-root .apartment-card:not(.sold) .apartment-title::after{content:'פנויה';display:table;font-size:.82rem;font-weight:700;color:var(--jv-avail);border:1px solid var(--jv-avail);padding:0 14px;border-radius:999px;margin:6px auto 0;font-family:var(--sans)}
+.jv-realestate-root .apartment-card.sold::before{content:'נמכר' !important;background:var(--jv-sold) !important;color:#fff !important}
+.jv-realestate-root .apartment-plan{background:var(--jv-plan-bg) !important;color:var(--jv-plan-text) !important;border-radius:var(--jv-btn-radius) !important}
+.jv-realestate-root .apartment-plan a,.jv-realestate-root .apartment-details a{color:inherit !important}
+.jv-realestate-root .display-btn{background:var(--jv-page) !important;color:var(--jv-btn-border) !important;border:1px solid var(--jv-btn-border) !important;border-radius:var(--jv-btn-radius) !important;font-weight:700 !important;font-family:var(--sans) !important}
+.jv-realestate-root .display-btn.active{background:var(--jv-btn-bg) !important;color:var(--jv-btn-text) !important;border-color:var(--jv-btn-bg) !important}
+.jv-realestate-root label,.jv-realestate-root .form-label{font-family:var(--head) !important;font-weight:700 !important;color:var(--jv-title) !important;font-size:1.05rem !important}
+.jv-realestate-root .form-select,.jv-realestate-root .form-control{border-radius:var(--jv-btn-radius) !important;border:1px solid var(--jv-select-border) !important;background-color:var(--jv-select-bg) !important;color:var(--jv-title) !important;font:600 1rem/1.5 var(--sans) !important;padding:10px 18px 10px 44px !important;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8893F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;background-repeat:no-repeat !important;background-position:left 16px center !important;background-size:16px !important;-webkit-appearance:none;appearance:none}
+.jv-realestate-root .form-select:focus,.jv-realestate-root .form-control:focus{border-color:var(--jv-card-hover) !important;outline:none !important}
 
 /* ---------- style tools (review tool) ---------- */
-.tools{position:fixed;top:92px;left:14px;z-index:58;background:rgba(43,43,43,.96);color:var(--cream);border:1px solid rgba(209,164,91,.5);font-size:.8rem;width:240px;backdrop-filter:blur(8px);transition:transform .4s var(--ease);font-family:var(--sans) !important}
+.tools{position:fixed;top:92px;left:14px;z-index:58;background:rgba(43,43,43,.97);color:var(--cream);border:1px solid rgba(209,164,91,.5);font-size:.78rem;width:262px;max-height:calc(100vh - 130px);overflow:auto;backdrop-filter:blur(8px);transition:transform .4s var(--ease);font-family:var(--sans) !important;scrollbar-width:thin}
 .tools.min{transform:translateX(calc(-100% + 34px))}
-.tools-head{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid rgba(209,164,91,.35);font-weight:700;color:var(--gold)}
+.tools-head{position:sticky;top:0;background:rgba(43,43,43,1);display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid rgba(209,164,91,.35);font-weight:700;color:var(--gold);z-index:1}
 .tools-head button{background:none;border:none;color:var(--gold);font-size:1rem;line-height:1;width:22px;cursor:pointer}
-.tools-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.tools-group{padding:7px 10px 2px;color:var(--gold);font-weight:700;font-size:.72rem;letter-spacing:.08em;border-top:1px solid rgba(209,164,91,.25)}
+.tools-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:5px 10px}
 .tools-row label{color:rgba(238,232,219,.85)}
-.tools-row input[type=color]{width:34px;height:24px;border:1px solid rgba(238,232,219,.4);background:transparent;padding:0;cursor:pointer}
-.tools-row input[type=range]{width:100px;accent-color:var(--gold);vertical-align:middle}
-.tools-row output{font-size:.72rem;color:var(--gold);display:inline-block;min-width:34px;text-align:left;direction:ltr}
-.tools-acts{display:flex;gap:6px;padding:8px 10px}
-.tools-acts button{flex:1;background:transparent;border:1px solid rgba(238,232,219,.35);color:var(--cream);padding:5px 8px;border-radius:999px;font-size:.75rem;cursor:pointer;transition:.2s}
-.tools-acts button:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
-.tools-foot{padding:6px 10px;font-size:.7rem;color:rgba(238,232,219,.55);line-height:1.4}
-@media (max-width:960px){.tools{top:auto;bottom:90px}}
+.tools-row input[type=color]{width:34px;height:22px;border:1px solid rgba(238,232,219,.4);background:transparent;padding:0;cursor:pointer}
+.tools-row input[type=range]{width:86px;accent-color:var(--gold);vertical-align:middle}
+.tools-row output{font-size:.7rem;color:var(--gold);display:inline-block;min-width:30px;text-align:left;direction:ltr}
+.tools-presets{display:flex;flex-wrap:wrap;gap:5px;padding:8px 10px}
+.tools-presets button,.tools-acts button{background:transparent;border:1px solid rgba(238,232,219,.35);color:var(--cream);padding:4px 9px;border-radius:999px;font-size:.72rem;cursor:pointer;transition:.2s}
+.tools-presets button:hover,.tools-acts button:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
+.tools-acts{display:flex;gap:6px;padding:8px 10px;border-top:1px solid rgba(209,164,91,.25)}
+.tools-acts button{flex:1}
+.tools-foot{padding:0 10px 8px;font-size:.68rem;color:rgba(238,232,219,.55);line-height:1.4}
+@media (max-width:960px){.tools{top:auto;bottom:90px;max-height:60vh}}
 
 /* ---------- cta strip ---------- */
 .cta-strip{background:var(--char);color:var(--cream);padding:clamp(50px,8vh,80px) 0}
@@ -359,12 +360,40 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 <!-- style tools (temporary review tool) -->
 <div class="tools" id="tools">
   <div class="tools-head"><span>כלי עיצוב</span><button id="toolsMin" aria-label="מזעור">−</button></div>
-  <div class="tools-row"><label for="tMain">צבע ראשי (זהב)</label><input type="color" id="tMain" data-var="--jv-main"></div>
-  <div class="tools-row"><label for="tSec">צבע משני (כהה)</label><input type="color" id="tSec" data-var="--jv-secondary"></div>
-  <div class="tools-row"><label for="tLight">רקע בהיר</label><input type="color" id="tLight" data-var="--jv-light"></div>
-  <div class="tools-row"><label for="tCard">רקע כרטיס</label><input type="color" id="tCard" data-var="--jv-card"></div>
-  <div class="tools-row"><label for="tCardR">עיגול פינות כרטיס</label><span><input type="range" id="tCardR" data-var="--jv-card-radius" min="0" max="32" step="1"> <output for="tCardR"></output></span></div>
-  <div class="tools-row"><label for="tBtnR">עיגול כפתורים</label><span><input type="range" id="tBtnR" data-var="--jv-btn-radius" min="0" max="40" step="1"> <output for="tBtnR"></output></span></div>
+  <div class="tools-group">התחלה מהירה</div>
+  <div class="tools-presets"><button type="button" data-preset="קלאסי כהה">קלאסי כהה</button><button type="button" data-preset="זהב בהיר">זהב בהיר</button><button type="button" data-preset="מינימלי">מינימלי</button><button type="button" data-preset="מעוגל רך">מעוגל רך</button></div>
+  <div class="tools-group">רקעים</div>
+  <div class="tools-row"><label for="tpage">רקע האזור</label><input type="color" id="tpage" data-var="--jv-page"></div>
+  <div class="tools-row"><label for="tband">פס קומה - רקע</label><input type="color" id="tband" data-var="--jv-band"></div>
+  <div class="tools-row"><label for="tband_text">פס קומה - טקסט</label><input type="color" id="tband_text" data-var="--jv-band-text"></div>
+  <div class="tools-row"><label for="tframe">מסגרת קומה - צבע</label><input type="color" id="tframe" data-var="--jv-frame"></div>
+  <div class="tools-row"><label for="tframe_w">מסגרת קומה - עובי</label><span><input type="range" id="tframe_w" data-var="--jv-frame-w" min="0" max="4" step="1"> <output for="tframe_w"></output></span></div>
+  <div class="tools-group">כרטיס</div>
+  <div class="tools-row"><label for="tcard">רקע כרטיס</label><input type="color" id="tcard" data-var="--jv-card"></div>
+  <div class="tools-row"><label for="tcard_border">גבול כרטיס</label><input type="color" id="tcard_border" data-var="--jv-card-border"></div>
+  <div class="tools-row"><label for="tcard_hover">גבול כרטיס במעבר</label><input type="color" id="tcard_hover" data-var="--jv-card-hover"></div>
+  <div class="tools-row"><label for="tcard_border_w">עובי גבול כרטיס</label><span><input type="range" id="tcard_border_w" data-var="--jv-card-border-w" min="0" max="4" step="1"> <output for="tcard_border_w"></output></span></div>
+  <div class="tools-group">טקסט וסמלים</div>
+  <div class="tools-row"><label for="ttitle">כותרת דירה</label><input type="color" id="ttitle" data-var="--jv-title"></div>
+  <div class="tools-row"><label for="tchip_bg">תגית נתון - רקע</label><input type="color" id="tchip_bg" data-var="--jv-chip-bg"></div>
+  <div class="tools-row"><label for="tchip_text">תגית נתון - טקסט</label><input type="color" id="tchip_text" data-var="--jv-chip-text"></div>
+  <div class="tools-row"><label for="ticon">אייקונים</label><input type="color" id="ticon" data-var="--jv-icon"></div>
+  <div class="tools-row"><label for="tavail">תגית "פנויה"</label><input type="color" id="tavail" data-var="--jv-avail"></div>
+  <div class="tools-row"><label for="tsold">סרט "נמכר"</label><input type="color" id="tsold" data-var="--jv-sold"></div>
+  <div class="tools-group">כפתורים</div>
+  <div class="tools-row"><label for="tbtn_bg">כפתור פעיל - רקע</label><input type="color" id="tbtn_bg" data-var="--jv-btn-bg"></div>
+  <div class="tools-row"><label for="tbtn_text">כפתור פעיל - טקסט</label><input type="color" id="tbtn_text" data-var="--jv-btn-text"></div>
+  <div class="tools-row"><label for="tbtn_border">כפתור רגיל - קו/טקסט</label><input type="color" id="tbtn_border" data-var="--jv-btn-border"></div>
+  <div class="tools-row"><label for="tplan_bg">תוכנית דירה - רקע</label><input type="color" id="tplan_bg" data-var="--jv-plan-bg"></div>
+  <div class="tools-row"><label for="tplan_text">תוכנית דירה - טקסט</label><input type="color" id="tplan_text" data-var="--jv-plan-text"></div>
+  <div class="tools-row"><label for="tselect_border">בורר בניין - קו</label><input type="color" id="tselect_border" data-var="--jv-select-border"></div>
+  <div class="tools-row"><label for="tselect_bg">בורר בניין - רקע</label><input type="color" id="tselect_bg" data-var="--jv-select-bg"></div>
+  <div class="tools-group">פינות</div>
+  <div class="tools-row"><label for="tcard_radius">פינות כרטיס</label><span><input type="range" id="tcard_radius" data-var="--jv-card-radius" min="0" max="32" step="1"> <output for="tcard_radius"></output></span></div>
+  <div class="tools-row"><label for="tbtn_radius">פינות כפתורים</label><span><input type="range" id="tbtn_radius" data-var="--jv-btn-radius" min="0" max="40" step="1"> <output for="tbtn_radius"></output></span></div>
+  <div class="tools-row"><label for="tchip_radius">פינות תגיות</label><span><input type="range" id="tchip_radius" data-var="--jv-chip-radius" min="0" max="40" step="1"> <output for="tchip_radius"></output></span></div>
+  <div class="tools-row"><label for="tband_radius">פינות פס קומה</label><span><input type="range" id="tband_radius" data-var="--jv-band-radius" min="0" max="24" step="1"> <output for="tband_radius"></output></span></div>
+  <div class="tools-row"><label for="tframe_radius">פינות מסגרת קומה</label><span><input type="range" id="tframe_radius" data-var="--jv-frame-radius" min="0" max="24" step="1"> <output for="tframe_radius"></output></span></div>
   <div class="tools-acts"><button id="toolsCopy">העתקת ההגדרות</button><button id="toolsReset">איפוס</button></div>
   <div class="tools-foot">השינויים נשמרים בדפדפן שלך בלבד. "העתקת ההגדרות" מעתיקה טקסט לשליחה אליי.</div>
 </div>
@@ -385,25 +414,30 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
   addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
   /* style tools */
-  var DEF={'--jv-main':'#2B2B2B','--jv-secondary':'#D0A35A','--jv-light':'#F5F4EF','--jv-card':'#F8F6F1','--jv-card-radius':'7px','--jv-btn-radius':'2px'};
-  var cur={};try{cur=JSON.parse(localStorage.getItem('jv-tools')||'{}')}catch(e){}
+  var DEF={"--jv-page": "#F5F4EF", "--jv-band": "#2B2B2B", "--jv-band-text": "#EEE8DB", "--jv-frame": "#2B2B2B", "--jv-frame-w": "1px", "--jv-card": "#F8F6F1", "--jv-card-border": "#E4DED2", "--jv-card-hover": "#D0A35A", "--jv-card-border-w": "1px", "--jv-title": "#2B2B2B", "--jv-chip-bg": "#F0EBE0", "--jv-chip-text": "#2B2B2B", "--jv-icon": "#D0A35A", "--jv-avail": "#B8893F", "--jv-sold": "#2B2B2B", "--jv-btn-bg": "#2B2B2B", "--jv-btn-text": "#EEE8DB", "--jv-btn-border": "#2B2B2B", "--jv-plan-bg": "#2B2B2B", "--jv-plan-text": "#EEE8DB", "--jv-select-border": "#D0A35A", "--jv-select-bg": "#F8F6F1", "--jv-card-radius": "7px", "--jv-btn-radius": "2px", "--jv-chip-radius": "40px", "--jv-band-radius": "0px", "--jv-frame-radius": "0px"};
+  var PRESETS={"קלאסי כהה": {}, "זהב בהיר": {"--jv-band": "#D0A35A", "--jv-band-text": "#2B2B2B", "--jv-frame": "#D0A35A", "--jv-btn-bg": "#D0A35A", "--jv-btn-text": "#2B2B2B", "--jv-btn-border": "#B8893F", "--jv-plan-bg": "#D0A35A", "--jv-plan-text": "#2B2B2B", "--jv-title": "#B8893F", "--jv-card-hover": "#2B2B2B"}, "מינימלי": {"--jv-frame-w": "0px", "--jv-band": "#F5F4EF", "--jv-band-text": "#2B2B2B", "--jv-card": "#FFFFFF", "--jv-card-border": "#E9E4D8", "--jv-card-hover": "#2B2B2B", "--jv-chip-bg": "#F5F4EF", "--jv-plan-bg": "#F5F4EF", "--jv-plan-text": "#2B2B2B", "--jv-card-radius": "0px", "--jv-chip-radius": "0px", "--jv-btn-radius": "0px"}, "מעוגל רך": {"--jv-card-radius": "18px", "--jv-btn-radius": "40px", "--jv-band-radius": "18px", "--jv-frame-radius": "18px", "--jv-chip-radius": "40px", "--jv-frame": "#E4DED2", "--jv-band": "#2B2B2B"}};
+  var cur={};try{cur=JSON.parse(localStorage.getItem('jv-tools2')||'{}')}catch(e){}
   var root=document.documentElement,tools=document.getElementById('tools');
+  function save(){try{localStorage.setItem('jv-tools2',JSON.stringify(cur))}catch(e){}}
   function applyVars(){Object.keys(DEF).forEach(function(k){root.style.setProperty(k,cur[k]||DEF[k])})}
   function fill(){
     tools.querySelectorAll('input[data-var]').forEach(function(inp){
       var v=cur[inp.dataset.var]||DEF[inp.dataset.var];
-      if(inp.type==='range'){var n=parseInt(v,10);var full=(inp.id==='tBtnR'&&n>40);inp.value=full?40:n;inp.nextElementSibling.textContent=full?'עגול':n+'px'}
+      if(inp.type==='range'){var n=parseInt(v,10);inp.value=n;inp.nextElementSibling.textContent=n+'px'}
       else inp.value=v;
     });
   }
   tools.querySelectorAll('input[data-var]').forEach(function(inp){
     inp.addEventListener('input',function(){
-      var v=inp.value;
-      if(inp.type==='range'){v=(inp.id==='tBtnR'&&+inp.value>=40)?'999px':inp.value+'px';inp.nextElementSibling.textContent=v==='999px'?'עגול':v}
-      cur[inp.dataset.var]=v;applyVars();try{localStorage.setItem('jv-tools',JSON.stringify(cur))}catch(e){}
+      var v=inp.type==='range'?inp.value+'px':inp.value;
+      if(inp.type==='range')inp.nextElementSibling.textContent=v;
+      cur[inp.dataset.var]=v;applyVars();save();
     });
   });
-  document.getElementById('toolsReset').addEventListener('click',function(){cur={};try{localStorage.removeItem('jv-tools')}catch(e){};applyVars();fill()});
+  tools.querySelectorAll('[data-preset]').forEach(function(b){
+    b.addEventListener('click',function(){cur=Object.assign({},PRESETS[b.dataset.preset]||{});applyVars();fill();save()});
+  });
+  document.getElementById('toolsReset').addEventListener('click',function(){cur={};try{localStorage.removeItem('jv-tools2')}catch(e){};applyVars();fill()});
   document.getElementById('toolsCopy').addEventListener('click',function(){
     var out={};Object.keys(DEF).forEach(function(k){out[k]=cur[k]||DEF[k]});
     var txt=JSON.stringify(out);
