@@ -525,6 +525,10 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
   nav.main-nav{display:none}
+  .hero-mark{height:clamp(76px,9vw,104px)}
+  .hero-title{font-size:clamp(2.2rem,5vw,4.2rem)}
+  body[data-hero="b"] .hero-title{font-size:clamp(2.4rem,5.6vw,4.6rem)}
+  body[data-hero="b"] .hero-mark{height:clamp(90px,11vw,120px)}
 }
 @media (max-width:960px){
   .hdr-cta{display:none}
@@ -532,9 +536,9 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   .hero{padding-top:70px;min-height:0}
   .hero-inner{grid-template-rows:auto auto}
   .hero-copy{padding:36px 0 30px}
-  .hero-title{font-size:clamp(2.2rem,10vw,3.4rem)}
+  .hero-title{font-size:clamp(1.9rem,8.4vw,3rem)}
+  .hero-mark{height:clamp(84px,13vw,116px);margin-bottom:22px}
   .hero-media{min-height:min(52vh,420px)}
-  .scroll-cue{display:none}
   body[data-hero="b"] .hero{min-height:100svh}
   body[data-hero="b"] .hero-inner{grid-template-rows:minmax(0,1fr)}
   body[data-hero="b"] .hero-media img{object-position:40% 65%}
@@ -648,9 +652,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
         <img src="/assets/yadot-elad12-c1.jpg" alt="הדמיית פרויקט השדרה אלעד" fetchpriority="high">
       </div>
     </div>
-    <a class="scroll-cue" href="#about" aria-label="גלילה למטה">
-      <svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
-    </a>
   </section>
 
   <!-- INTRO -->
