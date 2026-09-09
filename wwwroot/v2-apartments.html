@@ -251,9 +251,9 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 .floor-lab b{font-family:var(--head);font-weight:800;font-size:1.05rem;color:var(--char);line-height:1.2}
 .floor-lab span{font-size:.8rem;color:var(--paper-ink)}
 .floor-lab .n{font-family:var(--num);font-size:1.8rem;line-height:1;color:var(--gold-2);direction:ltr}
-.units{display:flex;flex-wrap:wrap;gap:10px;padding:14px 16px;align-items:center}
+.units{display:grid;grid-template-columns:repeat(var(--cols,5),minmax(0,1fr));gap:10px;padding:14px 16px;align-items:center}
 .unit{
-  position:relative;min-width:132px;flex:1 1 132px;max-width:190px;padding:12px 12px 10px;border-radius:5px;border:1px solid transparent;
+  position:relative;min-width:0;padding:12px 12px 10px;border-radius:5px;border:1px solid transparent;
   text-align:start;font:inherit;cursor:pointer;transition:background .18s,color .18s,border-color .18s;
   display:flex;flex-direction:column;gap:2px;height:66px;justify-content:center;
 }
@@ -306,6 +306,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 
 @media (max-width:1100px){nav.main-nav{display:none}}
 @media (max-width:960px){
+  .units{grid-template-columns:repeat(3,minmax(0,1fr))}
   .hdr-cta{display:none}.burger{display:block}.f-cols{grid-template-columns:1fr;gap:34px}
   .ph-grid{grid-template-columns:1fr}
   .page-head{padding-top:calc(70px + 36px)}
@@ -318,7 +319,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   .floor-lab{flex-direction:row;align-items:center;gap:10px;padding:10px 14px;border-inline-end:0;border-bottom:1px solid rgba(43,43,43,.12)}
   .floor-lab .n{font-size:1.3rem}
   .units{padding:10px}
-  .unit{min-width:120px;max-width:none}
+  .units{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cta-strip .box{justify-content:center;text-align:center}.cta-strip .acts{justify-content:center}
   .m-specs{grid-template-columns:1fr}
   .m-specs div:nth-child(odd){border-inline-end:none;padding-inline-end:4px}
@@ -519,8 +520,8 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   function fmt(x){return (Math.round(x*10)/10).toLocaleString('he-IL')}
   function floorKey(f){f=String(f);var m=f.match(/\d+/g);if(!m)return 0;return m.length>1?(+m[0])+.5:+m[0]}
   function floorName(f){f=String(f).trim();if(f==='0')return 'קומת קרקע';if(f.indexOf(',')>-1)return 'קומות '+f.replace(',','-');return 'קומה '+f}
-  function floorSub(f){f=String(f).trim();if(f==='0')return 'דירות גן';if(f.indexOf(',')>-1)return 'פנטהאוז דופלקס';return ''}
-  function isPent(a){return String(a.floor).indexOf(',')>-1}
+  function floorSub(f){f=String(f).trim();if(f==='0')return 'דירות גן';if(f.indexOf(',')>-1)return parseInt(f,10)>=5?'פנטהאוז דופלקס':(parseInt(f,10)===0?'דופלקס גן':'דופלקס');return ''}
+  function isPent(a){var f=String(a.floor);return f.indexOf(',')>-1&&parseInt(f,10)>=5}
 
   function load(){
     fetch(ROOT+'/project.json').then(function(r){return r.json()}).then(function(p){
@@ -579,6 +580,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
     // floors
     var floors={};list.forEach(function(a){(floors[a.floor]=floors[a.floor]||[]).push(a)});
     var keys=Object.keys(floors).sort(function(x,y){return floorKey(y)-floorKey(x)});
+    var maxN=0;keys.forEach(function(f){maxN=Math.max(maxN,floors[f].length)});bmap.style.setProperty('--cols',Math.max(1,Math.min(6,maxN)));
     var html='',shown=0;
     keys.forEach(function(f){
       var us=floors[f].sort(function(x,y){return +x.num-+y.num}).filter(match);

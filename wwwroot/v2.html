@@ -1067,7 +1067,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
     if(f.indexOf(',')>-1)return f.replace(',','-')+' (דופלקס)';
     return f;
   }
-  function isPent(a){return String(a.floor).indexOf(',')>-1}
+  function isPent(a){var f=String(a.floor);return f.indexOf(',')>-1&&parseInt(f,10)>=5}
   function num(v){var x=parseFloat(String(v).replace(/[^\d.]/g,''));return isNaN(x)?0:x}
   function fmt(x){return (Math.round(x*10)/10).toLocaleString('he-IL')}
 
