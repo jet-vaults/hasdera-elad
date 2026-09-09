@@ -152,17 +152,6 @@ nav.main-nav a:hover::after{width:100%}
 .btn.ghost{background:transparent;color:var(--gold-2);border-color:var(--gold)}
 .btn.ghost:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
 
-.scroll-cue{
-  position:absolute;bottom:32px;left:clamp(20px,5vw,72px);z-index:3;
-  width:80px;height:80px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;
-  color:var(--gold);opacity:0;animation:fadeUp 1s var(--ease) 1.6s forwards;
-  background:rgba(11,11,11,.35);backdrop-filter:blur(3px);
-}
-.scroll-cue::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--gold);animation:cuePulse 2.4s ease-out infinite;opacity:0}
-@keyframes cuePulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.55);opacity:0}}
-.scroll-cue svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;animation:bob 1.8s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(209,164,91,.7))}
-@keyframes bob{0%,100%{transform:translateY(-4px)}50%{transform:translateY(5px)}}
-
 /* hero B: full-bleed image, text bottom-right */
 body[data-hero="b"] .hero{background:#0B0B0B;color:var(--cream)}
 body[data-hero="b"] .hero-inner{grid-template-rows:minmax(0,1fr)}
