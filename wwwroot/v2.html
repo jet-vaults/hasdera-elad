@@ -495,22 +495,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 .wa:hover{background:var(--gold);color:var(--char)}
 .wa svg{width:30px;height:30px;fill:currentColor}
 
-/* ---------- design picker (review tool) ---------- */
-.picker{
-  position:fixed;top:92px;left:14px;z-index:58;background:rgba(43,43,43,.94);color:var(--cream);
-  border:1px solid rgba(209,164,91,.5);font-size:.8rem;width:230px;backdrop-filter:blur(8px);
-  transition:transform .4s var(--ease);
-}
-.picker.min{transform:translateX(calc(-100% + 34px))}
-.picker-head{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid rgba(209,164,91,.35);font-weight:700;color:var(--gold)}
-.picker-head button{background:none;border:none;color:var(--gold);font-size:1rem;line-height:1;width:22px}
-.picker-row{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.08)}
-.picker-row b{display:block;margin-bottom:5px;color:rgba(238,232,219,.75);font-weight:600}
-.picker-opts{display:flex;gap:4px;flex-wrap:wrap}
-.picker-opts button{background:transparent;border:1px solid rgba(238,232,219,.3);color:var(--cream);padding:3px 8px;border-radius:999px;font-size:.75rem;transition:.2s}
-.picker-opts button.on{background:var(--gold);border-color:var(--gold);color:var(--char);font-weight:700}
-.picker-foot{padding:6px 10px;font-size:.7rem;color:rgba(238,232,219,.55)}
-
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
   nav.main-nav{display:none}
@@ -546,7 +530,6 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   .bld.low{--offset:0}
   .contact-grid{grid-template-columns:1fr}
   .f-cols{grid-template-columns:1fr;gap:34px}
-  .picker{top:auto;bottom:90px;left:14px}
 }
 @media (max-width:640px){
   .logos img{height:36px}
@@ -585,7 +568,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 }
 </style>
 </head>
-<body data-hero="a" data-cards="a">
+<body data-hero="b" data-cards="d">
 
 <header id="hdr">
   <div class="logos">
@@ -873,49 +856,10 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.5L3 29l6.7-1.7c1.9 1 4.1 1.6 6.3 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 0 1 5.4 16C5.4 10.2 10.2 5.4 16 5.4S26.6 10.2 26.6 16 21.8 26.6 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.9 1.1 3.4.9 4.1.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
 </a>
 
-<!-- design picker (temporary review tool) -->
-<div class="picker" id="picker">
-  <div class="picker-head"><span>אפשרויות עיצוב</span><button id="pickerMin" aria-label="מזעור">−</button></div>
-  <div class="picker-row"><b>עמוד פתיחה (Hero)</b><div class="picker-opts" data-key="hero">
-    <button data-v="a">A נקי מרכזי</button><button data-v="b">B תמונה מלאה</button><button data-v="c">C פיצול בהיר</button>
-  </div></div>
-  <div class="picker-row"><b>למה לבחור (כרטיסים)</b><div class="picker-opts" data-key="cards">
-    <button data-v="a">A עמודות</button><button data-v="b">B שורות</button><button data-v="c">C תמונות</button><button data-v="d">D אינטראקטיבי</button>
-  </div></div>
-  <div class="picker-foot">הבחירה נשמרת בדפדפן. אפשר גם ?hero=b&cards=c</div>
-</div>
-
 <script src="/assets/a11y.js" defer></script>
 <script>
 (function(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- design picker ---------- */
-  var KEYS={hero:'abc',cards:'abcd'};
-  var qs=new URLSearchParams(location.search);
-  Object.keys(KEYS).forEach(function(k){
-    var v=qs.get(k);
-    try{ if(!v) v=localStorage.getItem('v2-'+k); }catch(e){}
-    if(v&&KEYS[k].indexOf(v)>-1) document.body.dataset[k]=v;
-  });
-  function syncPicker(){
-    document.querySelectorAll('.picker-opts').forEach(function(g){
-      var k=g.dataset.key;[].forEach.call(g.children,function(b){b.classList.toggle('on',b.dataset.v===document.body.dataset[k])});
-    });
-  }
-  document.querySelectorAll('.picker-opts button').forEach(function(b){
-    b.addEventListener('click',function(){
-      var k=b.parentNode.dataset.key;document.body.dataset[k]=b.dataset.v;
-      try{localStorage.setItem('v2-'+k,b.dataset.v)}catch(e){}
-      syncPicker();
-      if(k==='cards')initWhyD();
-    });
-  });
-  syncPicker();
-  var picker=document.getElementById('picker'),pickerMin=document.getElementById('pickerMin');
-  function setPickerMin(m){picker.classList.toggle('min',m);pickerMin.textContent=m?'+':'−'}
-  pickerMin.addEventListener('click',function(){setPickerMin(!picker.classList.contains('min'))});
-  if(innerWidth<960)setPickerMin(true);
 
   /* header */
   var hdr=document.getElementById('hdr');

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>מלאי דירות - השדרה אלעד</title>
-<meta name="description" content="מפת המלאי של פרויקט השדרה באלעד: אילו דירות פנויות ואילו נמכרו, לפי בניין וקומה, עם תוכניות ושטחים.">
+<meta name="description" content="מלאי הדירות הפנויות בפרויקט השדרה באלעד: תוכניות, שטחים ומחירים לפי בניין.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,12 +54,15 @@ body::before{
 }
 
 
-/* ---------- reveal ---------- */
-.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
-.rv.in{opacity:1;transform:none}
-.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}.rv.d5{transition-delay:.5s}
-
-
+/* the widget injects Bootstrap after these styles; !important keeps the page on brand */
+body{font-family:var(--sans) !important;background:var(--cream) !important;color:var(--ink) !important;line-height:1.7 !important}
+a{text-decoration:none !important}
+header a,header button,.menu a,footer a,.page-head *,.cta-strip *{font-family:var(--sans) !important}
+.page-head h1,.cta-strip h2{font-family:var(--head) !important}
+header#hdr{line-height:1.7 !important;font-size:16px !important}
+nav.main-nav a{font:600 .95rem/1.7 var(--sans) !important;color:var(--ink) !important;padding:4px 0 !important;margin:0 !important}
+.hdr-cta{font:700 .9rem/1.7 var(--sans) !important;padding:8px 20px !important}
+.logos img{height:44px !important}header.scrolled .logos img{height:36px !important}
 /* ---------- header ---------- */
 header{
   position:fixed;inset-inline:0;top:0;z-index:60;
@@ -127,40 +130,70 @@ nav.main-nav a:hover::after{width:100%}
 .btn.ghost:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
 
 
-/* apartment modal */
-.modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:18px;visibility:hidden;opacity:0;transition:opacity .2s,visibility .2s}
-.modal.open{visibility:visible;opacity:1}
-.modal-bg{position:absolute;inset:0;background:rgba(11,11,11,.72);backdrop-filter:blur(6px)}
-.modal-box{
-  position:relative;width:min(560px,100%);max-height:calc(100svh - 36px);overflow:auto;background:var(--char);color:var(--cream);
-  border:1px solid rgba(209,164,91,.5);
-  transform:translateY(14px) scale(.985);transition:transform .25s var(--ease);
-}
-.modal.open .modal-box{transform:none}
-.modal-box::before{content:"";position:absolute;inset:10px;border:1px solid rgba(209,164,91,.25);pointer-events:none}
-.modal-close{position:absolute;top:14px;left:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);background:transparent;color:var(--gold);display:grid;place-items:center;z-index:2;transition:background .25s,color .25s}
-.modal-close:hover{background:var(--gold);color:var(--char)}
-.modal-close svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
-.m-head{padding:clamp(28px,5vw,40px) clamp(24px,5vw,40px) 18px;text-align:start}
-.m-head small{display:block;color:var(--gold);font-weight:700;letter-spacing:.06em;font-size:.9rem}
-.m-head h3{font-family:var(--head);font-weight:900;font-size:clamp(2.2rem,5vw,3rem);line-height:1.1;margin-top:4px}
-.m-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.m-tags span{border:1px solid var(--gold);color:var(--gold);padding:3px 12px;border-radius:999px;font-size:.85rem;font-weight:700}
-.m-tags span.dark{background:var(--gold);color:var(--char)}
-.m-specs{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(238,232,219,.15);margin:8px clamp(24px,5vw,40px) 0}
-.m-specs div{padding:14px 4px;border-bottom:1px solid rgba(238,232,219,.15)}
-.m-specs div:nth-child(odd){border-inline-end:1px solid rgba(238,232,219,.15);padding-inline-end:14px}
-.m-specs div:nth-child(even){padding-inline-start:14px}
-.m-specs div:last-child:nth-child(odd){grid-column:1/-1;border-inline-end:none;padding-inline-end:4px}
-.m-specs small{display:block;font-size:.82rem;color:rgba(238,232,219,.65)}
-.m-specs b{font-family:var(--num);font-weight:var(--num-weight);font-size:1.7rem;color:var(--cream);direction:ltr;display:inline-flex;align-items:baseline;gap:6px;line-height:1.1}
-.m-specs b i{font-style:normal;font-family:var(--sans);font-size:.85rem;color:var(--gold);font-weight:600}
-.m-actions{display:flex;gap:12px;flex-wrap:wrap;padding:22px clamp(24px,5vw,40px) clamp(28px,5vw,40px)}
-.m-actions .btn{font-size:.98rem;padding:11px 20px 11px 14px}
-.m-actions .btn .arr{width:30px;height:30px}
-.m-actions .link{align-self:center;font-size:.9rem;color:rgba(238,232,219,.7);text-decoration:underline;text-underline-offset:4px;margin-inline-start:auto}
-.m-actions .link:hover{color:var(--gold)}
+/* ---------- page head ---------- */
+.page-head{background:var(--char);color:var(--cream);padding:calc(76px + clamp(48px,8vh,84px)) 0 clamp(44px,7vh,72px);text-align:center;position:relative}
+.page-head::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:linear-gradient(to left,transparent,var(--gold) 20%,var(--gold) 80%,transparent)}
+.page-head small{display:block;color:var(--gold);font-weight:700;letter-spacing:.16em;font-size:.85rem;margin-bottom:10px}
+.page-head h1{font-family:var(--head);font-weight:900;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;color:var(--cream)}
+.page-head .rule{width:64px;height:2px;background:var(--gold);margin:20px auto 16px}
+.page-head p{max-width:640px;margin:0 auto;font-size:1.1rem;color:rgba(238,232,219,.85)}
+.page-head nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.page-head nav a{border:1px solid rgba(209,164,91,.6);color:var(--cream);padding:7px 18px;border-radius:999px;font-weight:700;font-size:.95rem;transition:background .25s,color .25s}
+.page-head nav a:hover{background:var(--gold);color:var(--char)}
 
+/* ---------- widget ---------- */
+:root{--jv-page:#F5F4EF;--jv-band:#2B2B2B;--jv-band-text:#EEE8DB;--jv-frame:#2B2B2B;--jv-frame-w:1px;--jv-card:#F8F6F1;--jv-card-border:#E4DED2;--jv-card-hover:#D0A35A;--jv-card-border-w:1px;--jv-title:#2B2B2B;--jv-chip-bg:#F0EBE0;--jv-chip-text:#2B2B2B;--jv-icon:#D0A35A;--jv-avail:#398212;--jv-sold:#C81414;--jv-btn-bg:#2B2B2B;--jv-btn-text:#EEE8DB;--jv-btn-border:#2B2B2B;--jv-plan-bg:#2B2B2B;--jv-plan-text:#EEE8DB;--jv-select-border:#D0A35A;--jv-select-bg:#F8F6F1;--jv-card-radius:7px;--jv-btn-radius:4px;--jv-chip-radius:5px;--jv-band-radius:0px;--jv-frame-radius:0px}
+.widget-wrap{padding:clamp(40px,7vh,72px) 0 clamp(60px,9vh,100px);background:var(--jv-page)}
+.jv-realestate-root{--main-color:var(--jv-btn-bg) !important;--secondary-color:var(--jv-icon) !important;--light-color:var(--jv-page) !important;--dark-color:var(--jv-chip-text) !important;font-family:var(--sans) !important}
+.jv-realestate-root *{box-shadow:none !important}
+.jv-realestate-root .lamishtaken,.jv-realestate-root .free-market{display:none !important}
+.jv-realestate-root .floor-title{background:var(--jv-band) !important;color:var(--jv-band-text) !important;border-radius:var(--jv-band-radius) var(--jv-band-radius) 0 0 !important;font-family:var(--head) !important}
+.jv-realestate-root .apartments-row{border:var(--jv-frame-w) solid var(--jv-frame) !important;border-radius:0 0 var(--jv-frame-radius) var(--jv-frame-radius) !important}
+.jv-realestate-root .apartment-card{border-radius:var(--jv-card-radius) !important;border:var(--jv-card-border-w) solid var(--jv-card-border) !important;background:var(--jv-card) !important;transition:border-color .25s !important}
+.jv-realestate-root .apartment-card:hover{border-color:var(--jv-card-hover) !important;transform:none !important}
+.jv-realestate-root .apartment-title{color:var(--jv-title) !important;font-family:var(--head) !important}
+.jv-realestate-root .apartment-price{color:var(--jv-title) !important}
+.jv-realestate-root .apartment-type{color:var(--jv-title) !important}
+.jv-realestate-root .apartment-info li{background:var(--jv-chip-bg) !important;color:var(--jv-chip-text) !important;border-radius:var(--jv-chip-radius) !important}
+.jv-realestate-root .apartment-info li i{color:var(--jv-icon) !important}
+.jv-realestate-root .apartment-card:not(.sold) .apartment-title::after{content:'פנויה';display:table;font-size:.82rem;font-weight:700;color:var(--jv-avail);border:1px solid var(--jv-avail);padding:0 14px;border-radius:999px;margin:6px auto 0;font-family:var(--sans)}
+.jv-realestate-root .apartment-card.sold::before{content:'נמכר' !important;background:var(--jv-sold) !important;color:#fff !important}
+.jv-realestate-root .apartment-plan{background:var(--jv-plan-bg) !important;color:var(--jv-plan-text) !important;border-radius:var(--jv-btn-radius) !important}
+.jv-realestate-root .apartment-plan a,.jv-realestate-root .apartment-details a{color:inherit !important}
+.jv-realestate-root .display-btn{background:var(--jv-page) !important;color:var(--jv-btn-border) !important;border:1px solid var(--jv-btn-border) !important;border-radius:var(--jv-btn-radius) !important;font-weight:700 !important;font-family:var(--sans) !important}
+.jv-realestate-root .display-btn.active{background:var(--jv-btn-bg) !important;color:var(--jv-btn-text) !important;border-color:var(--jv-btn-bg) !important}
+.jv-realestate-root label,.jv-realestate-root .form-label{font-family:var(--head) !important;font-weight:700 !important;color:var(--jv-title) !important;font-size:1.05rem !important}
+.jv-realestate-root .form-select,.jv-realestate-root .form-control{border-radius:var(--jv-btn-radius) !important;border:1px solid var(--jv-select-border) !important;background-color:var(--jv-select-bg) !important;color:var(--jv-title) !important;font:600 1rem/1.5 var(--sans) !important;padding:10px 18px 10px 44px !important;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8893F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;background-repeat:no-repeat !important;background-position:left 16px center !important;background-size:16px !important;-webkit-appearance:none;appearance:none}
+.jv-realestate-root .form-select:focus,.jv-realestate-root .form-control:focus{border-color:var(--jv-card-hover) !important;outline:none !important}
+
+/* ---------- style tools (review tool) ---------- */
+.tools{position:fixed;top:92px;left:14px;z-index:58;background:rgba(43,43,43,.97);color:var(--cream);border:1px solid rgba(209,164,91,.5);font-size:.78rem;width:262px;max-height:calc(100vh - 130px);overflow:auto;backdrop-filter:blur(8px);transition:transform .4s var(--ease);font-family:var(--sans) !important;scrollbar-width:thin}
+.tools.min{transform:translateX(calc(-100% + 34px))}
+.tools-head{position:sticky;top:0;background:rgba(43,43,43,1);display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid rgba(209,164,91,.35);font-weight:700;color:var(--gold);z-index:1}
+.tools-head button{background:none;border:none;color:var(--gold);font-size:1rem;line-height:1;width:22px;cursor:pointer}
+.tools-group{padding:7px 10px 2px;color:var(--gold);font-weight:700;font-size:.72rem;letter-spacing:.08em;border-top:1px solid rgba(209,164,91,.25)}
+.tools-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:5px 10px}
+.tools-row label{color:rgba(238,232,219,.85)}
+.tools-row input[type=color]{width:34px;height:22px;border:1px solid rgba(238,232,219,.4);background:transparent;padding:0;cursor:pointer}
+.tools-row input[type=range]{width:86px;accent-color:var(--gold);vertical-align:middle}
+.tools-row output{font-size:.7rem;color:var(--gold);display:inline-block;min-width:30px;text-align:left;direction:ltr}
+.tools-presets{display:flex;flex-wrap:wrap;gap:5px;padding:8px 10px}
+.tools-presets button,.tools-acts button{background:transparent;border:1px solid rgba(238,232,219,.35);color:var(--cream);padding:4px 9px;border-radius:999px;font-size:.72rem;cursor:pointer;transition:.2s}
+.tools-presets button:hover,.tools-acts button:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
+.tools-acts{display:flex;gap:6px;padding:8px 10px;border-top:1px solid rgba(209,164,91,.25)}
+.tools-acts button{flex:1}
+.tools-foot{padding:0 10px 8px;font-size:.68rem;color:rgba(238,232,219,.55);line-height:1.4}
+@media (max-width:960px){.tools{top:auto;bottom:90px;max-height:60vh}}
+
+/* ---------- cta strip ---------- */
+.cta-strip{background:var(--char);color:var(--cream);padding:clamp(50px,8vh,80px) 0}
+.cta-strip .box{border:1px solid rgba(209,164,91,.55);padding:clamp(28px,5vw,56px);position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.cta-strip .box::before{content:"";position:absolute;inset:8px;border:1px solid rgba(209,164,91,.22);pointer-events:none}
+.cta-strip h2{font-family:var(--head);font-weight:900;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2}
+.cta-strip p{margin-top:6px;color:rgba(238,232,219,.8)}
+.cta-strip .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.cta-strip .tel{color:var(--gold);font-weight:700;direction:ltr;unicode-bidi:embed}
+.cta-strip .btn:hover{background:var(--cream);color:var(--char);border-color:var(--cream)}
 
 /* ---------- footer ---------- */
 footer{background:#0B0B0B url(/assets/v2/silk-footer.jpg) center/cover;color:var(--cream);text-align:center;padding:clamp(70px,11vh,120px) 0 40px;position:relative}
@@ -188,145 +221,10 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 .wa svg{width:30px;height:30px;fill:currentColor}
 
 
-
-/* ---------- page head ---------- */
-.page-head{background:var(--char);color:var(--cream);padding:calc(76px + clamp(44px,7vh,72px)) 0 clamp(40px,6vh,60px);position:relative}
-.page-head::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:linear-gradient(to left,transparent,var(--gold) 20%,var(--gold) 80%,transparent)}
-.ph-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,4vw,60px);align-items:end}
-.page-head small{display:block;color:var(--gold);font-weight:700;letter-spacing:.16em;font-size:.85rem;margin-bottom:10px}
-.page-head h1{font-family:var(--head);font-weight:900;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;color:var(--cream)}
-.page-head p{max-width:600px;margin-top:14px;font-size:1.1rem;color:rgba(238,232,219,.85)}
-.ph-stats{display:flex;gap:clamp(18px,3vw,40px)}
-.ph-stat{text-align:center;border-inline-start:1px solid rgba(209,164,91,.4);padding-inline-start:clamp(18px,3vw,40px)}
-.ph-stat:first-child{border:0;padding-inline-start:0}
-.ph-stat b{display:block;font-family:var(--num);font-weight:400;font-size:clamp(2.6rem,5vw,4rem);line-height:1;color:var(--gold);direction:ltr}
-.ph-stat span{font-size:.9rem;color:rgba(238,232,219,.8)}
-
-/* ---------- controls ---------- */
-.controls{position:sticky;top:64px;z-index:40;background:rgba(238,232,219,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 0}
-.controls .wrap{display:flex;align-items:center;gap:14px 26px;flex-wrap:wrap}
-.tabs{display:flex;gap:6px;flex-wrap:wrap}
-.chip{border:1px solid var(--char);color:var(--char);background:transparent;padding:8px 16px;border-radius:4px;font-weight:700;font-size:.92rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;display:inline-flex;align-items:center;gap:8px}
-.chip:hover{background:var(--char);color:var(--cream)}
-.chip.on{background:var(--char);color:var(--cream)}
-.chip .cnt{font-family:var(--num);font-size:1.05em;color:var(--gold);direction:ltr}
-.chip.on .cnt{color:var(--gold)}
-.ctl-group{display:flex;align-items:center;gap:8px}
-.ctl-group>span{font-size:.85rem;font-weight:700;color:var(--paper-ink)}
-.chip.sm{padding:6px 12px;font-size:.85rem}
-.chip.gold{border-color:var(--gold);color:var(--gold-2)}
-.chip.gold.on,.chip.gold:hover{background:var(--gold);color:var(--char)}
-.switch{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:600;cursor:pointer;user-select:none}
-.switch i{width:38px;height:22px;border:1px solid var(--char);border-radius:999px;position:relative;transition:background .2s}
-.switch i::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:14px;height:14px;border-radius:50%;background:var(--char);transition:transform .2s,background .2s}
-.switch input{position:absolute;opacity:0;pointer-events:none}
-.switch input:checked+i{background:var(--char)}
-.switch input:checked+i::after{background:var(--gold);transform:translateX(-16px)}
-.views{margin-inline-start:auto;display:flex;border:1px solid var(--char);border-radius:4px;overflow:hidden}
-.views button{background:transparent;border:0;padding:8px 14px;font-weight:700;font-size:.88rem;color:var(--char);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
-.views button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.views button.on{background:var(--char);color:var(--cream)}
-
-/* ---------- legend ---------- */
-.legend{display:flex;gap:22px;flex-wrap:wrap;align-items:center;padding:26px 0 6px;font-size:.9rem;color:var(--paper-ink)}
-.legend span{display:inline-flex;align-items:center;gap:8px}
-.legend i{width:26px;height:16px;border-radius:3px;display:inline-block}
-.legend .av{background:var(--gold)}
-.legend .so{background:transparent;border:1px solid rgba(43,43,43,.3);position:relative;overflow:hidden}
-.legend .so::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 5px,rgba(43,43,43,.25) 5px 6px)}
-.legend .pe{background:var(--gold);position:relative}
-.legend .pe::before{content:"";position:absolute;top:-1px;inset-inline-start:-1px;border:5px solid transparent;border-top-color:var(--char);border-inline-start-color:var(--char)}
-
-/* ---------- building map ---------- */
-.inventory{padding:0 0 clamp(70px,10vh,110px)}
-.bld-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:22px 0 14px;flex-wrap:wrap}
-.bld-head h2{font-family:var(--head);font-weight:900;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--char)}
-.bld-head h2 small{font-weight:700;font-size:.6em;color:var(--gold-2);margin-inline-start:10px}
-.bld-head .sum{font-size:.95rem;color:var(--paper-ink)}
-.bld-head .sum b{color:var(--char);font-family:var(--num);font-size:1.25em;direction:ltr;display:inline-block}
-.bmap{border:1px solid rgba(209,164,91,.6);position:relative;background:linear-gradient(to bottom,rgba(255,255,255,.2),transparent)}
-.floor{display:grid;grid-template-columns:150px minmax(0,1fr);border-bottom:1px solid rgba(43,43,43,.14);position:relative;z-index:1}
-.floor:last-child{border-bottom:0}
-.floor-lab{padding:18px 20px;border-inline-end:1px solid rgba(43,43,43,.14);display:flex;flex-direction:column;justify-content:center;gap:2px;background:rgba(43,43,43,.03)}
-.floor-lab b{font-family:var(--head);font-weight:800;font-size:1.05rem;color:var(--char);line-height:1.2}
-.floor-lab span{font-size:.8rem;color:var(--paper-ink)}
-.floor-lab .n{font-family:var(--num);font-size:1.8rem;line-height:1;color:var(--gold-2);direction:ltr}
-.units{display:grid;grid-template-columns:repeat(var(--cols,5),minmax(0,1fr));gap:10px;padding:14px 16px;align-items:center}
-.unit{
-  position:relative;min-width:0;padding:12px 12px 10px;border-radius:5px;border:1px solid transparent;
-  text-align:start;font:inherit;cursor:pointer;transition:background .18s,color .18s,border-color .18s;
-  display:flex;flex-direction:column;gap:2px;height:66px;justify-content:center;
-}
-.unit b{font-family:var(--head);font-weight:800;font-size:1.05rem;line-height:1.2}
-.unit small{font-size:.8rem;line-height:1.35;opacity:.85}
-.unit .st{position:absolute;top:8px;inset-inline-end:10px;font-size:.68rem;font-weight:700;letter-spacing:.06em;padding:1px 7px;border-radius:999px}
-.unit.av{background:var(--gold);color:var(--char)}
-.unit.av .st{background:rgba(43,43,43,.12)}
-.unit.av:hover,.unit.av:focus-visible{background:var(--char);color:var(--gold);outline:none}
-.unit.av:hover .st{background:rgba(209,164,91,.18)}
-.unit.so{background:transparent;color:rgba(43,43,43,.45);border-color:rgba(43,43,43,.22);cursor:default;overflow:hidden}
-.unit.so::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 6px,rgba(43,43,43,.08) 6px 7px);pointer-events:none}
-.unit.so .st{background:rgba(43,43,43,.1);color:rgba(43,43,43,.7)}
-.unit.pe::before{content:"";position:absolute;top:-1px;inset-inline-start:-1px;border:9px solid transparent;border-top-color:var(--char);border-inline-start-color:var(--char);border-start-start-radius:5px}
-.unit.hide{display:none}
-.unit.dim{opacity:.35}
-.floor.empty{display:none}
-.map-empty{padding:40px;text-align:center;color:var(--paper-ink)}
-
-/* ---------- list view ---------- */
-.list{display:none;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;margin-top:22px}
-.list.on{display:grid}
-.bmap.off{display:none}
-.lcard{border:1px solid rgba(43,43,43,.18);background:var(--offwhite);border-radius:7px;padding:20px 18px 16px;display:flex;flex-direction:column;gap:10px;position:relative;transition:border-color .2s}
-.lcard:hover{border-color:var(--gold)}
-.lcard.so{opacity:.55}
-.lcard .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.lcard h3{font-family:var(--head);font-weight:900;font-size:1.5rem;line-height:1.1;color:var(--char)}
-.lcard h3 small{display:block;font-weight:700;font-size:.55em;color:var(--gold-2);margin-top:4px}
-.lcard .tag{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid var(--gold);color:var(--gold-2);white-space:nowrap}
-.lcard.so .tag{border-color:rgba(43,43,43,.4);color:rgba(43,43,43,.7)}
-.lcard .specs{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;border-top:1px solid rgba(43,43,43,.12);padding-top:12px}
-.lcard .specs small{display:block;font-size:.78rem;color:var(--paper-ink);line-height:1.3}
-.lcard .specs b{font-family:var(--num);font-weight:400;font-size:1.35rem;color:var(--char);direction:ltr;display:inline-flex;align-items:baseline;gap:5px;line-height:1.1}
-.lcard .specs b i{font-style:normal;font-family:var(--sans);font-size:.78rem;color:var(--gold-2);font-weight:600}
-.lcard .acts{display:flex;gap:8px;margin-top:4px}
-.lcard .acts .btn{padding:9px 14px 9px 12px;font-size:.9rem;flex:1;justify-content:center}
-.lcard .acts .btn .arr{width:26px;height:26px}
-.lcard .acts .btn .arr svg{width:13px;height:13px}
-
-/* ---------- cta strip ---------- */
-.cta-strip{background:var(--char);color:var(--cream);padding:clamp(50px,8vh,80px) 0}
-.cta-strip .box{border:1px solid rgba(209,164,91,.55);padding:clamp(28px,5vw,56px);position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.cta-strip .box::before{content:"";position:absolute;inset:8px;border:1px solid rgba(209,164,91,.22);pointer-events:none}
-.cta-strip h2{font-family:var(--head);font-weight:900;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2}
-.cta-strip p{margin-top:6px;color:rgba(238,232,219,.8)}
-.cta-strip .acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.cta-strip .tel{color:var(--gold);font-weight:700;direction:ltr;unicode-bidi:embed}
-.cta-strip .btn:hover{background:var(--cream);color:var(--char);border-color:var(--cream)}
-
 @media (max-width:1100px){nav.main-nav{display:none}}
-@media (max-width:960px){
-  .units{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .hdr-cta{display:none}.burger{display:block}.f-cols{grid-template-columns:1fr;gap:34px}
-  .ph-grid{grid-template-columns:1fr}
-  .page-head{padding-top:calc(70px + 36px)}
-  .controls{top:56px}
-  .views{margin-inline-start:0}
-}
-@media (max-width:640px){
-  .logos img{height:36px}
-  .floor{grid-template-columns:1fr}
-  .floor-lab{flex-direction:row;align-items:center;gap:10px;padding:10px 14px;border-inline-end:0;border-bottom:1px solid rgba(43,43,43,.12)}
-  .floor-lab .n{font-size:1.3rem}
-  .units{padding:10px}
-  .units{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .cta-strip .box{justify-content:center;text-align:center}.cta-strip .acts{justify-content:center}
-  .m-specs{grid-template-columns:1fr}
-  .m-specs div:nth-child(odd){border-inline-end:none;padding-inline-end:4px}
-  .m-specs div:nth-child(even){padding-inline-start:4px}
-}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}.rv{opacity:1;transform:none}}
-
+@media (max-width:960px){.hdr-cta{display:none}.burger{display:block}.f-cols{grid-template-columns:1fr;gap:34px}.page-head{padding-top:calc(70px + 40px)}}
+@media (max-width:640px){.logos img{height:36px}.cta-strip .box{justify-content:center;text-align:center}.cta-strip .acts{justify-content:center}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
 </style>
 </head>
 <body>
@@ -365,42 +263,47 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 
 <main>
   <section class="page-head">
-    <div class="wrap ph-grid">
-      <div>
-        <small>השדרה אלעד</small>
-        <h1>מלאי דירות</h1>
-        <p>מפת המלאי המלאה של הפרויקט: בחרו בניין וראו בכל קומה אילו דירות פנויות ואילו כבר נמכרו. לחיצה על דירה פנויה פותחת את כל הפרטים ותוכנית הדירה.</p>
-      </div>
-      <div class="ph-stats">
-        <div class="ph-stat"><b id="sAvail">–</b><span>דירות פנויות</span></div>
-        <div class="ph-stat"><b id="sTotal">–</b><span>סה״כ דירות</span></div>
-        <div class="ph-stat"><b id="sBld">–</b><span>אגפים</span></div>
-      </div>
+    <div class="wrap">
+      <small>השדרה אלעד</small>
+      <h1>מלאי דירות</h1>
+      <div class="rule"></div>
+      <p>בחרו בניין וצפו בדירות הפנויות, בתוכניות הדירה, בשטחים ובמחירים המעודכנים.</p>
+      <nav aria-label="בחירת בניין">
+        <a href="/v2-apartments.html?view=building&bview_building=2">בניין 22 · אגף ימין</a>
+        <a href="/v2-apartments.html?view=building&bview_building=1">בניין 22 · אגף שמאל</a>
+        <a href="/v2-apartments.html?view=building&bview_building=3">בניין 21 · אגף ימין</a>
+        <a href="/v2-apartments.html?view=building&bview_building=4">בניין 21 · אגף שמאל</a>
+      </nav>
     </div>
   </section>
 
-  <div class="controls">
+  <section class="widget-wrap">
     <div class="wrap">
-      <div class="tabs" id="tabs"></div>
-      <div class="ctl-group"><span>חדרים:</span><div class="tabs" id="rooms"></div></div>
-      <label class="switch"><input type="checkbox" id="onlyAvail"><i></i>רק דירות פנויות</label>
-      <div class="views">
-        <button type="button" class="on" data-v="map"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V9l6-5 6 5v11M10 20v-6h4v6"/></svg>מפת בניין</button>
-        <button type="button" data-v="list"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>רשימה</button>
-      </div>
-    </div>
-  </div>
-
-  <section class="inventory" id="inventory">
-    <div class="wrap">
-      <div class="legend">
-        <span><i class="av"></i> פנויה - לחצו לפרטים</span>
-        <span><i class="so"></i> נמכרה</span>
-        <span><i class="pe"></i> פנטהאוז</span>
-      </div>
-      <div class="bld-head"><h2 id="bldTitle">טוען...</h2><div class="sum" id="bldSum"></div></div>
-      <div class="bmap" id="bmap"><div class="map-empty">טוען מלאי עדכני...</div></div>
-      <div class="list" id="list"></div>
+    <script>
+    // Drop garbled duplicate-header rows (all "?" - an Excel encoding artifact)
+    // from apartment CSVs before the widget parses them.
+    (function () {
+      var desc = Object.getOwnPropertyDescriptor(XMLHttpRequest.prototype, "responseText");
+      var origOpen = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function (method, url) {
+        this.__jvUrl = url;
+        return origOpen.apply(this, arguments);
+      };
+      Object.defineProperty(XMLHttpRequest.prototype, "responseText", {
+        configurable: true,
+        get: function () {
+          var text = desc.get.call(this);
+          if (this.__jvUrl && /\.csv(\?|$)/i.test(this.__jvUrl) && typeof text === "string") {
+            return text.split(/\r?\n/).filter(function (line) {
+              return !(/\?/.test(line) && /^[?",\s]+$/.test(line));
+            }).join("\n");
+          }
+          return text;
+        }
+      });
+    })();
+    </script>
+    <script src="/assets/jetvaults-real-estate.js" data-container="hasdera-elad" data-project="hasdera-elad"></script>
     </div>
   </section>
 
@@ -450,35 +353,54 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   </div>
 </footer>
 
-<!-- apartment modal -->
-<div class="modal" id="aptModal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-  <div class="modal-bg" id="modalBg"></div>
-  <div class="modal-box">
-    <button class="modal-close" id="modalClose" aria-label="סגירה"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <div class="m-head">
-      <small id="mBld"></small>
-      <h3 id="mTitle"></h3>
-      <div class="m-tags" id="mTags"></div>
-    </div>
-    <div class="m-specs" id="mSpecs"></div>
-    <div class="m-actions">
-      <a class="btn" id="mLead" href="/v2#contact"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת מחיר ופרטים</a>
-      <a class="btn ghost" id="mPlan" href="#" target="_blank" rel="noopener"><span class="arr"><svg viewBox="0 0 24 24"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></svg></span>תוכנית הדירה</a>
-      <a class="link" id="mMore" href="/v2-apartments.html">לכל הדירות בבניין</a>
-    </div>
-  </div>
-</div>
-
-
 <a class="wa" href="https://wa.me/972528939050?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%D7%94%D7%A9%D7%93%D7%A8%D7%94%20%D7%91%D7%90%D7%9C%D7%A2%D7%93" target="_blank" rel="noopener" aria-label="וואטסאפ">
   <svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.5L3 29l6.7-1.7c1.9 1 4.1 1.6 6.3 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 0 1 5.4 16C5.4 10.2 10.2 5.4 16 5.4S26.6 10.2 26.6 16 21.8 26.6 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.9 1.1 3.4.9 4.1.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
 </a>
 
+<!-- style tools (temporary review tool) -->
+<div class="tools" id="tools">
+  <div class="tools-head"><span>כלי עיצוב</span><button id="toolsMin" aria-label="מזעור">−</button></div>
+  <div class="tools-group">התחלה מהירה</div>
+  <div class="tools-presets"><button type="button" data-preset="קלאסי כהה">קלאסי כהה</button><button type="button" data-preset="זהב בהיר">זהב בהיר</button><button type="button" data-preset="מינימלי">מינימלי</button><button type="button" data-preset="מעוגל רך">מעוגל רך</button></div>
+  <div class="tools-group">רקעים</div>
+  <div class="tools-row"><label for="tpage">רקע האזור</label><input type="color" id="tpage" data-var="--jv-page"></div>
+  <div class="tools-row"><label for="tband">פס קומה - רקע</label><input type="color" id="tband" data-var="--jv-band"></div>
+  <div class="tools-row"><label for="tband_text">פס קומה - טקסט</label><input type="color" id="tband_text" data-var="--jv-band-text"></div>
+  <div class="tools-row"><label for="tframe">מסגרת קומה - צבע</label><input type="color" id="tframe" data-var="--jv-frame"></div>
+  <div class="tools-row"><label for="tframe_w">מסגרת קומה - עובי</label><span><input type="range" id="tframe_w" data-var="--jv-frame-w" min="0" max="4" step="1"> <output for="tframe_w"></output></span></div>
+  <div class="tools-group">כרטיס</div>
+  <div class="tools-row"><label for="tcard">רקע כרטיס</label><input type="color" id="tcard" data-var="--jv-card"></div>
+  <div class="tools-row"><label for="tcard_border">גבול כרטיס</label><input type="color" id="tcard_border" data-var="--jv-card-border"></div>
+  <div class="tools-row"><label for="tcard_hover">גבול כרטיס במעבר</label><input type="color" id="tcard_hover" data-var="--jv-card-hover"></div>
+  <div class="tools-row"><label for="tcard_border_w">עובי גבול כרטיס</label><span><input type="range" id="tcard_border_w" data-var="--jv-card-border-w" min="0" max="4" step="1"> <output for="tcard_border_w"></output></span></div>
+  <div class="tools-group">טקסט וסמלים</div>
+  <div class="tools-row"><label for="ttitle">כותרת דירה</label><input type="color" id="ttitle" data-var="--jv-title"></div>
+  <div class="tools-row"><label for="tchip_bg">תגית נתון - רקע</label><input type="color" id="tchip_bg" data-var="--jv-chip-bg"></div>
+  <div class="tools-row"><label for="tchip_text">תגית נתון - טקסט</label><input type="color" id="tchip_text" data-var="--jv-chip-text"></div>
+  <div class="tools-row"><label for="ticon">אייקונים</label><input type="color" id="ticon" data-var="--jv-icon"></div>
+  <div class="tools-row"><label for="tavail">תגית "פנויה"</label><input type="color" id="tavail" data-var="--jv-avail"></div>
+  <div class="tools-row"><label for="tsold">סרט "נמכר"</label><input type="color" id="tsold" data-var="--jv-sold"></div>
+  <div class="tools-group">כפתורים</div>
+  <div class="tools-row"><label for="tbtn_bg">כפתור פעיל - רקע</label><input type="color" id="tbtn_bg" data-var="--jv-btn-bg"></div>
+  <div class="tools-row"><label for="tbtn_text">כפתור פעיל - טקסט</label><input type="color" id="tbtn_text" data-var="--jv-btn-text"></div>
+  <div class="tools-row"><label for="tbtn_border">כפתור רגיל - קו/טקסט</label><input type="color" id="tbtn_border" data-var="--jv-btn-border"></div>
+  <div class="tools-row"><label for="tplan_bg">תוכנית דירה - רקע</label><input type="color" id="tplan_bg" data-var="--jv-plan-bg"></div>
+  <div class="tools-row"><label for="tplan_text">תוכנית דירה - טקסט</label><input type="color" id="tplan_text" data-var="--jv-plan-text"></div>
+  <div class="tools-row"><label for="tselect_border">בורר בניין - קו</label><input type="color" id="tselect_border" data-var="--jv-select-border"></div>
+  <div class="tools-row"><label for="tselect_bg">בורר בניין - רקע</label><input type="color" id="tselect_bg" data-var="--jv-select-bg"></div>
+  <div class="tools-group">פינות</div>
+  <div class="tools-row"><label for="tcard_radius">פינות כרטיס</label><span><input type="range" id="tcard_radius" data-var="--jv-card-radius" min="0" max="32" step="1"> <output for="tcard_radius"></output></span></div>
+  <div class="tools-row"><label for="tbtn_radius">פינות כפתורים</label><span><input type="range" id="tbtn_radius" data-var="--jv-btn-radius" min="0" max="40" step="1"> <output for="tbtn_radius"></output></span></div>
+  <div class="tools-row"><label for="tchip_radius">פינות תגיות</label><span><input type="range" id="tchip_radius" data-var="--jv-chip-radius" min="0" max="40" step="1"> <output for="tchip_radius"></output></span></div>
+  <div class="tools-row"><label for="tband_radius">פינות פס קומה</label><span><input type="range" id="tband_radius" data-var="--jv-band-radius" min="0" max="24" step="1"> <output for="tband_radius"></output></span></div>
+  <div class="tools-row"><label for="tframe_radius">פינות מסגרת קומה</label><span><input type="range" id="tframe_radius" data-var="--jv-frame-radius" min="0" max="24" step="1"> <output for="tframe_radius"></output></span></div>
+  <div class="tools-acts"><button id="toolsCopy">העתקת ההגדרות</button><button id="toolsReset">איפוס</button></div>
+  <div class="tools-foot">השינויים נשמרים בדפדפן שלך בלבד. "העתקת ההגדרות" מעתיקה טקסט לשליחה אליי.</div>
+</div>
+
 <script src="/assets/a11y.js" defer></script>
 <script>
-
 (function(){
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hdr=document.getElementById('hdr');
   function onScroll(){hdr.classList.toggle('scrolled',scrollY>40)}
   addEventListener('scroll',onScroll,{passive:true});onScroll();
@@ -490,145 +412,47 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   }
   burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
   menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
-  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
-
-  /* ---------- data ---------- */
-  var CONTAINER='https://jetvaults.blob.core.windows.net/hasdera-elad',PROJECT='hasdera-elad';
-  var ROOT=CONTAINER+'/real-estate-projects/'+PROJECT;
-  var BLD={'2':{name:'בניין 22',wing:'אגף ימין'},'1':{name:'בניין 22',wing:'אגף שמאל'},'3':{name:'בניין 21',wing:'אגף ימין'},'4':{name:'בניין 21',wing:'אגף שמאל'}};
-  var ORDER=['2','1','3','4'];
-  var ALL=[],cur={bld:null,rooms:'',onlyAvail:false,view:'map'};
-  var qs=new URLSearchParams(location.search);
-  if(qs.get('bview_building'))cur.bld=qs.get('bview_building');
-  if(qs.get('b'))cur.bld=qs.get('b');
-
-  function parseCSV(text){
-    var rows=[],row=[],c='',q=false;text=text.replace(/^﻿/,'');
-    for(var k=0;k<text.length;k++){var ch=text[k];
-      if(q){if(ch==='"'){if(text[k+1]==='"'){c+='"';k++}else q=false}else c+=ch}
-      else if(ch==='"')q=true;else if(ch===','){row.push(c);c=''}
-      else if(ch==='\n'||ch==='\r'){if(ch==='\r'&&text[k+1]==='\n')k++;row.push(c);rows.push(row);row=[];c=''}
-      else c+=ch}
-    if(c.length||row.length){row.push(c);rows.push(row)}
-    rows=rows.filter(function(r){return r.join('').trim()&&!/^[?",\s]+$/.test(r.join(','))});
-    var head=rows.shift().map(function(h){return h.trim()});
-    return rows.map(function(r){var o={};head.forEach(function(h,j){o[h]=(r[j]||'').trim()});return o});
-  }
-  function isTrue(v){v=String(v==null?'':v).trim().toLowerCase();return ['true','1','נמכר','נמכרה','כן','למשתכן'].indexOf(v)>-1}
-  function num(v){var x=parseFloat(String(v).replace(/[^\d.]/g,''));return isNaN(x)?0:x}
-  function fmt(x){return (Math.round(x*10)/10).toLocaleString('he-IL')}
-  function floorKey(f){f=String(f);var m=f.match(/\d+/g);if(!m)return 0;return m.length>1?(+m[0])+.5:+m[0]}
-  function floorName(f){f=String(f).trim();if(f==='0')return 'קומת קרקע';if(f.indexOf(',')>-1)return 'קומות '+f.replace(',','-');return 'קומה '+f}
-  function floorSub(f){f=String(f).trim();if(f==='0')return 'דירות גן';if(f.indexOf(',')>-1)return parseInt(f,10)>=5?'פנטהאוז דופלקס':(parseInt(f,10)===0?'דופלקס גן':'דופלקס');return ''}
-  function isPent(a){var f=String(a.floor);return f.indexOf(',')>-1&&parseInt(f,10)>=5}
-
-  function load(){
-    fetch(ROOT+'/project.json').then(function(r){return r.json()}).then(function(p){
-      var g4s=(p.g4s||[]).map(function(g){return String(g.id)});
-      return Promise.all(g4s.map(function(id){return fetch(ROOT+'/'+encodeURIComponent(id)+'.csv').then(function(r){return r.text()}).then(function(t){return parseCSV(t).map(function(r){r.__g4=id;return r})})}));
-    }).then(function(lists){
-      ALL=[].concat.apply([],lists).filter(function(r){return r['דירה']}).map(function(r){return {
-        bld:String(r['בניין']).trim(),num:String(r['דירה']).trim(),rooms:String(r['חדרים']).trim(),floor:String(r['קומה']).trim(),
-        area:num(r['שטח דירה']),balcony:num(r['שטח מרפסת']),garden:num(r['שטח גינה']),storage:num(r['שטח מחסן']),parking:String(r['כמות חניות']||'').trim(),
-        price:num(r['מחיר']),type:String(r['סוג דירה']||'').trim(),plan:String(r['תוכנית דירה']||'').trim(),g4:r.__g4,sold:isTrue(r['נמכרה'])}});
-      init();
-    }).catch(function(){document.getElementById('bmap').innerHTML='<div class="map-empty">לא ניתן לטעון את המלאי כרגע. נסו שוב מאוחר יותר או התקשרו 052-893-9050.</div>'});
-  }
-
-  function blds(){var ids=ORDER.filter(function(b){return ALL.some(function(a){return a.bld===b})});ALL.forEach(function(a){if(ids.indexOf(a.bld)<0)ids.push(a.bld)});return ids}
-  function meta(b){return BLD[b]||{name:'בניין '+b,wing:''}}
-
-  function init(){
-    var ids=blds();if(!cur.bld||ids.indexOf(cur.bld)<0)cur.bld=ids[0];
-    var av=ALL.filter(function(a){return !a.sold});
-    document.getElementById('sAvail').textContent=av.length;
-    document.getElementById('sTotal').textContent=ALL.length;
-    document.getElementById('sBld').textContent=ids.length;
-    var tabs=document.getElementById('tabs');tabs.innerHTML='';
-    ids.forEach(function(b){
-      var m=meta(b),n=ALL.filter(function(a){return a.bld===b&&!a.sold}).length;
-      var c=document.createElement('button');c.type='button';c.className='chip';c.dataset.b=b;
-      c.innerHTML=m.name+' · '+m.wing+' <span class="cnt">'+n+'</span>';
-      c.addEventListener('click',function(){cur.bld=b;render();history.replaceState(null,'','?b='+b)});
-      tabs.appendChild(c);
+  addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+  /* style tools */
+  var DEF={"--jv-page": "#F5F4EF", "--jv-band": "#2B2B2B", "--jv-band-text": "#EEE8DB", "--jv-frame": "#2B2B2B", "--jv-frame-w": "1px", "--jv-card": "#F8F6F1", "--jv-card-border": "#E4DED2", "--jv-card-hover": "#D0A35A", "--jv-card-border-w": "1px", "--jv-title": "#2B2B2B", "--jv-chip-bg": "#F0EBE0", "--jv-chip-text": "#2B2B2B", "--jv-icon": "#D0A35A", "--jv-avail": "#398212", "--jv-sold": "#C81414", "--jv-btn-bg": "#2B2B2B", "--jv-btn-text": "#EEE8DB", "--jv-btn-border": "#2B2B2B", "--jv-plan-bg": "#2B2B2B", "--jv-plan-text": "#EEE8DB", "--jv-select-border": "#D0A35A", "--jv-select-bg": "#F8F6F1", "--jv-card-radius": "7px", "--jv-btn-radius": "4px", "--jv-chip-radius": "5px", "--jv-band-radius": "0px", "--jv-frame-radius": "0px"};
+  var PRESETS={"קלאסי כהה": {}, "זהב בהיר": {"--jv-band": "#D0A35A", "--jv-band-text": "#2B2B2B", "--jv-frame": "#D0A35A", "--jv-btn-bg": "#D0A35A", "--jv-btn-text": "#2B2B2B", "--jv-btn-border": "#B8893F", "--jv-plan-bg": "#D0A35A", "--jv-plan-text": "#2B2B2B", "--jv-title": "#B8893F", "--jv-card-hover": "#2B2B2B"}, "מינימלי": {"--jv-frame-w": "0px", "--jv-band": "#F5F4EF", "--jv-band-text": "#2B2B2B", "--jv-card": "#FFFFFF", "--jv-card-border": "#E9E4D8", "--jv-card-hover": "#2B2B2B", "--jv-chip-bg": "#F5F4EF", "--jv-plan-bg": "#F5F4EF", "--jv-plan-text": "#2B2B2B", "--jv-card-radius": "0px", "--jv-chip-radius": "0px", "--jv-btn-radius": "0px"}, "מעוגל רך": {"--jv-card-radius": "18px", "--jv-btn-radius": "40px", "--jv-band-radius": "18px", "--jv-frame-radius": "18px", "--jv-chip-radius": "40px", "--jv-frame": "#E4DED2", "--jv-band": "#2B2B2B"}};
+  var cur={};try{cur=JSON.parse(localStorage.getItem('jv-tools2')||'{}')}catch(e){}
+  var root=document.documentElement,tools=document.getElementById('tools');
+  function save(){try{localStorage.setItem('jv-tools2',JSON.stringify(cur))}catch(e){}}
+  function applyVars(){Object.keys(DEF).forEach(function(k){root.style.setProperty(k,cur[k]||DEF[k])})}
+  function fill(){
+    tools.querySelectorAll('input[data-var]').forEach(function(inp){
+      var v=cur[inp.dataset.var]||DEF[inp.dataset.var];
+      if(inp.type==='range'){var n=parseInt(v,10);inp.value=n;inp.nextElementSibling.textContent=n+'px'}
+      else inp.value=v;
     });
-    var rs=[];ALL.forEach(function(a){if(a.rooms&&rs.indexOf(a.rooms)<0)rs.push(a.rooms)});rs.sort(function(x,y){return +x-+y});
-    var rf=document.getElementById('rooms');rf.innerHTML='<button type="button" class="chip sm gold on" data-r="">הכל</button>';
-    rs.forEach(function(r){var c=document.createElement('button');c.type='button';c.className='chip sm gold';c.dataset.r=r;c.textContent=r+' חד׳';rf.appendChild(c)});
-    rf.querySelectorAll('button').forEach(function(c){c.addEventListener('click',function(){cur.rooms=c.dataset.r;rf.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===c)});render()})});
-    document.getElementById('onlyAvail').addEventListener('change',function(){cur.onlyAvail=this.checked;render()});
-    document.querySelectorAll('.views button').forEach(function(b){b.addEventListener('click',function(){cur.view=b.dataset.v;document.querySelectorAll('.views button').forEach(function(x){x.classList.toggle('on',x===b)});render()})});
-    render();
   }
-
-  function unitHTML(a){
-    var cls='unit '+(a.sold?'so':'av')+(isPent(a)?' pe':'');
-    var sub=a.rooms+' חד׳'+(a.area?' · '+fmt(a.area)+' מ״ר':'');
-    return '<button type="button" class="'+cls+'" data-k="'+a.bld+'-'+a.num+'"'+(a.sold?' aria-disabled="true"':'')+'><span class="st">'+(a.sold?'נמכרה':'פנויה')+'</span><b>דירה '+a.num+'</b><small>'+sub+'</small></button>';
-  }
-  function match(a){return (!cur.rooms||a.rooms===cur.rooms)&&(!cur.onlyAvail||!a.sold)}
-
-  function render(){
-    document.querySelectorAll('#tabs .chip').forEach(function(c){c.classList.toggle('on',c.dataset.b===cur.bld)});
-    var m=meta(cur.bld),list=ALL.filter(function(a){return a.bld===cur.bld});
-    var av=list.filter(function(a){return !a.sold}).length;
-    document.getElementById('bldTitle').innerHTML=m.name+'<small>'+m.wing+'</small>';
-    document.getElementById('bldSum').innerHTML='<b>'+av+'</b> דירות פנויות מתוך <b>'+list.length+'</b>';
-    var bmap=document.getElementById('bmap'),lst=document.getElementById('list');
-    bmap.classList.toggle('off',cur.view!=='map');lst.classList.toggle('on',cur.view==='list');
-    // floors
-    var floors={};list.forEach(function(a){(floors[a.floor]=floors[a.floor]||[]).push(a)});
-    var keys=Object.keys(floors).sort(function(x,y){return floorKey(y)-floorKey(x)});
-    var maxN=0;keys.forEach(function(f){maxN=Math.max(maxN,floors[f].length)});bmap.style.setProperty('--cols',Math.max(1,Math.min(6,maxN)));
-    var html='',shown=0;
-    keys.forEach(function(f){
-      var us=floors[f].sort(function(x,y){return +x.num-+y.num}).filter(match);
-      if(!us.length)return;shown+=us.length;
-      var n=String(f).indexOf(',')>-1?f.replace(',','-'):(f==='0'?'0':f);
-      html+='<div class="floor"><div class="floor-lab"><span class="n">'+n+'</span><b>'+floorName(f)+'</b>'+(floorSub(f)?'<span>'+floorSub(f)+'</span>':'')+'</div><div class="units">'+us.map(unitHTML).join('')+'</div></div>';
+  tools.querySelectorAll('input[data-var]').forEach(function(inp){
+    inp.addEventListener('input',function(){
+      var v=inp.type==='range'?inp.value+'px':inp.value;
+      if(inp.type==='range')inp.nextElementSibling.textContent=v;
+      cur[inp.dataset.var]=v;applyVars();save();
     });
-    bmap.innerHTML=html||'<div class="map-empty">אין דירות שמתאימות לסינון.</div>';
-    // list
-    var cards=list.filter(match).sort(function(x,y){return (x.sold-y.sold)||(+x.num-+y.num)});
-    lst.innerHTML=cards.map(function(a){
-      var specs='';
-      function sp(l,v,u){specs+='<div><small>'+l+'</small><b>'+(u?'<i>'+u+'</i>':'')+v+'</b></div>'}
-      sp('חדרים',a.rooms,'');if(a.area)sp('שטח דירה',fmt(a.area),'מ״ר');if(a.balcony)sp(a.floor==='0'?'מרפסת וחצר':'מרפסת',fmt(a.balcony),'מ״ר');if(a.storage)sp('מחסן',fmt(a.storage),'מ״ר');if(a.parking)sp('חניות',a.parking,'');
-      return '<article class="lcard '+(a.sold?'so':'av')+'"><div class="top"><h3>דירה '+a.num+'<small>'+floorName(a.floor)+(isPent(a)?' · פנטהאוז':'')+'</small></h3><span class="tag">'+(a.sold?'נמכרה':'פנויה')+'</span></div><div class="specs">'+specs+'</div>'+
-        (a.sold?'':'<div class="acts"><button type="button" class="btn" data-k="'+a.bld+'-'+a.num+'"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>פרטים ותוכנית</button></div>')+'</article>';
-    }).join('')||'<div class="map-empty">אין דירות שמתאימות לסינון.</div>';
-    document.querySelectorAll('[data-k]').forEach(function(el){if(el.classList.contains('so'))return;el.addEventListener('click',function(){openApt(el.dataset.k)})});
-  }
+  });
+  tools.querySelectorAll('[data-preset]').forEach(function(b){
+    b.addEventListener('click',function(){cur=Object.assign({},PRESETS[b.dataset.preset]||{});applyVars();fill();save()});
+  });
+  document.getElementById('toolsReset').addEventListener('click',function(){cur={};try{localStorage.removeItem('jv-tools2')}catch(e){};applyVars();fill()});
+  document.getElementById('toolsCopy').addEventListener('click',function(){
+    var out={};Object.keys(DEF).forEach(function(k){out[k]=cur[k]||DEF[k]});
+    var txt=JSON.stringify(out);
+    (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){alert('הועתק! הדביקו את הטקסט בהודעה.')},function(){prompt('העתיקו את הטקסט:',txt)});
+  });
+  var toolsMin=document.getElementById('toolsMin');
+  function setToolsMin(m){tools.classList.toggle('min',m);toolsMin.textContent=m?'+':'−'}
+  toolsMin.addEventListener('click',function(){setToolsMin(!tools.classList.contains('min'))});
+  if(innerWidth<960)setToolsMin(true);
+  applyVars();fill();
 
-  /* ---------- modal (same as front page) ---------- */
-  var modal=document.getElementById('aptModal'),lastFocus=null;
-  function find(k){return ALL.filter(function(a){return a.bld+'-'+a.num===k})[0]}
-  function floorLabel(f){f=String(f||'').trim();if(f==='0')return 'קרקע';if(f.indexOf(',')>-1)return f.replace(',','-')+' (דופלקס)';return f}
-  function openApt(k){
-    var a=find(k);if(!a)return;var m=meta(a.bld);
-    document.getElementById('mBld').textContent=m.name+(m.wing?' · '+m.wing:'');
-    document.getElementById('mTitle').textContent='דירה '+a.num;
-    document.getElementById('mTags').innerHTML='<span class="dark">'+a.rooms+' חדרים</span><span>'+(a.floor==='0'?'קומת קרקע':'קומה '+floorLabel(a.floor))+'</span>'+(isPent(a)?'<span>פנטהאוז</span>':'')+(a.floor==='0'?'<span>דירת גן</span>':'')+(a.type?'<span>'+a.type+'</span>':'');
-    var specs='';function spec(l,v,u){specs+='<div><small>'+l+'</small><b>'+(u?'<i>'+u+'</i>':'')+v+'</b></div>'}
-    if(a.area)spec('שטח הדירה',fmt(a.area),'מ״ר');if(a.balcony)spec(a.floor==='0'?'שטח מרפסת וחצר':'שטח מרפסת',fmt(a.balcony),'מ״ר');if(a.garden)spec('שטח גינה',fmt(a.garden),'מ״ר');if(a.storage)spec('שטח מחסן',fmt(a.storage),'מ״ר');if(a.parking)spec('מקומות חניה',a.parking,'');if(a.price>0)spec('מחיר','₪'+Math.round(a.price).toLocaleString('he-IL'),'');
-    document.getElementById('mSpecs').innerHTML=specs;
-    var plan=document.getElementById('mPlan');
-    if(a.plan){var url=/^https?:/i.test(a.plan)?a.plan:(a.plan.indexOf('/')>-1?ROOT+'/plans/'+a.plan:ROOT+'/plans/'+encodeURIComponent(a.g4||'galnor')+'/'+encodeURIComponent(a.plan));plan.href=url;plan.style.display='';fetch(url,{method:'HEAD'}).then(function(r){if(!r.ok)plan.style.display='none'}).catch(function(){})}
-    else plan.style.display='none';
-    document.getElementById('mMore').style.display='none';
-    document.getElementById('mLead').href='/v2?apt='+encodeURIComponent('דירה '+a.num+' ('+a.rooms+' חד׳), '+m.name+' '+m.wing)+'#contact';
-    lastFocus=document.activeElement;modal.classList.add('open');document.body.style.overflow='hidden';
-    setTimeout(function(){document.getElementById('modalClose').focus()},50);
-  }
-  function closeApt(){modal.classList.remove('open');document.body.style.overflow='';if(lastFocus)lastFocus.focus()}
-  document.getElementById('modalClose').addEventListener('click',closeApt);
-  document.getElementById('modalBg').addEventListener('click',closeApt);
-  addEventListener('keydown',function(e){if(e.key==='Escape'){closeApt();setMenu(false)}});
-
-  load();
+  // mark the active building chip
+  var b=new URLSearchParams(location.search).get('bview_building');
+  if(b){document.querySelectorAll('.page-head nav a').forEach(function(a){if(a.href.indexOf('bview_building='+b)>-1){a.style.background='var(--gold)';a.style.color='var(--char)'}})}
 })();
-
 </script>
 </body>
 </html>
