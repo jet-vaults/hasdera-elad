@@ -143,9 +143,11 @@ nav.main-nav a:hover::after{width:100%}
   transition:background .3s,color .3s,border-color .3s;
   position:relative;overflow:hidden;
 }
-.btn .arr{width:34px;height:34px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;flex:none;transition:transform .4s var(--ease)}
+.btn .arr{order:2;width:34px;height:34px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;flex:none;transition:transform .4s var(--ease)}
 .btn .arr svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .btn:hover{background:var(--char);color:var(--gold);border-color:var(--char)}
+.contact .btn:hover,.modal .btn:hover,footer .btn:hover{background:var(--cream);color:var(--char);border-color:var(--cream)}
+.modal .btn.ghost:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
 .btn:hover .arr{transform:translateX(-5px)}
 .btn.ghost{background:transparent;color:var(--gold-2);border-color:var(--gold)}
 .btn.ghost:hover{background:var(--gold);color:var(--char);border-color:var(--gold)}
