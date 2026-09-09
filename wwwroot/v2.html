@@ -1060,7 +1060,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
     var head=rows.shift().map(function(h){return h.trim()});
     return rows.map(function(r){var o={};head.forEach(function(h,j){o[h]=(r[j]||'').trim()});return o});
   }
-  function isTrue(v){return String(v).trim().toUpperCase()==='TRUE'}
+  function isTrue(v){v=String(v==null?'':v).trim().toLowerCase();return ['true','1','נמכר','נמכרה','כן','למשתכן'].indexOf(v)>-1}
   function floorLabel(f){
     f=String(f||'').trim();
     if(f==='0')return 'קרקע';

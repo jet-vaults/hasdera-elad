@@ -515,7 +515,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
     var head=rows.shift().map(function(h){return h.trim()});
     return rows.map(function(r){var o={};head.forEach(function(h,j){o[h]=(r[j]||'').trim()});return o});
   }
-  function isTrue(v){return String(v).trim().toUpperCase()==='TRUE'}
+  function isTrue(v){v=String(v==null?'':v).trim().toLowerCase();return ['true','1','נמכר','נמכרה','כן','למשתכן'].indexOf(v)>-1}
   function num(v){var x=parseFloat(String(v).replace(/[^\d.]/g,''));return isNaN(x)?0:x}
   function fmt(x){return (Math.round(x*10)/10).toLocaleString('he-IL')}
   function floorKey(f){f=String(f);var m=f.match(/\d+/g);if(!m)return 0;return m.length>1?(+m[0])+.5:+m[0]}
