@@ -96,18 +96,25 @@ nav.main-nav a:hover::after{width:100%}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){top:19px;transform:rotate(-45deg)}
 
+.menu-bg{position:fixed;inset:0;z-index:64;background:rgba(11,11,11,.55);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.menu-bg.open{opacity:1;visibility:visible}
 .menu{
-  position:fixed;inset:0;z-index:65;background:var(--char);color:var(--cream);
-  display:grid;place-items:center;text-align:center;
-  clip-path:circle(0 at calc(100% - 38px) 38px);transition:clip-path .8s var(--ease-out);
-  visibility:hidden;
+  position:fixed;top:0;bottom:0;right:0;width:min(80vw,380px);z-index:66;background:var(--char);color:var(--cream);
+  display:flex;flex-direction:column;padding:22px 24px 28px;overflow:auto;
+  transform:translateX(100%);transition:transform .45s var(--ease-out),visibility .45s;visibility:hidden;
 }
-.menu.open{clip-path:circle(150% at calc(100% - 38px) 38px);visibility:visible}
-.menu a{display:block;font-family:var(--head);font-weight:800;font-size:clamp(1.8rem,7vw,3rem);line-height:1.5;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .6s var(--ease)}
-.menu.open a{opacity:1;transform:none}
-.menu a:nth-child(1){transition-delay:.25s}.menu a:nth-child(2){transition-delay:.32s}.menu a:nth-child(3){transition-delay:.39s}.menu a:nth-child(4){transition-delay:.46s}.menu a:nth-child(5){transition-delay:.53s}.menu a:nth-child(6){transition-delay:.6s}
-.menu a.gold{color:var(--gold)}
-.menu .menu-tel{font-family:var(--sans);font-weight:400;font-size:1.1rem;margin-top:24px;color:var(--gold)}
+.menu.open{transform:none;visibility:visible}
+.menu-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.menu-top img{height:62px;width:auto}
+.menu-close{width:42px;height:42px;border-radius:50%;border:1px solid var(--gold);background:transparent;color:var(--gold);display:grid;place-items:center;cursor:pointer;flex:none;transition:background .25s,color .25s}
+.menu-close:hover{background:var(--gold);color:var(--char)}
+.menu-close svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.menu>.btn{justify-content:center;width:100%;margin-bottom:12px}
+.menu-nav a{display:block;font-family:var(--head);font-weight:800;font-size:1.3rem;padding:13px 0;border-bottom:1px solid rgba(238,232,219,.12);color:var(--cream)}
+.menu-nav a.gold{color:var(--gold)}
+.menu-tel{margin-top:auto;padding:26px 0 60px;font-size:1rem;color:rgba(238,232,219,.8)}
+.burger.open{opacity:0;pointer-events:none}
+.menu-tel a{color:var(--gold);font-weight:700;direction:ltr;unicode-bidi:embed}
 
 
 .btn{
@@ -192,38 +199,22 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 /* ---------- page head ---------- */
 .page-head{background:var(--char);color:var(--cream);padding:calc(76px + clamp(44px,7vh,72px)) 0 clamp(40px,6vh,60px);position:relative}
 .page-head::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:linear-gradient(to left,transparent,var(--gold) 20%,var(--gold) 80%,transparent)}
-.ph-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,4vw,60px);align-items:end}
+.page-head .wrap{text-align:center}
 .page-head small{display:block;color:var(--gold);font-weight:700;letter-spacing:.16em;font-size:.85rem;margin-bottom:10px}
 .page-head h1{font-family:var(--head);font-weight:900;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;color:var(--cream)}
 .page-head p{max-width:600px;margin-top:14px;font-size:1.1rem;color:rgba(238,232,219,.85)}
-.ph-stats{display:flex;gap:clamp(18px,3vw,40px)}
-.ph-stat{text-align:center;border-inline-start:1px solid rgba(209,164,91,.4);padding-inline-start:clamp(18px,3vw,40px)}
-.ph-stat:first-child{border:0;padding-inline-start:0}
-.ph-stat b{display:block;font-family:var(--num);font-weight:400;font-size:clamp(2.6rem,5vw,4rem);line-height:1;color:var(--gold);direction:ltr}
-.ph-stat span{font-size:.9rem;color:rgba(238,232,219,.8)}
-
 /* ---------- controls ---------- */
 .controls{position:sticky;top:64px;z-index:40;background:rgba(238,232,219,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 0}
-.controls .wrap{display:flex;align-items:center;gap:14px 26px;flex-wrap:wrap}
-.tabs{display:flex;gap:6px;flex-wrap:wrap}
-.chip{border:1px solid var(--char);color:var(--char);background:transparent;padding:8px 16px;border-radius:4px;font-weight:700;font-size:.92rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;display:inline-flex;align-items:center;gap:8px}
-.chip:hover{background:var(--char);color:var(--cream)}
-.chip.on{background:var(--char);color:var(--cream)}
-.chip .cnt{font-family:var(--num);font-size:1.05em;color:var(--gold);direction:ltr}
-.chip.on .cnt{color:var(--gold)}
-.ctl-group{display:flex;align-items:center;gap:8px}
-.ctl-group>span{font-size:.85rem;font-weight:700;color:var(--paper-ink)}
-.chip.sm{padding:6px 12px;font-size:.85rem}
-.chip.gold{border-color:var(--gold);color:var(--gold-2)}
-.chip.gold.on,.chip.gold:hover{background:var(--gold);color:var(--char)}
-.switch{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:600;cursor:pointer;user-select:none}
-.switch i{width:38px;height:22px;border:1px solid var(--char);border-radius:999px;position:relative;transition:background .2s}
-.switch i::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:14px;height:14px;border-radius:50%;background:var(--char);transition:transform .2s,background .2s}
-.switch input{position:absolute;opacity:0;pointer-events:none}
-.switch input:checked+i{background:var(--char)}
-.switch input:checked+i::after{background:var(--gold);transform:translateX(-16px)}
-.views{margin-inline-start:auto;display:flex;border:1px solid var(--char);border-radius:4px;overflow:hidden}
-.views button{background:transparent;border:0;padding:8px 14px;font-weight:700;font-size:.88rem;color:var(--char);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.ctl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:12px 14px;align-items:end}
+.sel{display:flex;flex-direction:column;gap:5px;font-size:.78rem;font-weight:700;color:var(--paper-ink);min-width:0}
+.sel select{
+  appearance:none;-webkit-appearance:none;width:100%;border:1px solid var(--char);border-radius:4px;color:var(--char);
+  background:var(--offwhite) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8893F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat left 12px center/14px;
+  font:700 .95rem/1.4 var(--sans);padding:10px 14px 10px 36px;cursor:pointer;transition:border-color .2s;
+}
+.sel select:focus{outline:none;border-color:var(--gold)}
+.views{display:flex;border:1px solid var(--char);border-radius:4px;overflow:hidden;height:43px}
+.views button{background:transparent;border:0;padding:0 14px;font-weight:700;font-size:.88rem;color:var(--char);cursor:pointer;display:inline-flex;align-items:center;gap:6px;flex:1;justify-content:center;white-space:nowrap}
 .views button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .views button.on{background:var(--char);color:var(--cream)}
 
@@ -308,12 +299,12 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 @media (max-width:960px){
   .units{grid-template-columns:repeat(3,minmax(0,1fr))}
   .hdr-cta{display:none}.burger{display:block}.f-cols{grid-template-columns:1fr;gap:34px}
-  .ph-grid{grid-template-columns:1fr}
   .page-head{padding-top:calc(70px + 36px)}
   .controls{top:56px}
-  .views{margin-inline-start:0}
 }
 @media (max-width:640px){
+  .ctl{grid-template-columns:1fr 1fr}
+  .views{grid-column:1/-1}
   .logos img{height:36px}
   .floor{grid-template-columns:1fr}
   .floor-lab{flex-direction:row;align-items:center;gap:10px;padding:10px 14px;border-inline-end:0;border-bottom:1px solid rgba(43,43,43,.12)}
@@ -350,40 +341,37 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   </button>
 </header>
 
+<div class="menu-bg" id="menuBg"></div>
 <div class="menu" id="menu" aria-hidden="true">
-  <div>
+  <div class="menu-top">
+    <img src="/assets/v2/hasdera-logo-light.png" alt="השדרה אלעד">
+    <button class="menu-close" id="menuClose" aria-label="סגירת תפריט"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <a class="btn" href="/v2-apartments.html"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>מלאי דירות</a>
+  <nav class="menu-nav" aria-label="תפריט">
     <a href="/v2#about">על הפרויקט</a>
     <a href="/v2#gallery">גלריה</a>
     <a href="/v2#why">למה לבחור בשדרה</a>
     <a href="/v2#developers">היזמים</a>
-    <a href="/v2-apartments.html" class="gold">מלאי דירות</a>
     <a href="/v2#contact" class="gold">צרו קשר</a>
-    <div class="menu-tel"><a href="tel:+972528939050">052-893-9050</a></div>
-  </div>
+  </nav>
+  <div class="menu-tel">לפרטים: <a href="tel:+972528939050">052-893-9050</a></div>
 </div>
 
 
 <main>
   <section class="page-head">
-    <div class="wrap ph-grid">
-      <div>
-        <small>השדרה אלעד</small>
-        <h1>מלאי דירות</h1>
-        <p>מפת המלאי המלאה של הפרויקט: בחרו בניין וראו בכל קומה אילו דירות פנויות ואילו כבר נמכרו. לחיצה על דירה פנויה פותחת את כל הפרטים ותוכנית הדירה.</p>
-      </div>
-      <div class="ph-stats">
-        <div class="ph-stat"><b id="sAvail">–</b><span>דירות פנויות</span></div>
-        <div class="ph-stat"><b id="sTotal">–</b><span>סה״כ דירות</span></div>
-        <div class="ph-stat"><b id="sBld">–</b><span>אגפים</span></div>
-      </div>
+    <div class="wrap">
+      <small>השדרה אלעד</small>
+      <h1>מלאי דירות</h1>
     </div>
   </section>
 
   <div class="controls">
-    <div class="wrap">
-      <div class="tabs" id="tabs"></div>
-      <div class="ctl-group"><span>חדרים:</span><div class="tabs" id="rooms"></div></div>
-      <label class="switch"><input type="checkbox" id="onlyAvail"><i></i>רק דירות פנויות</label>
+    <div class="wrap ctl">
+      <label class="sel"><span>בניין</span><select id="selBld"></select></label>
+      <label class="sel"><span>חדרים</span><select id="selRooms"><option value="">כל הדירות</option></select></label>
+      <label class="sel"><span>זמינות</span><select id="selAvail"><option value="">הכל</option><option value="1">רק דירות פנויות</option></select></label>
       <div class="views">
         <button type="button" class="on" data-v="map"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V9l6-5 6 5v11M10 20v-6h4v6"/></svg>מפת בניין</button>
         <button type="button" data-v="list"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>רשימה</button>
@@ -484,12 +472,14 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   addEventListener('scroll',onScroll,{passive:true});onScroll();
   var burger=document.getElementById('burger'),menu=document.getElementById('menu');
   function setMenu(open){
-    menu.classList.toggle('open',open);burger.classList.toggle('open',open);
+    menu.classList.toggle('open',open);burger.classList.toggle('open',open);document.getElementById('menuBg').classList.toggle('open',open);
     burger.setAttribute('aria-expanded',open);menu.setAttribute('aria-hidden',!open);
     document.body.style.overflow=open?'hidden':'';
   }
   burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
   menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  document.getElementById('menuClose').addEventListener('click',function(){setMenu(false)});
+  document.getElementById('menuBg').addEventListener('click',function(){setMenu(false)});
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
 
@@ -541,23 +531,14 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 
   function init(){
     var ids=blds();if(!cur.bld||ids.indexOf(cur.bld)<0)cur.bld=ids[0];
-    var av=ALL.filter(function(a){return !a.sold});
-    document.getElementById('sAvail').textContent=av.length;
-    document.getElementById('sTotal').textContent=ALL.length;
-    document.getElementById('sBld').textContent=ids.length;
-    var tabs=document.getElementById('tabs');tabs.innerHTML='';
-    ids.forEach(function(b){
-      var m=meta(b),n=ALL.filter(function(a){return a.bld===b&&!a.sold}).length;
-      var c=document.createElement('button');c.type='button';c.className='chip';c.dataset.b=b;
-      c.innerHTML=m.name+' · '+m.wing+' <span class="cnt">'+n+'</span>';
-      c.addEventListener('click',function(){cur.bld=b;render();history.replaceState(null,'','?b='+b)});
-      tabs.appendChild(c);
-    });
     var rs=[];ALL.forEach(function(a){if(a.rooms&&rs.indexOf(a.rooms)<0)rs.push(a.rooms)});rs.sort(function(x,y){return +x-+y});
-    var rf=document.getElementById('rooms');rf.innerHTML='<button type="button" class="chip sm gold on" data-r="">הכל</button>';
-    rs.forEach(function(r){var c=document.createElement('button');c.type='button';c.className='chip sm gold';c.dataset.r=r;c.textContent=r+' חד׳';rf.appendChild(c)});
-    rf.querySelectorAll('button').forEach(function(c){c.addEventListener('click',function(){cur.rooms=c.dataset.r;rf.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===c)});render()})});
-    document.getElementById('onlyAvail').addEventListener('change',function(){cur.onlyAvail=this.checked;render()});
+    var sb=document.getElementById('selBld');sb.innerHTML='';
+    ids.forEach(function(b){var m=meta(b),n=ALL.filter(function(a){return a.bld===b&&!a.sold}).length;var o=document.createElement('option');o.value=b;o.textContent=m.name+' · '+m.wing+' ('+n+' פנויות)';sb.appendChild(o)});
+    sb.value=cur.bld;sb.addEventListener('change',function(){cur.bld=sb.value;render();history.replaceState(null,'','?b='+cur.bld)});
+    var sr=document.getElementById('selRooms');
+    rs.forEach(function(r){var o=document.createElement('option');o.value=r;o.textContent=r+' חדרים';sr.appendChild(o)});
+    sr.addEventListener('change',function(){cur.rooms=sr.value;render()});
+    document.getElementById('selAvail').addEventListener('change',function(){cur.onlyAvail=this.value==='1';render()});
     document.querySelectorAll('.views button').forEach(function(b){b.addEventListener('click',function(){cur.view=b.dataset.v;document.querySelectorAll('.views button').forEach(function(x){x.classList.toggle('on',x===b)});render()})});
     render();
   }
@@ -570,7 +551,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   function match(a){return (!cur.rooms||a.rooms===cur.rooms)&&(!cur.onlyAvail||!a.sold)}
 
   function render(){
-    document.querySelectorAll('#tabs .chip').forEach(function(c){c.classList.toggle('on',c.dataset.b===cur.bld)});
+    document.getElementById('selBld').value=cur.bld;
     var m=meta(cur.bld),list=ALL.filter(function(a){return a.bld===cur.bld});
     var av=list.filter(function(a){return !a.sold}).length;
     document.getElementById('bldTitle').innerHTML=m.name+'<small>'+m.wing+'</small>';
