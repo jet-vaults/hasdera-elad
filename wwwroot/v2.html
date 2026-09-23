@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>השדרה אלעד - החיים שתמיד חלמתם עליהם</title>
 <meta name="description" content="פרויקט השדרה באלעד מבית גלנור וידות: דירות 4-6 חדרים, דירות גן ופנטהאוזים מול נוף פתוח, בכניסה החדשה לעיר.">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/v2/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/assets/v2/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Heebo:wght@500;700;800;900&family=Marcellus&display=swap" rel="stylesheet">
@@ -75,8 +75,8 @@ header::after{
 header.scrolled{background:rgba(248,246,241,.96);backdrop-filter:blur(12px);padding-block:10px}
 header.scrolled::after{opacity:1}
 .logos{display:flex;align-items:center;gap:22px}
-.logos img{height:44px;width:auto;transition:height .4s}
-header.scrolled .logos img{height:36px}
+.logos img{height:40px;width:auto;transition:height .4s;object-fit:contain}
+header.scrolled .logos img{height:34px}
 .logos .sep{width:1px;height:32px;background:var(--line)}
 nav.main-nav{display:flex;gap:clamp(16px,2.4vw,34px);font-weight:600;font-size:.95rem}
 nav.main-nav a{position:relative;padding-block:4px}
@@ -127,6 +127,9 @@ nav.main-nav a:hover::after{width:100%}
 }
 .hero-mark{height:clamp(54px,7vh,72px);width:auto;margin:0 auto clamp(18px,3vh,28px);opacity:0;animation:fadeUp 1s var(--ease) .2s forwards}
 .hero-mark.light{display:none}
+.mark-halo{position:relative;display:inline-block}
+body[data-hero="b"] .mark-halo::before{content:"";position:absolute;inset:-34% -22%;background:radial-gradient(ellipse at center,rgba(11,11,11,.62),rgba(11,11,11,.35) 45%,transparent 72%);z-index:-1;pointer-events:none}
+body[data-hero="b"] .mark-halo{z-index:0}
 .hero-eyebrow{display:block;color:var(--gold-2);font-weight:700;letter-spacing:.14em;font-size:.9rem;margin-bottom:14px;opacity:0;animation:fadeUp 1s var(--ease) .3s forwards}
 .hero-title{font-family:var(--head);font-weight:900;font-size:clamp(2.5rem,5.8vw,5.2rem);line-height:1.1;letter-spacing:-.01em;color:var(--char)}
 .hero-title .w{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
@@ -350,9 +353,13 @@ body[data-cards="d"] .why-stage{display:block}
 .devs{padding:0 0 clamp(80px,12vh,130px);text-align:center}
 .devs p{max-width:960px;margin:28px auto 0;font-size:1.12rem;line-height:1.85;color:var(--paper-ink)}
 .devs p strong{color:var(--char)}
+.dev-logos{display:flex;justify-content:center;align-items:center;gap:clamp(30px,6vw,80px);margin-top:44px;flex-wrap:wrap}
+.dev-logos img{height:56px;width:auto;object-fit:contain;transition:opacity .3s}
+.dev-logos a:hover img{opacity:.7}
+.inventory{border-top:1px solid transparent;border-image:linear-gradient(to left,transparent,var(--gold) 20%,var(--gold) 80%,transparent) 1;padding-top:clamp(70px,10vh,110px)}
 
 /* ---------- inventory ---------- */
-.inventory{padding:0 0 clamp(90px,13vh,140px)}
+.inventory{padding-bottom:clamp(90px,13vh,140px)}
 .inv-lead{text-align:center;margin-top:14px;color:var(--paper-ink);font-size:1.05rem}
 .board{
   position:relative;border:1px solid var(--char);padding:clamp(28px,4vw,56px) clamp(16px,3vw,44px) clamp(70px,8vw,96px);
@@ -580,7 +587,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
 
 <header id="hdr">
   <div class="logos">
-    <a href="#top" aria-label="דף הבית"><img src="/assets/galnor-logo.png" alt="קבוצת גלנור"></a>
+    <a href="#top" aria-label="דף הבית"><img src="/assets/v2/galnor-logo.png" alt="קבוצת גלנור"></a>
     <span class="sep"></span>
     <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
   </div>
@@ -589,7 +596,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
     <a href="#gallery">גלריה</a>
     <a href="#why">למה לבחור בשדרה</a>
     <a href="#developers">היזמים</a>
-    <a href="#inventory">מלאי דירות</a>
+    <a href="#inventory">הדירות</a>
   </nav>
   <a class="hdr-cta" href="#contact">צרו קשר</a>
   <button class="burger" id="burger" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="menu">
@@ -610,7 +617,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
     <a href="#developers">היזמים</a>
     <a href="#contact" class="gold">צרו קשר</a>
   </nav>
-  <a class="btn" href="/v2-apartments.html"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>מלאי דירות</a>
+  <a class="btn" href="/v2-apartments.html"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>הדירות</a>
   <div class="menu-tel">לפרטים: <a href="tel:+972528939050">052-893-9050</a></div>
 </div>
 
@@ -620,8 +627,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-copy">
-        <img class="hero-mark dark" src="/assets/hasdera-logo.png" alt="השדרה - כל מה שטוב באלעד החדשה">
-        <img class="hero-mark light" src="/assets/v2/hasdera-logo-light.png" alt="">
+        <span class="mark-halo"><img class="hero-mark dark" src="/assets/hasdera-logo.png" alt="השדרה - כל מה שטוב באלעד החדשה"><img class="hero-mark light" src="/assets/v2/hasdera-logo-light.png" alt=""></span>
         <span class="hero-eyebrow">מתחם המגורים החדש של גלנור וידות באלעד</span>
         <h1 class="hero-title">
           <span class="w"><span>החיים שתמיד</span></span>
@@ -630,7 +636,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
         <p class="hero-sub">איכות חיים מול נוף פתוח, בשער הכניסה החדש לאלעד. דירות 4-6 חדרים, דירות גן ופנטהאוזים.</p>
         <div class="hero-cta">
           <a class="btn" href="#contact"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לקבלת פרטים ומחירים</a>
-          <a class="btn ghost" href="#inventory">מלאי דירות</a>
+          <a class="btn ghost" href="#inventory">הדירות</a>
         </div>
       </div>
       <div class="hero-media">
@@ -740,6 +746,10 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   <section class="devs" id="developers">
     <div class="wrap">
       <h2 class="sec-title lined rv">היזמים</h2>
+      <div class="dev-logos rv d2">
+        <a href="https://www.galnor.co.il/" target="_blank" rel="noopener" aria-label="אתר קבוצת גלנור"><img src="/assets/v2/galnor-logo.png" alt="קבוצת גלנור"></a>
+        <img src="/wp-content/uploads/2026/02/6daf0179-1-e1770420567660-300x120.png" alt="קבוצת ידות">
+      </div>
       <p class="rv d1">מאחורי פרויקט "השדרה" עומדות <strong>חברות גלנור וידות</strong> מהחברות המובילות והאמינות בענף הבנייה והיזמות בישראל. עם ותק של עשרות שנים, ניסיון מוכח בליווי משפחות בכל שלבי הרכישה והבנייה, ומאות יחידות דיור שבנו והשלימו בהצלחה אתם יכולים להיות בטוחים שהבית שלכם בידיים טובות, יציבות ומנוסות.</p>
     </div>
   </section>
@@ -747,7 +757,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
   <!-- INVENTORY -->
   <section class="inventory" id="inventory">
     <div class="wrap">
-      <h2 class="sec-title rv">מלאי דירות</h2>
+      <h2 class="sec-title rv">הדירות</h2>
       <p class="inv-lead rv d1">לחצו על דירה לצפייה בפרטים המלאים ובתוכנית הדירה</p>
       <div class="board rv">
         <div class="board-deco" aria-hidden="true">
@@ -763,7 +773,7 @@ footer h2{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,3.2vw,2
             <path d="M0 200c0-14 12-24 26-20 4-16 30-18 36-4 12-4 24 6 20 18 8 0 12 6 12 12H0z"/>
           </svg>
         </div>
-        <div class="board-grid" id="board"><div class="board-status" style="grid-column:1/-1">טוען מלאי דירות עדכני...</div></div>
+        <div class="board-grid" id="board"><div class="board-status" style="grid-column:1/-1">טוען את הדירות...</div></div>
       </div>
       <div class="board-cta rv">
         <a class="btn" href="/v2-apartments.html"><span class="arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>לצפייה במפרט הטכני המלא</a>
